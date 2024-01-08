@@ -12,6 +12,23 @@ ConnectWise Control utilizes the `CustomProperty1` property - typically referenc
 If you are using this property for another purpose, you will need to update the `CustomProperty1` property to store the organization name.
 {% endhint %}
 
+{% hint style="danger" %}
+**CW RMM/Continuum Specific Setup Instructions**
+
+CW RMM/Continuum stores the company name in the `CustomProperty2` value unlike other RMMs so it is necessary to reference CustomProperty2.
+
+In your integration configuration you will want to set the following:
+
+Organization Subgroup Expression = CustomProperty2
+
+Root Session Group = All Machines by Company
+
+You will also need to do the following within Control/Screenconnect.
+
+1. Create a session group named `All Machines by Company` and give it the sub group expression of `CustomProperty2`
+2. Create a session group named `All Machines`, this does not need any sub group expressions.
+{% endhint %}
+
 ### Setup
 
 To allow Rewst access to your ConnectWise Control, you'll need to create a new user and allow it access to your sessions. To add a new user:
