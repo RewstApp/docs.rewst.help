@@ -22,6 +22,28 @@ Other applications/your technicians might need additional roles added to the rel
 
 {% embed url="https://www.youtube.com/embed/EtnO8VAHnGo?si=lsQ1a7fwVwMxxF2W" %}
 
+{% hint style="danger" %}
+IMPORTANT:
+As of January 2024 it was discovered that there is an issue on Microsoft's end that can cause issues with RBAC settings for certain APIs.
+
+Because of this it is recommended to break each individual role out into seperate groups within the GDAP relationship, failure to do so can result in intermittent GET, PATCH, and POST failures on API calls.
+
+In the video and text guide for this document the instructions state to create one group, however the document and video will be updated at a later date to reflect this.
+
+When setting up the group(s) in Entra you should do the following:
+
+Create a corresponding group for each role that will be assigned per [#recommended-roles-for-gdap](../authorization-best-practices.md#recommended-roles-for-gdap "mention"), an example of this would be:
+GDAP - Application Administrator
+GDAP - Exchange Administrator
+etc.
+
+In the admin relationship within the Partner Center you will need to add each group to the relationship and assign the corresponding role to the corresponding group in the relationship.
+
+Example: GDAP - Application Administrator -> Application Administrator
+
+The user used to authorize the integration(s) will need to be a member of each of these groups.
+{% endhint %}
+
 Below are the manual steps for completing this task
 
 ## Azure Active Directory (In Partner Tenant)
