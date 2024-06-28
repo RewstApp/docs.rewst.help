@@ -192,8 +192,6 @@ We jumped ahead to show how to trigger a workflow with a form. We now are going 
 **Add a Second Transition**
 
 1. **Click** the _Add_ (+) button on the _noop_ action to add a new transition.
-2. **Click and Drag** the transition from the _noop_ action to the _Remove Group Member_ action.
-   * To do this, you will need to hover over the gray circle under the new _On Success_ section you added.
 
 **Configure the Remove Transition**
 
@@ -238,6 +236,8 @@ We jumped ahead to show how to trigger a workflow with a form. We now are going 
 ```
 
 10. **Close** the editor.
+11. **Click and Drag** the transition from the _noop_ action to the _Remove Group Member_ action.
+   * To do this, you will need to hover over the gray circle under the new _Remove_ section you added.
 
 **Configure Add Group Member Action**
 
