@@ -188,7 +188,7 @@ In our next steps, we'll go to the Workflow section. Here, we'll craft a new wor
 
 **Add a Final Noop to Build the Group List**
 
-1. **Add** a _core\_noop_ action under the _list\_user\_groups_ action.
+1. **Add** a _core\_noop_ action under the _list\_user\_groups_ copy.
 2. **Click** on the action to open the Details menu.
 3. **Change** the name to _build\_group\_list_.
 4. **Click** the _On Success_ Transition.
@@ -213,7 +213,7 @@ In our next steps, we'll go to the Workflow section. Here, we'll craft a new wor
 
 **Add the Final Transition**
 
-1. **Drag** the Transition from _list\_user\_groups_ to the _build\_group\_list_ copy.
+1. **Drag** the Transition from _list\_user\_groups_ copy to _build\_group\_list_.
 2. **Click** _Publish_.
 3. **Click** _Submit_.
 
@@ -246,9 +246,9 @@ Next, we'll first add a trigger, configured to always pass, guaranteeing the wor
 2. **Type** _Option Generator_ for the Name.
 3. **Click** the slider next to _Enabled_.
 4. **Choose** _Core - Always Pass_ Trigger Type.
-5. **Click** the slider next to _All current and future managed organizations_.
-6. **Click** the Add (+) button next to _Integration Overrides_.
-7. **Choose** _Microsoft Graph_ for the _Integration_ dropdown.
+5. **Click** the Add (+) button next to _Integration Overrides_.
+6. **Choose** _Microsoft Graph_ for the _Integration_ dropdown.
+7. **Click** the slider next to _All current and future managed organizations_.
 8. **Click** _Submit_.
    * You may need to Click _Cancel_ after to close it.
 9. **Click** _Publish_ at the top right of the workflow.
@@ -274,9 +274,9 @@ Next, we'll first add a trigger, configured to always pass, guaranteeing the wor
    1. Refresh the page if the workflow does not appear.
 2. **Replace** the _Label Field_ default with _displayName_.
 3. **Choose** _Option Generator_ for the Trigger.
-4. **Click** _Populate from form field_ under the `schema.enumSourceWorkflow.input.action` field.
+4. **Click** _Populate from form field_ under the `action` field.
 5. **Choose** `action` from the dropdown.
-6. **Click** _Populate from form field_ under the `schema.enumSourceWorkflow.input.user_id` field.
+6. **Click** _Populate from form field_ under the `user_id` field.
 7. **Choose** `user_id` from the dropdown.
 8. **Click** _Save_.
 9. **Click** _Submit_.
