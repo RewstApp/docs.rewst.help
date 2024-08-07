@@ -40,7 +40,7 @@ Jinja is a versatile templating language for creating dynamic content. It suppor
 
 ### Conditional Statements:
 
-Jinja supports conditional statements like `if,` `else` and `elseif`. These statements allow you to create dynamic workflows based on specific conditions, ensuring the workflow adapts to varying scenarios.&#x20;
+Jinja supports conditional statements like `if,` `else` and `elif`. These statements allow you to create dynamic workflows based on specific conditions, ensuring the workflow adapts to varying scenarios.&#x20;
 
 **Example:**
 
@@ -50,6 +50,18 @@ Jinja supports conditional statements like `if,` `else` and `elseif`. These stat
     <p>Welcome, {{ user_name }}!</p>
 {% else %} 
     <p>Please log in to continue.</p>
+{% endif %}
+{% endraw %}
+```
+
+```django
+{% raw %}
+{% if rooster_sound == 'cock-a-doodle-doo' %}
+    <p>Time to rise and shine!</p>
+{% elif rooster_sound == 'moo' %}
+    <p>The rooster is having an identity crisis. Someone check the barnyard!</p>
+{% else %} 
+    <p>The rooster is trying out new sounds. Perhaps it's starting a band!</p>
 {% endif %}
 {% endraw %}
 ```
