@@ -17,8 +17,8 @@ One important thing to know if you've never used Immy, is that `Invoke-ImmyComma
 ### High-level overview
 
 1. Create the [`software`](deploying-agent-smith-with-immybot.md#software) object in Immy
-   * Software objects are what Immy uses to interpret an application that should be deployed.
-   * The scripts [here](https://github.com/BezaluLLC/Project-Foghorn-agent/tree/main/Immy%20Scripts) should be entered in the corresponding blank script fields
+   * Immy uses software objects to interpret an application that should be deployed and how to do so.
+   * The scripts [here](https://github.com/BezaluLLC/Project-Foghorn/tree/main/ImmyBot%20Integration) should be entered in the corresponding blank script fields
    * The PowerShell scripts handle:
      * Detection of the agent
      * Installation of the agent
@@ -37,7 +37,7 @@ One important thing to know if you've never used Immy, is that `Invoke-ImmyComma
 
 1. To set up a software in Immy for Agent Smith, start in the left menu, then `Library > Software > New`.\
    ![image](https://github.com/BezaluLLC/Project-Foghorn-agent/assets/2997336/ea8f749a-47cf-4a05-af40-c461a9a17839)
-2. This will bring you to a setup page that asks for an installer. Go ahead an indicate `none` here. ![image](https://github.com/RewstApp/docs.rewst.help/assets/2997336/48ccca1a-dd66-49c1-b807-bd6ab0535666)
+2. This will bring you to a setup page that asks for an installer. Go ahead and indicate `none` here. ![image](https://github.com/RewstApp/docs.rewst.help/assets/2997336/48ccca1a-dd66-49c1-b807-bd6ab0535666)
 3. Next, it will ask for a software to add the version to. Select `Add version to new software`. ![image](https://github.com/RewstApp/docs.rewst.help/assets/2997336/6eceb9ff-bb22-410b-95b8-c3a40e2897e8)
 4. After selecting `new software`, you should be on the actual setup page now. Enter a name, logo, and description for your agent
 5.  Begin loading the PowerShell scripts into each corresponding field.
