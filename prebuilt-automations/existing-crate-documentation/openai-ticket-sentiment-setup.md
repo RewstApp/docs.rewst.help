@@ -30,6 +30,7 @@ This list is currently:
 * ConnectWise Manage
 * Datto PSA
 * HaloPSA
+* Kaseya BMS
 
 If you're using a PSA that isn't on this list, please let us know and we'll look at whether it has the ability to trigger an automation based on a ticket being created.
 
@@ -81,6 +82,10 @@ This is the threshold that you want to set for the urgency of the ticket. If the
 
 This is the threshold that you want to set for the impact of the ticket. If the impact is below this threshold, the ticket will be considered low impact. If the impact is above this threshold, the ticket will be considered high impact, and update the ticket accordingly.
 
+**Error Reporting**
+
+Set `Report errors in ticket when unable to utilise AI` to true if you want any workflow errors reported in the ticket.
+
 On the following screen, you'll be asked to **disable the triggers that you don't need** for the PSAs that are not required (we'll make this easier soon!).
 
 <figure><img src="../../.gitbook/assets/DisabledTriggers (1).png" alt=""><figcaption><p>Disabling Unused Triggers</p></figcaption></figure>
@@ -92,6 +97,14 @@ The trigger that will kick off the automation when a ticket is created, is the o
 That's it, hit "Unpack" and you're good to go! Go create a ticket in your PSA with a _somewhat frustrated_ description, and then watch the magic happen!
 
 <figure><img src="../../.gitbook/assets/HaloPSANote (1).png" alt=""><figcaption></figcaption></figure>
+
+### Useful Organization Variables (Optional)
+
+These Organization Variables give you more control over the functionality of this workflow.
+- ORG.VARIABLES.ticket_sent_max_tokens
+    - Allows you to manually set the max tokens
+- ORG.VARIABLES.ai_model_ticket_sent
+    - Allows you to manually set the model
 
 ### Feedback
 
