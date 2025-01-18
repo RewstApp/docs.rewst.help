@@ -28,6 +28,7 @@ This list is currently:
 * ConnectWise Manage
 * Datto PSA
 * HaloPSA
+* Kaseya BMS
 
 If you're using a PSA that isn't on this list, please let us know and we'll look at whether it has the ability to trigger an automation based on a ticket being created.
 
@@ -65,9 +66,9 @@ Find the crate in the marketplace, called "OpenAI Ticket Categorization". Altern
 
 <figure><img src="../../.gitbook/assets/CrateInMarketplace.png" alt=""><figcaption><p>Searching for the Crate</p></figcaption></figure>
 
-Once in the crate, select your PSA from the dropdown.
+Once in the crate, select your PSA from the dropdown, the OpenAI Model, and if you want issues with OpenAI reported in the ticket.
 
-<figure><img src="../../.gitbook/assets/ChoosePSADropdown.png" alt=""><figcaption><p>Selecting a PSA</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CrateOpenAICategorySelectPSAAndTokens.png" alt=""><figcaption><p>Selecting a PSA, OpenAI Model, and error reporting</p></figcaption></figure>
 
 On the following screen, you'll be asked to **disable the triggers that you don't need** for the PSAs that are not required (we'll make this easier soon!).
 
@@ -80,6 +81,15 @@ The trigger that will kick off the automation when a ticket is created, is the o
 That's it, hit "Unpack" and you're good to go! Create a ticket in your PSA with a typical description and summary, and then watch the magic happen!
 
 <figure><img src="../../.gitbook/assets/HaloPSANote.png" alt=""><figcaption></figcaption></figure>
+
+### Useful Organization Variables (Optional)
+
+These Organization Variables give you more control over the functionality of this workflow.
+ - ORG.VARIABLES.ticket_cat_max_tokens
+    - Allows you to manually set the max tokens
+ - ORG.VARIABLES.ai_model_ticket_cat
+    - Allows you to manually set the model
+
 
 ### Feedback
 
