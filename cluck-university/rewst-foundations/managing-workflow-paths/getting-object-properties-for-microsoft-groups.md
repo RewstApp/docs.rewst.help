@@ -43,7 +43,7 @@ description: >-
    * Graph
    * Exchange Online
 5. **Select** the Dynamic transition and add the following custom condition: `{{ "DynamicMembership" in CTX.group.groupTypes }}`
-6. **Select** the Graph transition and add the following custom condition: `{{ "Unified in CTX.group.groupTypes or not CTX.group.mailEnabled }}`
+6. **Select** the Graph transition and add the following custom condition: `{{ "Unified" in CTX.group.groupTypes or not CTX.group.mailEnabled }}`
 7. **Connect** the Graph transition to the "add\_or\_remove" noop
 
 </details>
