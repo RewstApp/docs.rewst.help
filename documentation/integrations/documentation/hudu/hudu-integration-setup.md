@@ -29,8 +29,9 @@ Before configuring the Rewst integration, you must generate an API user.
 
     1. **Name:** Rewst
     2. **Allowed IP Addresses:** 3.139.170.31
-    3. Check off **Can access passwords?**
-    4. Check off **Can perform destructive actions?**
+    3. Check the box for **Can access passwords?**
+    4. Check the box for **Can perform destructive actions?**
+    5. Check the box for **Can perform export actions?**
 6. Click **Create New Key**.
 7. Copy and save the API key that is generated and listed at the top of the page under **New API Key**.
 
