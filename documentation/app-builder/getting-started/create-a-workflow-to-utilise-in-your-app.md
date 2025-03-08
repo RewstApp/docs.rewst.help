@@ -118,9 +118,9 @@ We wont go fully into the Jinja here, but feel free to reach out to the ROC if y
     {
       "name": form.name,
       "tags": form.tags,
-      "view": "https://app.rewst.io/form/"~form.id,
+      "view": "https://app.rewst.io/form/"~form.triggers[0].id | d,
       "triggerId": form.triggers[0].id | d
-    } for form in CTX.all_available_forms
+    } for form in CTX.all_available_forms if form.triggers|length > 0
 ] }}
 ```
 
