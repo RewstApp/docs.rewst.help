@@ -5,7 +5,7 @@ ConnectWise Pods are a great method of getting information from Rewst into diffe
 {% hint style="warning" %}
 **Pod Authorization**
 
-Note that pods do not allow the use of the fat client due to authorization pass-through issues. This means that you can use the web client to access pods.
+Note that pods do not allow the use of the fat client due to authorization pass-through issues. This means that you must use the web client to access pods.
 {% endhint %}
 
 ### Configure ConnectWise pods
