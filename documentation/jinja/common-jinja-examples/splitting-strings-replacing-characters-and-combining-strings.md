@@ -38,17 +38,23 @@ In both cases, the underscore (`_`) in the string `"this_is_a_string"` is replac
 
 ### **Combine strings: Use concatenation**
 
-Combining strings in Jinja is achieved similarly to Python. Strings can be concatenated using the `+` operator.
+Combining strings in Jinja is achieved similarly to Python. Strings can be concatenated using either the `~` or `+` operators.
 
 ```django
-{% raw %}
 {%- set string1 = "hello" -%}
 {%- set string2 = "world" -%}
-{% endraw %}
+{{ string1~string2 }}
+```
+
+```django
+{%- set string1 = "hello" -%}
+{%- set string2 = "world" -%}
 {{ string1 + string2 }}
 ```
 
 In this example, the strings `"hello"` and `"world"` are concatenated to form the output: `"helloworld"`.
+
+Note that in Jinja, the `~` operator is the preferred operator for this function.
 
 ### **Conclusion**
 
