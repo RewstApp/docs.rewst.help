@@ -17,7 +17,7 @@ Join us live on the first Friday of every month at 2pm AEDT
 * 🧱 Jo explained common Microsoft bundle errors and how to avoid them using updated documentation and tools.
 * 🔐 Tim from Colton Computers demoed an automated M365 onboarding workflow that saves hours of manual setup.
 * 🧠 Tim fielded technical questions on policy management, auditing, templates, and drift tracking tools.
-* ⚙️ Ray showcased a PowerShell-based workflow and discussed scenarios where PowerShell excels over Ginger.
+* ⚙️ Ray showcased a PowerShell-based workflow and discussed scenarios where PowerShell excels over Jinja.
 * 📦 Ray answered questions on importing PowerShell modules and customizing Azure Functions.
 * 👋 Sarah wrapped up the session, inviting future demos and wishing everyone a good weekend.
 
