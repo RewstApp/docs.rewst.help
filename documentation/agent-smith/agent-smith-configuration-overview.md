@@ -3,7 +3,7 @@
 {% hint style="info" %}
 Agent Smith consists of three main components:
 
-* An open-source agent written in Python in the [Rewst GitHub](https://github.com/RewstApp/agent-smith-go)
+* An open-source agent written in GoLang in the [Rewst GitHub](https://github.com/RewstApp/agent-smith-go)
 * The Microsoft [Azure IoTHub](https://azure.microsoft.com/en-us/products/iot-hub) service
 * Rewst Crates to configure the IoTHub and interact with agents
 
