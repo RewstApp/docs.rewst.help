@@ -18,36 +18,97 @@ Our Billing Count Report Crate is designed to streamline and enhance the process
 
 ### Workflow breakdown
 
-1. The workflow begins with the **BEGIN** task which initializes the output structure with empty data, success status, and automation log arrays.
-2. The **Check Running Org** task validates whether the workflow should continue execution based on the organization context, and if validation passes, the workflow proceeds to the next step.
-3. The **Get Integration Ids** task retrieves all integration identifiers for companies within the organization and publishes this data to the workflow context.
-   1. The workflow checks if Datto RMM is installed, and if so, executes the **Get Datto RMM Counts** task to retrieve device count information from the Datto RMM integration.
-   2. The workflow checks if ConnectWise Automate is installed, and if so, executes the **Get CWA Device Counts** task to gather device count data from the ConnectWise Automate integration.
-   3. The workflow checks if NinjaOne is installed, and if so, executes the **Get Ninja Device Counts** task to collect device count information from the NinjaOne integration.
-   4. The workflow checks if Microsoft Graph is installed, and if so, executes the **Get 365 License Counts** task which runs with items iteration to gather Microsoft 365 license data for each organization.
-   5. The workflow checks if Huntress is installed, and if so, executes the **Get Huntress License Counts** task to retrieve license count information from the Huntress integration.
-   6. The workflow checks if SentinelOne is installed, and if so, executes the **Get Sentinel One Counts** task to gather license count data and also creates SentinelOne SKU count data.
-   7. The workflow checks if Duo is installed, and if so, executes the **Get Duo User Counts** task to collect user count information from the Duo integration.
-   8. The workflow checks if Pax8 is installed, and if so, executes the **Get Pax8 License Counts** task to retrieve subscription and license count data from the Pax8 integration.
-   9. The workflow checks if IT Glue is installed, and if so, executes the **Get MyGlue License Counts** task to gather license count information from the IT Glue integration.
-   10. The workflow checks if Auvik is installed, and if so, executes the **Get Auvik Counts** task to collect count data from the Auvik integration.
-   11. The workflow checks if Proofpoint is installed, and if so, executes the **Get Proofpoint Counts** task to retrieve user count information from the Proofpoint integration.
-   12. The workflow checks if ImmyBot is installed, and if so, executes the **Get ImmyBot Counts** task to gather user count data from the ImmyBot integration.
-   13. The workflow checks if Cork is installed, and if so, executes the **get\_cork\_counts** task to retrieve device count information from the Cork integration.
-   14. The workflow checks if Dropsuite is installed, and if so, executes the **get\_dropsuite\_counts** task to collect seat count data from the Dropsuite integration.
-4. The **Begin Consolidation** task creates the initial integration output structure by consolidating data from various integrations including Duo, SentinelOne, IT Glue, Huntress, Auvik, Proofpoint, and SentinelOne SKU data.
-5. The **check\_pax\_append** task determines if Pax8 data should be appended, and if so, the **Append\_pax8\_data** task merges Pax8 subscription data with the existing output.
-6. The **check\_cork\_append** task determines if Cork data should be appended, and if so, the **Append\_cork\_data** task merges Cork device count, user count, and warranty status information with the existing output.
-7. The **check\_dropsuite\_append** task determines if Dropsuite data should be appended, and if so, the **Append\_dropsuite\_data** task merges Dropsuite seat information including active seats, organization details, and shared mailboxes with the existing output.
-8. The **check\_rmm\_append** task evaluates if any RMM integration data exists, and if so, the **Append\_rmm\_data** task consolidates data from ConnectWise Automate, NinjaOne, Datto RMM, and ImmyBot integrations.
-9. The **Remove Integration Ids** task cleans up the output by removing internal integration identifier fields from the final dataset.
-10. The **create\_csv** task converts the final output data into CSV format with proper field ordering, ensuring the Company field appears first.
-11. The **choose delivery method** task evaluates the billing\_report\_delivery\_mechanism parameter to determine how to deliver the report.
-12. If PSA delivery is selected, the **workflows\_dev\_process\_psa\_create\_ticket** task creates a ticket in the configured PSA system, followed by the **workflows\_upload\_csv\_to\_ticket** task which attaches the CSV report to the created ticket.
-13. If email delivery is selected and recipients are specified, the **workflows\_function\_send\_email\_with\_attachment** task sends the CSV report via email to the specified recipients.
-14. If no delivery method is configured, the **no\_delivery\_method\_set** task handles this scenario.
-15. The **build automation log** task compiles logging information from all executed tasks throughout the workflow.
-16. The workflow concludes with the **END** task which finalizes the output structure by updating it with the generated CSV data and returns the complete result.
+#### Phase 1: Initialization and validation
+
+1. The workflow begins at the **BEGIN** task using the noop action, which initializes the output structure with empty data, a success flag set to true, and an empty automation log array.
+2. The **Check Running Org** task executes the **\[REWST - TASK] General: Check Running Org** subworkflow to verify that the workflow is running in the correct organization context.
+3. If the organization check passes, the **Get Integration Ids** task runs the **\[PROD TASK] Rewst: Get All Integration Ids** subworkflow to retrieve all integration identifiers for every managed organization, including mappings for PSA, RMM, security, and cloud licensing platforms.
+
+#### Phase 2: Data collection - RMM and device counts
+
+1. The **Is Datto RMM Installed** task uses the **noop** action to check whether the Datto RMM integration is installed for the organization.
+2. If Datto RMM is installed, the **Get Datto RMM Counts** task executes the **\[PROD PROCESS] Datto: Get RMM Device Count Loader** subworkflow to retrieve device counts from all Datto RMM sites.
+3. The **Is CWA Installed** task uses the **noop** action to check whether ConnectWise Automate is installed.
+4. If ConnectWise Automate is installed, the **Get CWA Device Counts** task runs the **\[PROD TASK] CWA: Get Counts** subworkflow to retrieve server and workstation counts from ConnectWise Automate.
+5. The **Is Ninja Installed** task uses the **noop** action to check whether NinjaOne RMM is installed.
+6. If NinjaOne is installed, the **Get Ninja Device Counts** task executes the **\[PROD TASK] Ninja: Get Device Counts** subworkflow to retrieve workstation, server, and network device counts.
+7. The **Is\_CW\_ASIO\_Installed** task uses the **noop** action to check whether ConnectWise ASIO is installed.
+8. If ConnectWise ASIO is installed, the **Get\_CW\_ASIO\_Device\_Counts** task runs the **\[PROD TASK] CW ASIO: Get Counts** subworkflow to retrieve device counts from ConnectWise ASIO.
+9. The **Is Graph Installed** task uses the **noop** action to check whether Microsoft Graph is installed.
+10. If Microsoft Graph is installed, the **Get 365 License Counts** task executes the **\[PROD PROCESS] M365: M365 User License Launcher** subworkflow using a with-items loop to iterate through each organization that has an M365 tenant configured, retrieving license counts for each.
+
+#### Phase 3: Data collection - security integrations
+
+1. The **Is Huntress Installed** task uses the **noop** action to check whether Huntress is installed.
+2. If Huntress is installed, the **Get Huntress License Counts** task runs the **\[PROD TASK] Huntress: Get License Counts** subworkflow to retrieve agent counts from Huntress.
+3. The **Is SentinelOne Installed** task uses the **noop** action to check whether SentinelOne is installed.
+4. If SentinelOne is installed, the **Get Sentinel One Counts** task executes the **\[REWST - TASK] SentinelOne: Get License Counts** subworkflow to retrieve active license counts and SKU information.
+5. The **Is Duo Installed** task uses the **noop** action to check whether Duo is installed.
+6. If Duo is installed, the **Get Duo User Counts** task runs the **\[PROD TASK] Duo: Get User Counts** subworkflow to retrieve user counts from all Duo accounts.
+7. The **Is Pax8 Installed** task uses the **noop** action to check whether Pax8 is installed.
+8. If Pax8 is installed, the **Get Pax8 License Counts** task executes the **\[PROD - TASK] Pax8: Get License Counts** subworkflow to retrieve subscription quantities and product information.
+9. The **Is ItGlue Installed** task uses the **noop** action to check whether IT Glue is installed.
+10. If IT Glue is installed, the **Get MyGlue License Counts** task runs the **\[PROD TASK] MyGlue: Get License Counts** subworkflow to retrieve MyGlue user counts per organization.
+11. The **Is Auvik Installed** task uses the **noop** action to check whether Auvik is installed.
+12. If Auvik is installed, the **Get Auvik Counts** task executes the **\[PROD TASK] Auvik: Get Counts** subworkflow to retrieve device counts from Auvik tenants.
+13. The **Is Proofpoint Installed** task uses the **noop** action to check whether Proofpoint is installed.
+14. If Proofpoint is installed, the **Get Proofpoint Counts** task runs the **\[PROD TASK] Proofpoint: Get Counts** subworkflow to retrieve user license counts from Proofpoint organizations.
+15. The **Is Immybot Installed** task uses the **noop** action to check whether ImmyBot is installed.
+16. If ImmyBot is installed, the **Get ImmyBot Counts** task executes the **\[PROD TASK] Immybot: Get User Count** subworkflow to retrieve device counts grouped by tenant.
+17. The **is\_cork\_installed** task uses the **noop** action to check whether Cork is installed.
+18. If Cork is installed, the **get\_cork\_counts** task runs the **\[PROD - TASK] Cork: Get Device Counts** subworkflow to retrieve device counts, user counts, and warranty status information.
+19. The **is\_dropsuite\_installed** task uses the **noop** action to check whether Dropsuite is installed.
+20. If Dropsuite is installed, the **get\_dropsuite\_counts** task executes the **\[REWST - TASK] Dropsuite: Get Counts** subworkflow to retrieve seat counts including active seats, used seats, and paid shared mailboxes.
+
+#### Phase 4: Data collection - distributor integrations
+
+1. The **is\_sherweb\_installed** task uses the **noop** action to check whether Sherweb is installed.
+2. If Sherweb is installed, the **get\_sherweb\_count** task runs the **\[PROD TASK] Sherweb: Get License Counts – Rewst** subworkflow to retrieve subscription counts from Sherweb customers.
+3. The **is\_synnex\_installed** task uses the **noop** action to check whether TD Synnex Stellr is installed.
+4. If TD Synnex Stellr is installed, the **td\_synnex\_stellr\_get\_count** task executes the **\[PROD TASK] TD Synnex Stellr: Get License Counts – Rewst** subworkflow to retrieve license counts from Synnex Stellr.
+5. The **is\_streamone\_installed** task uses the **noop** action to check whether TD Synnex StreamOne ION is installed.
+6. If StreamOne ION is installed, the **stream\_one\_ion\_get\_license\_counts\_rewst** task runs the **\[PROD TASK] TD Synnex StreamOne ION: Get License Counts – Rewst** subworkflow to retrieve subscription counts.
+7. The **is\_synnex\_au\_installed** task uses the **noop** action to check whether Synnex AU is installed.
+8. If Synnex AU is installed, the **synnex\_au\_get\_license\_counts** task executes the **\[PROD TASK] Synnex AU: Get License Counts** subworkflow to retrieve license counts from Synnex Australia.
+
+#### Phase 5: Data consolidation
+
+1. The **Begin Consolidation** task uses the **noop** action to start the data consolidation phase, creating the initial integration output structure that maps each company to its collected counts from security integrations including Duo, SentinelOne, IT Glue, Huntress, Auvik, and Proofpoint.
+2. If Microsoft Graph is installed, the **Append\_365\_data** task uses the **noop** action to merge Microsoft 365 license counts into the consolidated output by matching company IDs.
+3. The **check\_pax\_append** task uses the **noop** action to determine whether Pax8 data should be appended.
+4. If Pax8 is installed, the **Append\_pax8\_data** task uses the **noop** action to merge Pax8 subscription quantities into the consolidated output, prefixing each product name with PAX8.
+5. The **check\_cork\_append** task uses the **noop** action to determine whether Cork data should be appended.
+6. If Cork is installed, the **Append\_cork\_data** task uses the **noop** action to merge Cork device counts, user counts, and warranty status into the consolidated output.
+7. The **check\_dropsuite\_appended** task uses the **noop** action to determine whether Dropsuite data should be appended.
+8. If Dropsuite is installed, the **Append\_dropsuite\_data** task uses the **noop** action to merge Dropsuite seat information including active seats, organization details, and shared mailbox counts.
+9. The **check\_sherweb\_append** task uses the **noop** action to determine whether Sherweb data should be appended.
+10. If Sherweb is installed, the **Append\_sherweb\_data** task uses the **noop** action to merge Sherweb subscription counts into the consolidated output, prefixing each product with Sherweb.
+11. The **check\_synnex\_append** task uses the **noop** action to determine whether TD Synnex Stellr data should be appended.
+12. If Synnex is installed, the **Append\_synnex\_data** task uses the **noop** action to merge Synnex Stellr license counts into the consolidated output.
+13. The **append\_streamone\_data** task uses the **noop** action to check whether StreamOne data should be appended and merges StreamOne ION subscription counts if the integration is installed.
+14. If StreamOne is installed, the **Append\_streamone\_data** task uses the **noop** action to merge StreamOne subscription data with product names and unit types.
+15. The **append\_synnex\_au\_data** task uses the **noop** action to check whether Synnex AU data should be appended.
+16. If Synnex AU is installed, the **Append\_Synnex\_AU\_data** task uses the **noop** action to merge Synnex Australia license counts with product and unit information.
+17. The **check\_rmm\_append** task uses the **noop** action to determine whether any RMM data should be appended by checking if ImmyBot, Datto RMM, ConnectWise Automate, NinjaOne, or ConnectWise ASIO is installed.
+18. If any RMM integration is installed, the **Append\_rmm\_data** task uses the **noop** action to merge all RMM device counts including workstation counts, server counts, and network device counts into the consolidated output.
+
+#### Phase 6: Output generation
+
+1. The **Remove Integration Ids** task uses the **noop** action to clean up the final output by removing the internal integration ID mappings that were used for data matching, leaving only the company names and their associated counts.
+2. The **create\_csv** task uses the **Set Variable** action to convert the final consolidated output into CSV format, dynamically determining all column headers from the collected data and ensuring the Company column appears first.
+
+#### Phase 7: Report delivery
+
+1. The **choose delivery method** task uses the **noop** action to evaluate the billing report delivery mechanism input parameter and route to the appropriate delivery method.
+2. If the delivery mechanism is set to PSA, the **workflows\_dev\_process\_psa\_create\_ticket** task executes the **\[REWST - PROCESS] PSA: Create Ticket** subworkflow to create a new ticket titled Billing Reconciliation in the configured PSA system.
+3. After the PSA ticket is created, the **workflows\_upload\_csv\_to\_ticket** task runs the **\[REWST - TASK] Upload Attachment To Ticket** subworkflow to attach the generated CSV file to the ticket.
+4. If the delivery mechanism is set to email and recipients are configured, the **workflows\_function\_send\_email\_with\_attachment** task executes the **\[PROD - TASK] Rewst: Send Email with Attachment** subworkflow to send the billing report as an email attachment to the specified recipients.
+5. If no delivery method is configured, the **no\_delivery\_method\_set** task uses the **noop** action to handle the case where the report is generated but not delivered.
+
+#### Phase 8: Completion
+
+1. The **build automation log** task uses the **noop** action to compile all log entries from throughout the workflow execution into a consolidated automation log structure that includes status codes, success indicators, warnings, and errors.
+2. The **END** task uses the **noop** action to finalize the workflow output by updating the output structure with the generated CSV data and completing the workflow execution.
 
 ## Crate prerequisites
 
@@ -55,23 +116,11 @@ Your [RMM integration](../../integrations/top-5-integration-types-get-started-wi
 
 If choosing to deliver the report via PSA ticket, you'll also need to set up your [PSA integration](../../integrations/top-5-integration-types-get-started-with-integrations-in-rewst.md#psa-integrations) before unpacking this Crate.
 
-If choosing to use any of the following tools with this Crate, they must first be successfully integrated with Rewst before unpacking.
+If choosing to use any auxiliary tools with this Crate, such as security or licensing tools, they must first be successfully integrated with Rewst before unpacking.
 
-* [Datto RMM](../../integrations/integration-guides/datto-rmm-integration-setup.md)
-* [ConnectWise Automate](../../integrations/integration-guides/connectwise-automate-integration-setup.md)
-* [ConnectWise ASIO](../../integrations/integration-guides/connectwise-asio-integration.md)
-* [NinjaOne](../../integrations/integration-guides/ninjaone-integration-setup.md)
-* [Microsoft 365 licensing](../../integrations/integration-guides/microsoft-cloud-integration-bundle/)
-* [Huntress](../../integrations/integration-guides/huntress-integration-setup.md)
-* [SentinelOne](../../integrations/integration-guides/sentinelone-integration-setup.md)
-* [Pax8](../../integrations/integration-guides/pax8-integration-setup.md)
-* [IT Glue](../../integrations/integration-guides/it-glue-integration-setup.md)
-* [Auvik](../../integrations/integration-guides/auvik-integration-setup.md)
-* [Proofpoint](../../integrations/integration-guides/proofpoint-integration-setup.md)
-* [Cork](../../integrations/integration-guides/cork-integration.md)
-* [Immybot](../../integrations/integration-guides/immybot-integration-setup.md)
-* [Duo](../../integrations/integration-guides/duo-integration-setup.md)
-* [Dropsuite](../../integrations/integration-guides/dropsuite-integration.md)
+Below is the total list of tools that work with our Billing Count Report Crate.
+
+<table data-header-hidden><thead><tr><th valign="top">Integration</th><th valign="top">Usage</th></tr></thead><tbody><tr><td valign="top"><a href="../../integrations/integration-guides/connectwise-integration-setup.md">ConnectWise PSA</a></td><td valign="top">Create tickets, upload attachments</td></tr><tr><td valign="top"><a href="../../automations/kits/datto-psa-integration-kit.md">Datto PSA</a></td><td valign="top">Create tickets, upload attachments</td></tr><tr><td valign="top"><a href="../../automations/kits/halo-psa-integration-kit.md">Halo PSA</a></td><td valign="top">Create tickets, upload attachments</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/kaseya-bms-integration-setup.md">Kaseya BMS</a></td><td valign="top">Create tickets</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/servicenow-integration-setup.md">ServiceNow</a></td><td valign="top">Create tickets</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/freshdesk-integration-setup.md">Freshdesk</a></td><td valign="top">Create tickets</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/superops-integration.md">SuperOps</a></td><td valign="top">Create tickets</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/ninjaone-integration-setup.md">NinjaOne</a></td><td valign="top">Create tickets - PSA functionality<br>Get device counts - servers, workstations, network devices</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/connectwise-automate-integration-setup.md">ConnectWise Automate</a></td><td valign="top">Get device counts - servers, workstations</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/connectwise-asio-integration.md">ConnectWise ASIO</a></td><td valign="top">Get device counts - servers, workstations</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/datto-rmm-integration-setup.md">Datto RMM</a></td><td valign="top">Get device counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/immybot-integration-setup.md">ImmyBot</a></td><td valign="top">Get device and user counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/huntress-integration-setup.md">Huntress</a></td><td valign="top">Get license counts - agent counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/sentinelone-integration-setup.md">SentinelOne</a></td><td valign="top">Get license counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/duo-integration-setup.md">Duo</a></td><td valign="top">Get user counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/proofpoint-integration-setup.md">Proofpoint</a></td><td valign="top">Get user and license counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/cork-integration.md">Cork</a></td><td valign="top">Get device counts, user counts, warranty status</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/microsoft-cloud-integration-bundle/microsoft-graph-subscriptions.md">Microsoft Graph</a></td><td valign="top">Get M365 license counts, send emails</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/pax8-integration-setup.md">Pax8</a></td><td valign="top">Get license counts - subscriptions</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/sherweb-integration-setup.md">Sherweb</a></td><td valign="top">Get license counts - subscriptions</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/synnex-integration-setup.md">TD Synnex Stellr</a></td><td valign="top">Get license counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/td-synnex-streamone-ion-integration.md">TD Synnex StreamOne ION</a></td><td valign="top">Get license counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/synnex-australia-integration-setup.md">Synnex AU</a></td><td valign="top">Get license counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/it-glue-integration-setup.md">IT Glue</a></td><td valign="top">Get MyGlue license counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/auvik-integration-setup.md">Auvik</a></td><td valign="top">Get device counts</td></tr><tr><td valign="top"><a href="../../integrations/integration-guides/dropsuite-integration.md">Dropsuite</a></td><td valign="top">Get seat counts - active seats, used seats, shared mailboxes</td></tr></tbody></table>
 
 ## Unpack the Billing Count Report Crate
 
