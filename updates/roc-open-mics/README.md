@@ -7,7 +7,7 @@ icon: microphone-lines
 <figure><img src="../../.gitbook/assets/Open-Mic.png" alt=""><figcaption></figcaption></figure>
 
 \
-This isn’t your typical vendor call—it’s where our community gathers to grow! It’s also where we share what’s new in Rewst, giving attendees a first look at upcoming features, product updates, and improvements in progress. Think town hall with a talent show twist — practical, collaborative, and always worth your time.\
+This isn’t your typical vendor call — it’s where our community gathers to grow! It’s also where we share what’s new in Rewst, giving attendees a first look at upcoming features, product updates, and improvements in progress. Think town hall with a talent show twist — practical, collaborative, and always worth your time.\
 Is 3pm EST on Fridays not a great time for you? Check out our EU and ANZ monthly calls where you can catch all the latest Rewst updates and have the opportunity to view or present live automation demos.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2026-03-02 at 2.33.17 PM.png" alt=""><figcaption></figcaption></figure>
@@ -19,15 +19,3 @@ Click through to our website [here](https://rewst.io/support/community) and scro
 ## Archive of previous Open Mic recordings&#x20;
 
 View all previous Open Mic recordings on our website [here](https://rewst.io/resources/videos?filter=all). Or, if you prefer, visit our YouTube channel to view playlists for each region's Open Mic [here](https://www.youtube.com/playlist?list=PLDWjfoX6CSp9BQnZKRRjnt4wJtQjdLJch).&#x20;
-
-## Latest NA Open Mic video recording
-
-{% embed url="https://youtu.be/hf8SrF04Wok?si=vUID9PkgjlUrZ_ia" %}
-
-## Latest EU Open Mic video recording
-
-{% embed url="https://youtu.be/2-tEKXZDPNI?si=xO-OCMRuC_5phhix" %}
-
-## Latest ANZ Open Mic video recording
-
-{% embed url="https://youtu.be/v5358Qo9BVA?si=BLcrPSSddb1c4qxF" %}
