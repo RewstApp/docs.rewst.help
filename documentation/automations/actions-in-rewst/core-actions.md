@@ -672,8 +672,108 @@ Allows for the sending of an email.
 
 Allows you to send a text message to a specified phone number.
 
-* **Parameters**: This action requires the recipient's phone number (`phone_number`) and the text message (`message`) to be sent.
+*   **Parameters**: This action requires the recipient's phone number (`phone_number`) and the text message (`message`) to be sent. All phone numbers must be provided using the E.164 international format, which includes the country code. Improperly formatted numbers may result in validation errors or delivery failures.
+
+    Example: `+14155552671`
 * **Output**: The output of this action will depend on the implementation details. Usually, it will return a confirmation message or an error message.
+
+#### Sending number origin
+
+The `core_send_sms` action sends messages from a US-based phone number owned and managed by Rewst.
+
+Due to this setup:
+
+* SMS delivery is most reliable for United States phone numbers
+* Some international carriers restrict or block messages originating from US long-code numbers
+* Certain countries require locally registered sender IDs or approved messaging routes
+
+These limitations are imposed by telecommunications carriers and regional messaging regulations.
+
+#### When to use your own messaging account
+
+If you need to send SMS messages to a region that is not supported by the shared Rewst sending number, you can set up your own messaging account and use it through Rewst’s [Twilio integration](../../integrations/integration-guides/twilio-integration-setup.md).
+
+Using your own account allows you to:
+
+* Purchase local phone numbers in supported countries
+* Configure which countries your numbers can send messages to
+* Register country-specific sender IDs
+* Meet regional compliance requirements
+
+#### Delivery behavior
+
+When the `core_send_sms` action is executed, it returns the **current delivery status** for the message. This status reflects the system's understanding of the message state after it has been sent to the carrier networks. Even when a message is reported as sent, final delivery still depends on external telecom carrier networks and the recipient device.
+
+Because SMS delivery involves multiple third-party carriers, failures may still occur due to:
+
+* Carrier filtering
+* Regional messaging restrictions
+* Unreachable devices
+* Network congestion
+* Recipient opt-outs
+
+#### Common SMS error responses
+
+* SMS service is temporarily unavailable, please try again later
+* Invalid phone number format
+* SMS cannot be sent to this region - geographic permissions not enabled
+* This recipient has opted out of receiving messages
+* SMS cannot be delivered to this number due to carrier or regional restrictions
+* This number is a landline and cannot receive SMS messages
+* The phone is currently unreachable (switched off or no signal)
+* This phone number is unknown or may no longer exist
+* This number cannot receive SMS messages (likely a landline or unsupported carrier)
+* Network congestion - please try again in a few minutes
+
+#### Error scenario: Carrier or regional restrictions
+
+This situation occurs when the destination carrier or region doesn't allow messages from the sending number.
+
+Possible causes include:
+
+* Sender ID restrictions in the destination country – Some countries limit which numbers, shortcodes, or alphanumeric sender IDs can be used.
+* Sender ID restrictions on the destination network – Certain networks may block messages from shortcodes or restrict MMS messages from longcodes that originate outside the country.
+* Alphanumeric sender IDs – If you are using an alphanumeric sender ID, the destination country must support it, and some countries may require pre-registration.
+* Number formatting – The “To” or “From” number may not be in the proper international format (E.164). Check that numbers are correctly formatted.
+* Destinations with no connectivity – Some carriers or regions may not have messaging routes available for your sending number.
+  * This error is more common when sending international messages from a US-based number. If you need to reliably reach a destination with restrictions, consider using your own messaging account via the Twilio integration, where you can configure allowed countries, local numbers, and sender IDs.
+
+#### Error scenario: Messaging geo-permissions disabled
+
+This situation occurs when an SMS or MMS message is sent to a country or region that the Rewst-managed sending number is not authorized to send messages to.
+
+Possible causes:
+
+* The destination country is not included in the allowed countries for the Rewst sending number
+* The region is not supported for SMS delivery from the Rewst-managed sending number
+* Messaging to that region is restricted by telecom regulations
+  * If you need to send messages to a country that is not supported, consider using your own Twilio account via the Twilio integration, where you can configure allowed countries and sender IDs.
+
+#### Error scenario: Recipient has opted out
+
+The recipient has opted out of receiving messages from the sending number.
+
+#### Error scenario: Landline number
+
+The destination phone number is a landline and cannot receive SMS messages.
+
+#### Error scenario: Phone unreachable
+
+The destination device cannot currently be reached. Retrying later may resolve the issue.
+
+Possible causes:
+
+* Device powered off
+* No cellular signal
+* Temporary carrier network issues
+
+#### Error scenario: Unknown or unreachable numbers
+
+The destination number may not exist, cannot receive SMS, or is otherwise unreachable due to carrier restrictions.
+
+#### Error scenario: Network congestion
+
+The carrier network is currently congested. Retrying the message later may resolve the issue.
 
 </details>
 
