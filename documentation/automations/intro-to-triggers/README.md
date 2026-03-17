@@ -37,6 +37,32 @@ When you're comfortable with the basics of triggers, learn more about [trigger c
 
 <table data-full-width="false"><thead><tr><th width="267">Item</th><th>Description</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td>Whatever you would like to name your trigger, with a descriptive word or phrase for what it does.</td></tr><tr><td><strong>Enabled</strong></td><td>Toggle this on or off.</td></tr><tr><td><strong>Organizations</strong></td><td>Select all the organization that exist within Rewst that may need to use this workflow. If you add a new client, they will have to be added in that workflow trigger.</td></tr><tr><td><strong>Integration Override</strong></td><td>Integration overrides allow you to specify which integration configurations should be used.  When a workflow is triggered by and running within the context of a child organization, by default they only have access to their own integrations and configurations. To give the workflow access to integrations and credentials owned by the parent organization, that default behavior must be explicitly overridden. In the above example image, the trigger allows your clients to use your PSA, RRM and licensing integration.</td></tr><tr><td><strong>Trigger Type</strong></td><td>There are a number of types to choose from, such as a webhook, form submission, ticket saved, M365 alerts. See <a data-mention href="./#core-triggers">#core-triggers</a> for more information on common trigger types.</td></tr><tr><td><strong>Form</strong></td><td>If your trigger type is a form submission, you would select the form that links to the workflow.</td></tr></tbody></table>
 
+### Activate trigger to run for
+
+This submenu controls which organization**s** a workflow trigger is enabled for. When a triggered, it determines which organizations the workflow can execute in the context of. Each trigger on a workflow has its own Activate Trigger To Run For settings. They aren't shared between multiple triggers on the same workflow.
+
+Find the **Activate Trigger To Run For** section at the very bottom of the configuration screen with the following options:
+
+1. **Selected Organization** toggle
+   1. Toggled on by default, this enables the trigger for the organization that owns the workflow, usually the parent organization
+   2. Toggle off if you don't want the workflow to run for the owning organization
+2. **Organizations** drop-down selector
+   1. Manually select specific organizations
+   2. Choose individual child organizations that should have this trigger active
+3. **All Current and Future Managed Organizations** toggle
+   1. Toggle on to automatically enable the trigger for:
+      1. All currently existing child organizations
+      2. Any new organizations added in the future - automatically included
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 5.27.56 PM.png" alt="" width="375"><figcaption></figcaption></figure>
+
+{% hint style="warning" %}
+* If you don't enable All current and future managed organizations, you must manually add new clients to the trigger when they're onboarded.
+* You can't filter organizations by tags in this menu - it's either individual selection, all, or all plus future.
+* Even if a trigger is activated for an organization, the workflow will only work if that organization has the required integrations configured and mapped.
+* If the workflow uses parent organization integrations like your PSA, you must configure integration overrides on the trigger to give child orgs access to those credentials.
+{% endhint %}
+
 ## Modify an existing trigger
 
 To modify an existing trigger, click **Edit Trigger**. If there are multiple triggers for the workflow, select the appropriate trigger from the dropdown menu.\
