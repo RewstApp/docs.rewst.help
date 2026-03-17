@@ -6,8 +6,8 @@ icon: robot
 
 ## What is RoboRewsty?
 
-{% hint style="info" %}
-Learn all about RoboRewsty in our Cluck University course [3 ways to start using RoboRewsty](https://learn.rewst.io/3-ways-to-start-using-roborewsty).
+{% hint style="success" %}
+Learn more about how to properly prompt RoboRewsty in our Cluck University course [RoboRewsty prompting: How to get the results you want](https://learn.rewst.io/roborewsty-prompting).
 {% endhint %}
 
 RoboRewsty, our in-platform AI assistant, gives teams intelligent support across the entire automation build and management process. RoboRewsty understands your environment and supports you throughout the automation journey, from building and troubleshooting to managing and documenting workflows. It extends the value Rewst already provides to MSP teams by helping technicians upskill as they work, reducing manual effort, speeding up problem solving, and making it easier to scale automation with less overhead and greater impact. The introduction of AI in Rewst isn’t meant to replace builders or the need to learn the platform. Instead, it simply gives you more tools to work more efficiently.
@@ -152,10 +152,6 @@ RoboRewsty can tell you how many tasks are in a workflow, but that number should
 {% endhint %}
 
 ## How to ask better questions
-
-{% hint style="success" %}
-Learn more about how to properly prompt RoboRewsty in our Cluck University course [RoboRewsty prompting: How to get the results you want](https://learn.rewst.io/roborewsty-prompting).
-{% endhint %}
 
 ### General questions
 
