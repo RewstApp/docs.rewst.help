@@ -51,6 +51,20 @@ Before you complete integration setup, you'll need to obtain a developer instanc
 Got an idea for a new Integration? Rewst is constantly adding new integrations to our integrations page. Submit your idea or upvote existing ideas here in our [Canny feedback collector](https://rewst.canny.io/integrations).
 {% endhint %}
 
+## ServiceNow Domain Separation in Rewst&#x20;
+
+{% hint style="info" %}
+See ServiceNow's own documentation on Domain Separation [here](https://support.servicenow.com/kb?id=kb_article_view\&sysparm_article=KB0715934).
+{% endhint %}
+
+_Domain Separation_ in ServiceNow is a way to separate data, processes, and administrative tasks into logical groupings called domains, so that users in one domain cannot see or interact with data in another domain unless explicitly permitted. This shouldn't be confused with [multi-instance integration](../multi-instance-integration/), which is a way of setting up integrations that is specific to Rewst. While the Rewst integration was not explicitly designed for MSPs who use Domain Separation, they can still use Rewst with the ServiceNow integration. Any call or action that can be initiated from ServiceNow can be received by Rewst.&#x20;
+
+Note that Domain Separated ServiceNow users will need to [clone and customize](../../../prebuilt-automations/crates/#synced-versus-unsynced-crates) any related Rewst Crates to successfully use them. When using Rewst tasks for ServiceNow, they can be scoped at either the global - parent - level or the domain - child - level. In some tasks, you can use the **No Domain** field to add a flag that indicates whether the record search should be restricted to only domains for which the logged-in user is configured.
+
+
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption><p>An example of a task with the <strong>No Domain</strong> field</p></figcaption></figure>
+
 ## Triggers for ServiceNow integration
 
 | Trigger type name | Type    | Description                                                     |

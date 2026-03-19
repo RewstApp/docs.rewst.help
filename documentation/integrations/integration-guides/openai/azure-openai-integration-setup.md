@@ -17,7 +17,7 @@ For our general OpenAI integration, see [this documentation](openai-integration-
 4.  Click the tile for **Azure OpenAI**.\
     <br>
 
-    <figure><img src="../../../../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
 5. Request access to the Azure OpenAI service.
 
 {% hint style="info" %}
@@ -42,7 +42,7 @@ Note that activation of the service can take up to 48 hours, based on Microsoft'
 9. Complete the steps **Network > Tags > Review + Submit**
 10. Click **Go to resource** after submitting and confirming that deployment has finished.<br>
 
-    <figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 11. Click **Go to Foundry Portal**.<br>
 
     <figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption></figcaption></figure>

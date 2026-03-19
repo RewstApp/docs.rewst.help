@@ -55,7 +55,7 @@ We have two options for the `Difference Method` you can pick to have the action 
 
 Take a look at examples of both below:
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><img src="../../../../.gitbook/assets/image (2) (2).png" alt="" data-size="original"></td><td>The <code>Symmetric Difference</code> method is used when you want to identify entries that are unique to each list, i.e., items that exist in the one list and not in the other.</td><td></td></tr><tr><td></td><td><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt=""></td><td>The <code>Anti Join</code> difference method is used when you want to determine the items in the first list that don't have a corresponding match in the second list.</td></tr></tbody></table>
+<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><img src="../../../../.gitbook/assets/image (2) (2).png" alt="" data-size="original"></td><td>The <code>Symmetric Difference</code> method is used when you want to identify entries that are unique to each list, i.e., items that exist in the one list and not in the other.</td><td></td></tr><tr><td></td><td><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""></td><td>The <code>Anti Join</code> difference method is used when you want to determine the items in the first list that don't have a corresponding match in the second list.</td></tr></tbody></table>
 
 ***
 
