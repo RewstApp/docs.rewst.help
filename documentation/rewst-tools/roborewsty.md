@@ -106,13 +106,13 @@ Once complete, RoboRewsty will assemble the workflow for you right on the Workfl
 
 Always test your workflow after it’s assembled. If the workflow fails, ask RoboRewsty to explain the failure for the most recent execution of the workflow. Then, have him update the workflow as needed to correct errors. When finished updating your workflow, remember to click **Publish** to save the workflow changes. RoboRewsty won't be able to do this final step for you. RoboRewsty may forget to document the workflow he built for you. If this happens, follow [our steps here](../roborewsty/document-with-roborewsty.md) for traditional RoboRewsty workflow documenting.&#x20;
 
-#### [Forms](../automations/forms/)
+#### [Forms](../automations/forms/) - Feature currently in beta
 
 RoboRewsty can build forms for you in Rewst. Enter your desired form query and watch him design and create, asking follow-up questions throughout the process to get to the root of your needs. Failure messages will appear in the flow of conversation as he runs into them. You can switch between browser tabs while he works without stopping the process, but closing the browser tab entirely will stop his work. You will likely need to [grant permissions](roborewsty.md#additional-roborewsty-approval) to build the form, so paying attention to the processing to allow him to continue is necessary.
 
 Once complete, RoboRewsty will assemble the form for you right in the form builder, with no dragging and dropping required on your part. When finished updating your form, remember to save the form— RoboRewsty can't do this for you.&#x20;
 
-#### [Scripts and templates](../automations/templates-and-scripts.md)
+#### [Scripts and templates](../automations/templates-and-scripts.md) - Feature currently in beta
 
 RoboRewsty can build scripts and templates based on your request. Enter your desired goal as a chat query, then ask or answer follow-up questions to refine the result.&#x20;
 
