@@ -1,8 +1,3 @@
----
-hidden: true
-noIndex: true
----
-
 # Context Viewer
 
 {% hint style="info" %}
