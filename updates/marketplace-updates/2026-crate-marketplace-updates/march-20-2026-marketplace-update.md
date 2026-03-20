@@ -4,7 +4,7 @@
 
 <summary><strong>New Crates</strong></summary>
 
-CIPP Alert Triage Crate - This new Crate automates processing CIPP alerts with tenant/message exclusions, auto creates/updates PSA tickets, and provides a configuration form for per-org mappings and rules.&#x20;
+[CIPP Alert Triage Crate](../../../documentation/crates/existing-crate-documentation/cipp-alert-triage-crate.md) - This new Crate automates processing CIPP alerts with tenant/message exclusions, auto creates/updates PSA tickets, and provides a configuration form for per-org mappings and rules.&#x20;
 
 </details>
 
