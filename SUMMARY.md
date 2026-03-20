@@ -218,6 +218,7 @@
     * [Bulk Move Users to Specified OU Crate](documentation/crates/existing-crate-documentation/bulk-move-users-to-specified-ou-crate.md)
     * [Bulk Send SMS to Users Crate](documentation/crates/existing-crate-documentation/bulk-send-sms-to-users-crate.md)
     * [Change a User’s Password Crate](documentation/crates/existing-crate-documentation/change-a-users-password-crate.md)
+    * [CIPP Alert Triage Crate](documentation/crates/existing-crate-documentation/cipp-alert-triage-crate.md)
     * [Clean up Global Address List from Disabled Users Crate](documentation/crates/existing-crate-documentation/clean-up-global-address-list-from-disabled-users-crate.md)
     * [Client Form Launcher Crate](documentation/crates/existing-crate-documentation/client-form-launcher-crate.md)
     * [Comprehensive Rewst Forms List Crate](documentation/crates/existing-crate-documentation/comprehensive-rewst-forms-list-crate.md)
