@@ -215,6 +215,7 @@ Before unpacking the Microsoft: User Onboarding Crate, make sure that the follow
 * [Licensing integrations](https://docs.rewst.help/documentation/integrations/licensing) should be completed if you wish to set up automated license purchases. Configure Pax8, Ingram Micro, Sherweb, or Synnex. This is optional.
 * [OpenText SecureCloud](../../../integrations/integration-guides/opentext-secure-cloud-integration.md) must be integrated with Rewst if you wish to use OpenText SecureCloud with this Crate. This is optional.
 * [ArrowSphere](../../../integrations/integration-guides/arrowsphere-integration.md) must be integrated with Rewst if you wish to use this Crate for user license purchasing. This is optional.
+* [ConnectWise ASIO](../../../integrations/integration-guides/connectwise-asio-integration.md) must be integrated with Rewst if you wish to use this Crate with that integration.
 
 ### Overview of required context variables and organizational variables
 
@@ -429,7 +430,7 @@ If using OpenText SecureCloud with this Crate, you'll also need to set **`primar
 * **`secure_cloud`** if you're creating a SecureCloud user for Microsoft 365 usage
 * **`secure_cloud_and_on_prem`**  if you're using SecureCloud for Microsoft 365 usage and you have Active Directory without ad sync.
 
-To pre-populate the fields for OpenText SecureCloud in the [**User Onboarding** form](onboarding-form-inputs-and-workflow-process.md#form-fields-present-if-using-opentext-securecloud) unpacked with this Crate to a specific location, you can create the org variable **`secure_cloud_usage_location`** and set the location as the value.
+To pre-populate the fields for OpenText SecureCloud in the [**User Onboarding** **form**](onboarding-form-inputs-and-workflow-process.md#form-fields-present-if-using-opentext-securecloud) unpacked with this Crate to a specific location, you can create the org variable **`secure_cloud_usage_location`** and set the location as the value.
 
 ### Recommended organizational variable configuration
 
