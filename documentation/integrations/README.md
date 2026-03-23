@@ -102,6 +102,10 @@ The general steps to map each organization are as follows.
 If you uninstall an integration and reinstall it again, you won't need to redo your org mapping. Rewst will have this information stored and will repopulate it into the new installation.
 {% endhint %}
 
+### Integration overrides
+
+Integration overrides allow you to specify which integration configurations should be used. When a workflow is triggered by and running within the context of a [child organization](organization-variables.md#what-is-an-organization), by default they only have access to their own integrations and configurations. To give the workflow access to integrations and credentials owned by the parent organization, that default behavior must be explicitly overridden.  Integration overrides are set in the trigger menu of the workflow in question, not from the actual integration configuration page in Rewst. Learn more about integration overrides in our [triggers](../automations/intro-to-triggers/) documentation.
+
 ## Request an integration
 
 We’re constantly adding new integrations to Rewst. Vote for which upcoming integrations should take priority by creating a post with your thoughts or upvoting other existing suggestion posts [in our Canny.](https://rewst.canny.io/integrations)
