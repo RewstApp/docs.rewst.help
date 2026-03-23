@@ -562,7 +562,9 @@ The action returns detailed information for each workflow:
 * Workflow Management: Use the returned workflow IDs for subsequent operations on specific workflows
 * Organizational Reporting: Generate reports on workflow usage and organization
 
-
+{% hint style="info" %}
+Note that this action won't return workflow notes. To retrieve that information, use the [Rewst - Generic GraphQL Request](rewst-actions.md#generic-graphql-request-action) action to query `workflowNotes` .
+{% endhint %}
 
 </details>
 
