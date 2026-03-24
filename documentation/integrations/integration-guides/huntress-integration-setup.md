@@ -49,17 +49,39 @@ Got an idea for a new Integration? Rewst is constantly adding new integrations t
 For more on how actions work in Rewst, check out our [introductory actions documentation here](https://docs.rewst.help/documentation/workflows/actions-in-rewst).&#x20;
 {% endhint %}
 
-| Category            | Action                | Description                                                              |
-| ------------------- | --------------------- | ------------------------------------------------------------------------ |
-| **Huntress**        | List Organizations    | Get a list of organizations.                                             |
-| **Huntress**        | List Agents           | Get a list of agents                                                     |
-| **Huntress**        | List Billing Reports  | Get a list of billing Reports                                            |
-| **Huntress**        | List Reports          | Get a list of reports                                                    |
-| **Huntress**        | List Incident Reports | Get a list of Incident Reports                                           |
-| **Huntress**        | Get Organization      | Returns data for a specific organization.                                |
-| **Huntress**        | Get Agent             | Returns data for a specific agent.                                       |
-| **Huntress**        | Get Incident Report   | Returns data for a specific incident report.                             |
-| **Huntress**        | Get Report            | Returns data for a specific report.                                      |
-| **Huntress**        | Get Billing Report    | Returns data for a specific billing report.                              |
-| **Huntress**        | Get Current Account   | Description coming soon...                                               |
-| **Generic Request** | Huntress API Request  | Generic action for making authenticated requests agains the Huntress API |
+| Description                                | Method | Endpoint                                                                       |
+| ------------------------------------------ | ------ | ------------------------------------------------------------------------------ |
+| List organizations                         | GET    | /v1/organizations                                                              |
+| List agents                                | GET    | /v1/agents                                                                     |
+| List billing reports                       | GET    | /v1/billing\_reports                                                           |
+| List reports                               | GET    | /v1/reports                                                                    |
+| List incident reports                      | GET    | /v1/incident\_reports                                                          |
+| List memberships                           | GET    | /v1/memberships                                                                |
+| Get a specific organization                | GET    | /v1/organizations/{id}                                                         |
+| Get a specific agent                       | GET    | /v1/agents/{id}                                                                |
+| Get a specific incident report             | GET    | /v1/incident\_reports/{id}                                                     |
+| Get a specific report                      | GET    | /v1/reports/{id}                                                               |
+| Get a specific billing report              | GET    | /v1/billing\_reports/{id}                                                      |
+| Get current account info (test action)     | GET    | /v1/account                                                                    |
+| Create a new account (reseller)            | POST   | /v1/accounts                                                                   |
+| Create a new organization                  | POST   | /v1/organizations                                                              |
+| Create org under a specific account        | POST   | /v1/accounts/{account\_id}/organizations                                       |
+| Resolve an incident report                 | POST   | /v1/incident\_reports/{id}/resolution                                          |
+| Resolve incident report (reseller)         | POST   | /v1/accounts/{account\_id}/incident\_reports/{id}/resolution                   |
+| Bulk approve remediations                  | POST   | /v1/incident\_reports/{id}/remediations/bulk\_approval                         |
+| Bulk approve remediations (reseller)       | POST   | /v1/accounts/{account\_id}/incident\_reports/{id}/remediations/bulk\_approval  |
+| Bulk reject remediations                   | POST   | /v1/incident\_reports/{id}/remediations/bulk\_rejection                        |
+| Bulk reject remediations (reseller)        | POST   | /v1/accounts/{account\_id}/incident\_reports/{id}/remediations/bulk\_rejection |
+| Invite user to org/account                 | POST   | /v1/memberships                                                                |
+| Invite user (reseller)                     | POST   | /v1/accounts/{account\_id}/memberships                                         |
+| Resolve an escalation                      | POST   | /v1/escalations/{id}/resolution                                                |
+| Permanently disable account (irreversible) | DELETE | /v1/accounts/{account\_id}                                                     |
+| Delete organization & uninstall agents     | DELETE | /v1/organizations/{id}                                                         |
+| Delete org (reseller)                      | DELETE | /v1/accounts/{account\_id}/organizations/{id}                                  |
+| Delete a membership                        | DELETE | /v1/memberships/{id}                                                           |
+| Delete membership (reseller)               | DELETE | /v1/accounts/{account\_id}/memberships/{id}                                    |
+| Generic authenticated API request          | \*     | (any)                                                                          |
+
+<br>
+
+Reply…Also send to squad-ecosystem
