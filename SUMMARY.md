@@ -194,6 +194,7 @@
     * [Add Client to Rewst Crate](documentation/crates/existing-crate-documentation/add-client-to-rewst-setup.md)
     * [Add Devices to Autopilot via Form Crate](documentation/crates/existing-crate-documentation/add-devices-to-autopilot-via-form-crate.md)
     * [Add or Remove Group Membership Crate](documentation/crates/existing-crate-documentation/add-or-remove-group-membership-crate.md)
+    * [Add Users to Rewst via Group Crate](documentation/crates/existing-crate-documentation/add-users-to-rewst-via-group-crate.md)
     * [Agent Smith: Track Agent Inventory in Azure Tables Crate](documentation/crates/existing-crate-documentation/agent-smith-track-agent-inventory-in-azure-tables-crate.md)
     * [AI Ticket Categorization Crate](documentation/crates/existing-crate-documentation/openai-ticket-categorisation-setup.md)
     * [AI Ticket Sentiment Analysis Crate](documentation/crates/existing-crate-documentation/openai-ticket-sentiment-setup.md)
