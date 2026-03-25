@@ -6,7 +6,7 @@ If you’re new to Crates, read through our introductory Crate documentation [he
 
 ## What does the Add Users to Rewst via Group Crate do?
 
-Our Add Users to Rewst via Group Crate **syncs membership from a Microsoft 365 group to Rewst by automatically inviting any group members who don't already have a Rewst account or pending invite.** It's designed to run on a schedule, with Cron and Time Interval triggers, to keep Rewst user access in sync with an M365 group.
+Our Add Users to Rewst via Group Crate syncs membership from a Microsoft 365 group to Rewst by automatically inviting any group members who don't already have a Rewst account or pending invite. It's designed to run on a schedule, with Cron and Time Interval triggers, to keep Rewst user access in sync with an M365 group.
 
 ### Workflow breakdown
 
