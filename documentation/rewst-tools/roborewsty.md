@@ -58,6 +58,14 @@ You can manage your previously determined approvals any time in the preferences 
 
 <figure><img src="../../.gitbook/assets/image (326).png" alt=""><figcaption></figcaption></figure>
 
+### Set custom instructions for RoboRewsty - Feature currently in beta
+
+Use custom instructions to tailor how RoboRewsty works for you. Any instructions you set will be applied to all future RoboRewsty queries. Note that if your MSP has multiple Rewst users, custom instructions apply on a user-by-user basis, and can't be set to apply to all of your employee user accounts.&#x20;
+
+Click ![](<../../.gitbook/assets/Screenshot 2026-01-09 at 2.54.19 PM.png>) **> Preferences** in the top right corner of your Rewst platform to view the **RoboRewsty Custom Instructions** submenu. Type your instructions into the text field, then click **Save Preferences**. To remove preferences, delete the existing text from the field and save your changes.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2026-03-13 at 3.47.21 PM.png" alt=""><figcaption></figcaption></figure>
+
 ## What can RoboRewsty help with?
 
 ### Ask questions
