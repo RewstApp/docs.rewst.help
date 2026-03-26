@@ -359,6 +359,7 @@
       * [Google Enterprise License Manager integration setup](documentation/integrations/integration-guides/google-admin/google-enterprise-integration-setup.md)
       * [Google Workspace Admin integration setup](documentation/integrations/integration-guides/google-admin/google-workspace-admin-sdk-integration-setup.md)
     * [HaloPSA integration](documentation/integrations/integration-guides/halo-integration-setup.md)
+    * [Hatz integration](documentation/integrations/integration-guides/hatz-integration.md)
     * [HubSpot integration](documentation/integrations/integration-guides/hubspot-integration-setup.md)
     * [Hudu integration](documentation/integrations/integration-guides/hudu-integration-setup.md)
     * [Huntress integration](documentation/integrations/integration-guides/huntress-integration-setup.md)
