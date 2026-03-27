@@ -8,9 +8,9 @@ These operations can be found inside each task's **Advanced** tab.
 
 ## Integration overrides
 
-For more on integration overrides and how to use them, see our documentation [here](../intro-to-triggers/).
+For more on integration overrides and how to use them, see our documentation [here](https://docs.rewst.help/documentation/automations/intro-to-triggers#integration-overrides).
 
-Add an integration override by clicking  ![](<../../../.gitbook/assets/Screenshot 2025-03-26 at 11.10.58 AM.png>). This will expose a new submenu for **Configuration Selection Mode**.&#x20;
+Add an integration override to the task by clicking  ![](<../../../.gitbook/assets/Screenshot 2025-03-26 at 11.10.58 AM.png>). This will expose a new submenu for **Configuration Selection Mode**.&#x20;
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-03-26 at 11.11.30 AM.png" alt=""><figcaption></figcaption></figure>
 
@@ -51,7 +51,7 @@ Or, when a form has an organization picker on it, where the organization ID is p
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-03-26 at 11.19.37 AM.png" alt=""><figcaption></figcaption></figure>
 
-_With Items_ is the equivalent to a `foreach`statement in other languages.
+_With Items_ is the equivalent to a `foreach` statement in other languages.
 
 With this, you can pass a number of objects into a certain action and collect the results from each and then do something.
 

@@ -99,7 +99,14 @@ Remember, once an action is placed on the canvas, we then call it a task.
    2. Four distinct tabs beneath the basic details:&#x20;
       1. **Parameters**: Unique to each task, this tab houses options for defining the task's behavior during execution, including settings for endpoints, filters, conditions, and query parameters. Think of them like fill-in-the-blank options that make workflows adaptable.&#x20;
          1. Note the **Redact on Hover** setting for inputs that are set to **Password**. This can be toggled on or off via the ![](<../../../.gitbook/assets/Screenshot 2025-03-25 at 4.55.28 PM.png>).
-      2. **Advanced**: In this tab, you'll set the rules for your task's path and behavior within the workflow. Options include Integration Overrides, Transition Mode, Task Transition Criteria Sensitivity, Run as Org, With Items, Items Concurrency, and Task Timeout. See more about this on the [Advanced Workflow Operations](advanced-workflow-operations-menu.md) page.
+      2. **Advanced**: In this tab, you'll set the rules for your task's path and behavior within the workflow. See more about this on the [Advanced Workflow Operations](advanced-workflow-operations-menu.md) page. Options include:
+         1. [Integration Overrides](../intro-to-triggers/#integration-override-on-an-action)
+         2. [Transition Mode](advanced-workflow-operations-menu.md#transition-modes)
+         3. [Task Transition Criteria Sensitivity](advanced-workflow-operations-menu.md#task-transition-criteria-sensitivity)
+         4. [Run as Org](advanced-workflow-operations-menu.md#run-as-org)
+         5. [With Items](../../jinja/jinja-essentials.md#with-items)
+         6. [Items Concurrency](advanced-workflow-operations-menu.md#items-concurrency)
+         7. [Task Timeout](advanced-workflow-operations-menu.md#task-timeout)
       3. **Mocking**: This tab provides the option to simulate the task's function with a user-defined result, useful for testing and debugging.
       4. **Time Savings**: In this tab, specify your estimate of the time a human would need to complete the task. This is used for creating Time Entries in PSA platforms.
       5. **Security**: This tab allows for meticulous redaction of sensitive information within workflow tasks. This is especially vital when using generic HTTP actions for services without official integrations, where API tokens or other sensitive data in headers could be exposed in results.&#x20;
