@@ -4,9 +4,9 @@ icon: message-question
 
 # Rewst support
 
-## What is the ROC?
 
-Short for _Robotic Operations Center_, the ROC is Rewst’s dedicated support team, here to assist with all platform-related questions, technical guidance, and automation best practices. They're not a fit to talk about account issues or commercial needs such as contract, billing, or general relationship questions. For those, please contact your Rewst CSA.
+
+Our support team, formerly known as the ROC, is here to assist with all platform-related questions, technical guidance, and automation best practices. They're not a fit to talk about account issues or commercial needs such as contract, billing, or general relationship questions. For those, please contact your Rewst CSA.
 
 {% hint style="info" %}
 **Other Rewst employees who help**
