@@ -46,7 +46,7 @@ The Crate runs off of form submission.&#x20;
    1. Choose **Yes** if using the form with the bundle integrated in Rewst
    2. Choose **No** if using the form without bundle integration - additional fields will appear on the form with this selection
 6. For the **Integration Email used to Authenticate the Microsoft Cloud Bundle** field:
-   1. Enter the email address you used to authenticate the the Bundle to generate a list of all the CA policies that are applied to that specific user.
+   1. Enter the email address you used to authenticate the Bundle to generate a list of all the CA policies that are applied to that specific user.
    2. Leave the field blank to generate a list of all CA Polices which are not associated with that user.
 7. Enter the **User Email Address** where you would like the form to send the resulting data.
 8. If using the form without the Bundle:

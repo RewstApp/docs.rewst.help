@@ -39,14 +39,46 @@ When you're comfortable with the basics of triggers, learn more about [trigger c
 
 ### Integration overrides
 
-Integration overrides allow you to specify which integration configurations should be used. When a workflow is triggered by and running within the context of a child organization, by default they only have access to their own integrations and configurations. To give the workflow access to integrations and credentials owned by the parent organization, that default behavior must be explicitly overridden. In the above example image, the trigger allows your clients to use your PSA, RRM and licensing integration.
+Integration overrides allow selection between multiple versions of the same integration at both the trigger and action levels, enabling granular control over workflow execution. When a workflow is triggered by and running within the context of a child organization, by default they only have access to their own integrations and configurations. To give the workflow access to integrations and credentials owned by the parent organization, that default behavior must be explicitly overridden.  Rewst recommends adding more integration overrides rather than fewer.
+
+
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2026-03-23 at 3.09.52 PM.png" alt="" width="375"><figcaption><p>Choose the integration for which to apply configuration overrides to from the drop-down list.</p></figcaption></figure>
 
 1. Click <img src="../../../.gitbook/assets/Screenshot 2026-03-23 at 3.14.04 PM.png" alt="" data-size="line"> next to integration overrides.
-2.  Choose your desired integration from the drop-down selector that appears. This will populate the options for that integration below the selector.<br>
+2. Choose your desired integration or integrations from the drop-down selector that appears. This will populate the options for that integration below the selector. Each selected integration will have its own accordion menu added to the trigger configuration page.&#x20;
+   1. Configuration Selection Mode options
+      1. **Use Default** - The default configuration for the workflow owner will be used
+      2. **Use Selected Config** - Select a specific integration configuration to use: choosing this option reveals a new **Integration Configuration** drop-down selector where you'll choose an existing configuration
+      3. **Use Name Search** - Search the workflow owner's integration configurations by name: choosing this option reveals a new **Configuration Name** field where you'll enter the name
+   2. **Configuration Fallback Mode** - The behavior to be used if the selected configuration is not found, available for all Configuration Selection Mode options excluding Use Default
+      1. **Use Org Mapping** - Use the organization mapping defined in the integration settings page to select the configuration to use
+      2.  **Fail Workflow** - If the matching configuration is not found, the workflow will fail with an error
 
-    <figure><img src="../../../.gitbook/assets/Screenshot 2026-03-23 at 3.14.59 PM.png" alt="" width="375"><figcaption></figcaption></figure>
+          \
+          <br>
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-03-23 at 3.14.59 PM.png" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-03-26 at 1.42.08 PM.png" alt="" width="375"><figcaption></figcaption></figure>
+
+3. Click **Submit**.
+
+{% hint style="warning" %}
+Note that when you unpack a Crate, it will automatically look at your installed integrations to decide which integration overrides to apply to your particular unpack. If you add additional integrations or change integrations after a Crate has been unpacked, and want that integration to be recognized and used with integration overrides for the Crate's workflow, you'll need to go to the trigger for that workflow and manually add the new integration to the integration overrides field.
+{% endhint %}
+
+#### Integration override on an action
+
+While integration overrides mainly live on and apply to triggers, you can also add them to actions under the **Advanced** tab of their right side configuration menu. The main use case for an action-based integration override is when you use [multi-instance integration](../../integrations/multi-instance-integration/) in Rewst.&#x20;
+
+The process and selections for this integration override are the same as for those set on a trigger.
+
+<div><figure><img src="../../../.gitbook/assets/Screenshot 2026-03-27 at 8.55.16 AM.png" alt=""><figcaption></figcaption></figure> <figure><img src="../../../.gitbook/assets/Screenshot 2026-03-27 at 8.55.25 AM.png" alt=""><figcaption></figcaption></figure></div>
+
+{% hint style="info" %}
+If you've set integration overrides on both the trigger and an action in a workflow, the action override takes precedence over the trigger override and will cancel it out.
+{% endhint %}
 
 ### Activate trigger to run for
 
