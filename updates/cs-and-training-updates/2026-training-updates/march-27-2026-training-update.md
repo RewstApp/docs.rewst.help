@@ -17,7 +17,10 @@ Explore what new changes the Cluck University team made in the last week.
 
 <summary><strong>Documentation updates</strong> </summary>
 
-* Coming soon!
+* [Hatz AI integration](https://docs.rewst.help/documentation/integrations/integration-guides/hatz-integration)
+* [Updated endpoints for our Huntress integration](https://docs.rewst.help/documentation/integrations/integration-guides/huntress-integration-setup)
+* [Documentation for our Add Users to Rewst via Group Crate](https://docs.rewst.help/documentation/crates/existing-crate-documentation/add-users-to-rewst-via-group-crate)
+* [Updated guidance for how to use integration overrides in both triggers and actions](https://docs.rewst.help/documentation/automations/intro-to-triggers#integration-overrides)
 
 </details>
 
