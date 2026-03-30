@@ -72,6 +72,10 @@ If editing an existing setup of the integration, note that previously created ac
 3. Click **Save Configuration**.
 4. Rewst will do a quick validation of your input. Once completed, you'll see a new section beneath the configuration form for[ organization mapping](https://docs.rewst.help/documentation/integrations#what-is-organization-mapping). Complete your mapping as desired.
 
+### Use PowerShell with ConnectWise ASIO
+
+When you run PowerShell tasks in a workflow, Rewst will automatically retrieve the needed ASIO ID. No action is required on your part.
+
 ### Future additional functionality
 
 In future, when Rewst adds functionality to our ConnectWise ASIO integration, additional scopes may need to be added manually to your integration's configuration to take advantage of that functionality. The order of operations for any scope update is to first add or remove a scope in ConnectWise ASIO, then add or remove a scope to the scopes list in the configuration setup page in Rewst. If you do not add new scopes, your integration will still work as it had previously, but won't contain the new added functionality.
