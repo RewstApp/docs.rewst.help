@@ -166,16 +166,16 @@ Granular access is influenced by your clients' [conditional access policies](htt
 
 
 
-    <figure><img src="../../../../.gitbook/assets/Screenshot 2025-08-12 at 4.08.52 PM.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/Screenshot 2026-03-19 at 3.41.50 PM.png" alt=""><figcaption></figcaption></figure>
 
-    1. You can pick and choose from a set of pre-selected Graph permissions, or edit based on your org’s security preferences.
-    2. These permissions are carefully chosen to support Crates without authentication issues.
-    3. If you modify permissions from the stock ones suggested by Rewst, it’s your responsibility to verify that your custom permissions don’t interfere with Rewst’s functionality.
-    4. For more detail, consult Microsoft Graph’s [official permissions documentation](https://learn.microsoft.com/en-us/graph/permissions-reference).
-    5. Microsoft can take up to 48 hours for all scopes to appear in the Rewst integration. If scopes are not appearing for you, pause integration setup, and return later to allow time for Microsoft to update.
-3. Grant additional access for other Microsoft integrations
-   1. Exchange, CSP, and Azure, if needed, are simpler and allow you to toggle access as desired.
-   2. Microsoft Graph includes \~177 APIs, and gives you broad access to users, groups, and licensing from one endpoint.
+    1. You can pick and choose from a set of recommended pre-selected Graph permissions, or edit based on your org’s security preferences.
+    2. These permissions are carefully chosen to support Crates without authentication issues. If you modify permissions from the stock ones suggested by Rewst, it’s your responsibility to verify that your custom permissions don’t interfere with Rewst’s functionality.
+    3. If you deselect one of the recommended permissions, and doing so would break functionality for the integration or Crates in Rewst, you'll receive an error message. Until you re-select the permission, you'll be blocked from proceeding with setup.
+    4. Note that Microsoft has an 8000 character limit for its permission granting communication. If you experience an error message about this limit, deselect some of the unnecessary permissions from your list of choices and try again.\
+       ![](<../../../../.gitbook/assets/Screenshot 2026-03-19 at 3.45.22 PM.png>)
+    5. For more detail, consult Microsoft Graph’s [official permissions documentation](https://learn.microsoft.com/en-us/graph/permissions-reference).
+    6. Microsoft can take up to 48 hours for all scopes to appear in the Rewst integration. If scopes are not appearing for you, pause integration setup, and return later to allow time for Microsoft to update.
+3. Grant additional access for other Microsoft integrations. Exchange, CSP, and Azure, if needed, are simpler and allow you to toggle access as desired.
 4. Click **Next**.
 
 </details>
