@@ -8,7 +8,7 @@ noIndex: true
 {% hint style="info" %}
 Our new version of Rewst's Workflow Builder is officially in Beta! For the near future, you'll have the option to use the old Workflow Builder or switch to our new experience via the <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 12.37.47 PM.png" alt="" data-size="line"> in the top tool bar.&#x20;
 
-Submit feedback on our updated Builder here in our dedicated Discord feedback channel.&#x20;
+Submit feedback on our updated Builder here in our dedicated Discord feedback channel. Note that RoboRewsty's workflow building capabilities will be functional for the new Workflow Builder at the time of general release, but are not available for this beta.
 {% endhint %}
 
 Rewst's new Workflow Builder combines everything you loved about our original Builder with clearer menus, enhanced capabilities, and better visualization. The location of buttons and fields may have been moved around, but everything that was present in the old Workflow Builder is still present in the new version. Like before, access workflows in the Rewst platform by navigating to **Automations > Workflows** in the left side menu. Create a new workflow from scratch by clicking **Create Workflow**.
