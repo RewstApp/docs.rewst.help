@@ -59,6 +59,11 @@ The Crate runs off of form submission.&#x20;
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2026-02-06 at 4.43.20 PM.png" alt="" width="479"><figcaption><p>The additional setup fields for use when there is no Bundle integration with Rewst</p></figcaption></figure>
 
+### Exclude specific customers from the workflow
+
+This is not a native feature of the Crate. To exclude the customers, Navigate to the **\[REWST - TASK] CA Policy Assistant: List Clients CA Polcies** subworkflow. Filter the List Rewst Organizations action against an organization variable exclusion list. Then, pass that filtered list to the next subworkflow.&#x20;
+
 {% hint style="info" %}
 Got an idea for a new Crate? Rewst is constantly adding new Crates to our Crate Marketplace. Submit your idea or upvote existing ideas here in our [Canny feedback collector](https://rewst.canny.io/crates).
 {% endhint %}
+
