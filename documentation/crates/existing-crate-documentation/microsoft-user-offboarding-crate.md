@@ -13,7 +13,8 @@ Our Microsoft: User Offboarding Crate streamlines the offboarding process for us
 * **Security**: Ensure that necessary offboarding steps are performed when an account is terminated.
 
 {% hint style="warning" %}
-This Crate does not handle On-Prem Exchange and will only handle Exchange functionality via Office 365.
+This Crate does not handle On-Prem Exchange and will only handle Exchange functionality via Office 365.\
+It does not take action to remove the licenses from your license vendor.&#x20;
 {% endhint %}
 
 This Crate does the following tasks:
