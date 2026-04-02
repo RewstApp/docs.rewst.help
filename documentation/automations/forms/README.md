@@ -8,7 +8,7 @@ Rewst's form functionality is designed to empower users with the tools to build 
 
 ## Why use forms?
 
-Forms collect data in one simple step, reducing manual data entry and saving you time. They can also function as triggers in Rewst when building workflows, allowing for seamless transitions and increased efficiency.&#x20;
+Forms collect data in one simple step, reducing manual data entry and saving you time. They can also function as triggers in Rewst when building workflows, allowing for seamless transitions and increased efficiency. Use a form submission in your workflow if user input is required for the automation to run. You wouldn't use a form, for example, if the all the information needed for the automation to run could be retrieved via webhook trigger.
 
 Expand the reach of your forms by embedding them into various web pages, providing increased accessibility to users. Tailor forms to specific scenarios through cloning and modification, ensuring the right fit for every situation.
 

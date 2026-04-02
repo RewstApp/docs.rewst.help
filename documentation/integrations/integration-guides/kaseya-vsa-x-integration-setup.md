@@ -17,16 +17,15 @@ Our Kaseya VSA X integration enables automation of remote monitoring and managem
    \
    <img src="../../../.gitbook/assets/Screenshot 2025-05-05 at 3.59.33 PM.png" alt="" data-size="original">
 3. Copy the **Name** under the **Server Information** submenu.
-4. Paste the copied name value into the `hostname` parameter field IN REWST?
-5. Navigate to **Administration > Configuration > API Access**.
-6. If prompted, re-enter your account password.
-7. Click **Create Token**.
-8. Name your token. Enter a descriptive name for your token in the Create token dialog box. This will help you to identify the token later. Don't set an expiration date for the token.
-9. Click **Next**.
-10. If you want to limit the ip address access for the API token, specify the IP address of Rewst by entering the following into the **IP White List** field: `{rewst_outbound_ip_addr}`.
-11. Configure your token permissions to have access to your chosen organizations and API permissions in which you want to have access to in Rewst.
-12. Click **Create Token**.
-13. Copy the value for the **Token ID** and **Token Secret**. Store these somewhere secure, as you won't be able to view them again once you move away from this page. You'll need both for further steps in Rewst.
+4. Navigate to **Administration > Configuration > API Access**.
+5. If prompted, re-enter your account password.
+6. Click **Create Token**.
+7. Name your token. Enter a descriptive name for your token in the Create token dialog box. This will help you to identify the token later. Don't set an expiration date for the token.
+8. Click **Next**.
+9. If you want to limit the ip address access for the API token, follow the directions for doing so here in Rewst's [security policy](../../../security/security-policy.md) listing of domains. Be sure to align this with whichever region of Rewst you are using.&#x20;
+10. Configure your token permissions to have access to your chosen organizations and API permissions in which you want to have access to in Rewst.
+11. Click **Create Token**.
+12. Copy the value for the **Token ID** and **Token Secret**. Store these somewhere secure, as you won't be able to view them again once you move away from this page. You'll need both for further steps in Rewst.
 
 ### Set up steps in Rewst
 
@@ -73,7 +72,7 @@ Got an idea for a new Integration? Rewst is constantly adding new integrations t
 
 ## Use custom PowerShell scripts with your RMM integration
 
-If you're writing custom PowerShell scripts to use and be run with your RMM integration, you'll need to manually add webhook calls. Any custom script will time out if used without first adding the webhook calls. The use of standard built-in Rewst scripts with your RMM does not require you to add the calls.
+If you're writing custom PowerShell scripts to use and run with your RMM integration, you'll need to manually add webhook calls. Any custom script will time out if used without first adding the webhook calls. The use of standard built-in Rewst scripts with your RMM does not require you to add the calls.
 
 The webhook calls everyone doing this custom scripting should use will always be as follows.
 
