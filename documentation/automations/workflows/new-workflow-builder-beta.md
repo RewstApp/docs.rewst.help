@@ -204,9 +204,9 @@ Click into your action to open the **Action Settings** menu, which contains four
 
 Click and drag **Trigger** under the Flow Control tab of the Library to add a new trigger to your Workflow Builder Canvas. This will reveal a new menu to the right with your **Trigger Settings** that contains four tabs.
 
-**General** - Set your **Trigger Name**, choose the **Trigger Mode** and **Trigger Type**, and toggle your trigger to **Enabled** or **Disabled**.
+**General** - Set your **Trigger Name**, choose the **Trigger Mode** and **Trigger Type**, and toggle your trigger to **Enabled** or **Disabled**. Under the **Trigger Parameters** menu, set your timezone, Cron Schedule, and [Critical Timing](../intro-to-triggers/#critical-timing). Under the **Trigger Variables** menu, any workflow variables set in the workflow settings will appear.
 
-**Overrides** - Add [**Integration Overrides**](../intro-to-triggers/#integration-overrides) for the trigger.
+**Overrides** - Add [Integration Overrides](../intro-to-triggers/#integration-overrides) for the trigger.
 
 **Criteria** - Add [trigger criteria](https://docs.rewst.help/documentation/automations/intro-to-triggers/trigger-criteria#save-trigger-criteria) to filter trigger events.
 

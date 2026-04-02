@@ -106,6 +106,22 @@ Find the **Activate Trigger To Run For** section at the very bottom of the confi
 * If the workflow uses parent organization integrations like your PSA, you must configure integration overrides on the trigger to give child orgs access to those credentials.
 {% endhint %}
 
+### Critical timing
+
+{% hint style="warning" %}
+Starting on May 2, 2026, all workflows will default to their critical timing set as **False**. If you want a workflow to run at a specific time without flexibility, be it a new workflow or an existing workflow, you'll need to manually indicate this in the Critical Timing selector.
+{% endhint %}
+
+_Critical timing_ is Rewst's setting for indicating if a workflow with a cron trigger must be run at a certain time or if there can be allowed variation in when the workflow is triggered. Choose **true** if the workflow must run at the same time each day. Choose **False** or **None** if the workflow's schedule has flexibility. This will adjust the start time, but maintain the frequency of when the workflow is triggered. By default, triggers that share the same schedule are spread across a short window to reduce load spikes and improve performance.
+
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-03-31 at 2.17.26 PM.png" alt=""><figcaption></figcaption></figure>
+
+The time window will depend on your schedule's frequency, capped at 30 minutes:\
+`*/5 * * * *` : every 5 min — within \~1 min\
+`0 * * * *` : hourly — within \~15 min\
+`0 10 * * *` : daily at 10 AM — within \~30 min\
+`0 0 1 * *` : 1st of each month — within \~30 min
+
 ## Modify an existing trigger
 
 To modify an existing trigger, click **Edit Trigger**. If there are multiple triggers for the workflow, select the appropriate trigger from the dropdown menu.\
@@ -167,6 +183,8 @@ This trigger is most useful for:
 * Scheduled maintenance workflows: clearing stale data, running audits
 * Recurring notifications: sending reminders, generating reports
 * Automated check-ins: verifying system statuses, updating dashboards
+
+This trigger also uses [critical timing](./#critical-timing).
 
 </details>
 
