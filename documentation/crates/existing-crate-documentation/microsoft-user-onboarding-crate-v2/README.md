@@ -815,8 +815,9 @@ The following triggers initiate workflows and automation in the Crate:
 The following forms are included:
 
 * \[Crate] Microsoft: User Onboarding
-  * Used to submit new user onboarding requests.
-  * Dynamically displays fields based on selected identity provider and advanced options.
+  * Used to submit new user onboarding requests
+  * Dynamically displays fields based on selected identity provider and advanced options
+  * Allows for options to Automap, Send As, and Send on Behalf of once you select a shared mailbox
 
 </details>
 

@@ -55,6 +55,24 @@ The Rewst Prod App is necessary for authentication and might already be installe
 
 </details>
 
+<details>
+
+<summary>Issue: Wizard hangs during uninstallation attempts</summary>
+
+
+
+* **Symptom**: When trying to delete the MS Bundle form your instance, Rewst displays this screen and never progresses. \
+  \
+  ![](../../../../.gitbook/assets/image.png)<br>
+* **Potential Cause**: This usually happens if Rewst can't find the enterprise app.
+* **Solution**:
+  * Switch to owned app registration
+  * Fill out all required details
+  * Click next until you reach the authorization phase of setup
+  * Return to the integrations page and uninstall the bundle
+
+</details>
+
 ## **Authorization issues**
 
 If you encounter problems during the authorization step, ensure that you are using the correct account, and that all permissions are properly set.
@@ -442,7 +460,7 @@ If you keep getting errors during reinstallation, remove the Rewst MS Cloud Conn
 \
 During the process, you may see the below error. You should be fine to proceed despite the error message. <br>
 
-<figure><img src="../../../../../.gitbook/assets/image (258).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (258).png" alt=""><figcaption></figcaption></figure>
 
 </details>
 

@@ -63,7 +63,7 @@ Note that Domain Separated ServiceNow users will need to [clone and customize](.
 
 
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption><p>An example of a task with the <strong>No Domain</strong> field</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (335).png" alt=""><figcaption><p>An example of a task with the <strong>No Domain</strong> field</p></figcaption></figure>
 
 ## Triggers for ServiceNow integration
 
