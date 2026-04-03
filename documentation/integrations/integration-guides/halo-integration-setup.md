@@ -248,6 +248,15 @@ To execute workflows at the MSP level across client accounts, you must configure
 
 </details>
 
+<details>
+
+<summary>Error code: Client error '403 Forbidden' for url</summary>
+
+* Check what you have given the API user access to within Halo. This is most frequently the result of a permissions issue.&#x20;
+* Are you able to make any API calls to Halo in a workflow? Can you list clients? If so, this also suggests a permissions error on Halo's side.
+
+</details>
+
 ## HaloPSA actions and endpoints
 
 {% hint style="info" %}
