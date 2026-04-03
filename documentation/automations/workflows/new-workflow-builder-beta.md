@@ -13,6 +13,10 @@ Submit feedback on our updated Builder here in our dedicated Discord feedback ch
 
 Rewst's new Workflow Builder combines everything you loved about our original Builder with clearer menus, enhanced capabilities, and better visualization. The location of buttons and fields may have been moved around, but everything that was present in the old Workflow Builder is still present in the new version. Like before, access workflows in the Rewst platform by navigating to **Automations > Workflows** in the left side menu. Create a new workflow from scratch by clicking **Create Workflow**.
 
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-04-03 at 12.15.25 PM.png" alt=""><figcaption></figcaption></figure>
+
+The new start screen of the Workflow Builder Canvas has three quickstart tiles, which will disappear as soon as you drag any element onto the Canvas.
+
 ## The Workflow Builder toolbar <a href="#the-workflow-settings-toolbar" id="the-workflow-settings-toolbar"></a>
 
 {% columns fullWidth="false" %}
