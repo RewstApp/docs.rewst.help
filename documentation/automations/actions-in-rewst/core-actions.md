@@ -16,6 +16,7 @@ Waits for a request to a created one-off webhook. Once a request is received, th
 
 * **Parameters**: This action only requires the ID of the webhook created from the `Create Webhook` action.
 * **Output**: The output includes the HTTP method, query params, headers, JSON or form/multipart data in the body of the request, and the timestamp when the request was received.
+* To access the results of a webhook, publish a [data alias](../workflows/data-aliases.md) with a value of `{/{ RESULT }/}.` You cannot merely publish the results as or use task.
 
 </details>
 
