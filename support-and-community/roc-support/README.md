@@ -22,7 +22,7 @@ Our support team provides **24-hour coverage from Monday to Friday**, ensuring u
 
 **Note:** Between **October and March**, there is a brief daily support gap from **5:00 AM to 7:00 AM UTC** due to daylight saving time differences between regions.
 
-<table><thead><tr><th width="124.30078125">Region</th><th width="179.640625">Time Zone</th><th>Support Start </th><th>Support End </th></tr></thead><tbody><tr><td>Americas</td><td>ET</td><td>Sunday 4:00 PM</td><td>Friday 8:00 PM</td></tr><tr><td>Europe</td><td>CET</td><td>Sunday 10:00 PM</td><td>Saturday 2:00 AM</td></tr><tr><td>Australia</td><td>AET</td><td>Monday 6:00 AM</td><td>Saturday 10:00 AM</td></tr></tbody></table>
+<table><thead><tr><th width="124.30078125">Region</th><th width="179.640625">Time Zone</th><th>Support Start </th><th>Support End </th></tr></thead><tbody><tr><td>Americas</td><td>ET</td><td>Sunday 4:00 PM</td><td>Friday 7:00 PM</td></tr><tr><td>Europe</td><td>CET</td><td>Sunday 10:00 PM</td><td>Saturday 1:00 AM</td></tr><tr><td>Australia</td><td>AET</td><td>Monday 6:00 AM</td><td>Saturday 9:00 AM</td></tr></tbody></table>
 
 Learn more about our support priority levels [here](support-priorities.md).&#x20;
 
