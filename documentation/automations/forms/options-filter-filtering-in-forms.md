@@ -2,7 +2,7 @@
 
 ## What is options filter?
 
-The options filter makes customizing fields within forms straightforward for those who want to add filtering without updating an options generator workflow. It takes inputs, filters them, and produces an output agnostic of the data source.
+The _options filter_ makes customizing fields within forms straightforward for those who want to add filtering without updating an options generator workflow. It takes inputs, filters them, and produces an output agnostic of the data source.
 
 Options filter works for the following form field types:
 
@@ -10,13 +10,14 @@ Options filter works for the following form field types:
 * [Radio Button](https://docs.rewst.help/documentation/automations/forms/intro-to-forms#radio-buttons)
 * [Multi-Select ](https://docs.rewst.help/documentation/automations/forms/intro-to-forms#multi-select)
 
-Option generators are still a fantastic option for those who need a more powerful, in-depth, solution. We cover what these are and how to use them in Cluck U’s [Rewst Foundations](https://learn.rewst.io/creating-an-option-generator) . If you’ve already taken our courses and want a refresher, see our documentation on option generators [here](https://docs.rewst.help/documentation/workflows/workflow-generated-options).
+Option generators are still a fantastic option for those who need a more powerful, in-depth, solution. We cover what these are and how to use them in Cluck University's [Rewst Foundations](https://learn.rewst.io/creating-an-option-generator) . If you’ve already taken our courses and want a refresher, see our documentation on option generators [here](https://docs.rewst.help/documentation/workflows/workflow-generated-options).
 
 ## Options filter guidance
 
 * Modifying a form using the options filter will work for both parent and child organizations, as long as data formatting is set up the same way for both organizations.
 * Add as many conditions as desired.
 * Access the options filter feature in our standard form builder.&#x20;
+* Options filter works in the context of the current organization.&#x20;
 
 ## Practical uses for options filter
 
