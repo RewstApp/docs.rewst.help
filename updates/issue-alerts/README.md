@@ -8,6 +8,27 @@ icon: circle-exclamation
 
 <details>
 
+<summary>⚠️ Planned: Rewst database maintenance, April 11, 2026</summary>
+
+Rewst will be performing infrastructure maintenance in all regions on Saturday, April 11, from 2:00 PM ET to 2:30 PM ET. Our engineering team will be conducting database maintenance to ensure continued platform stability and performance.\
+During this brief window, workflow executions will be paused. The expected disruption in each region is approximately 5-7 minutes, and the paused workflows will resume immediately after the work is complete.
+
+#### Updates
+
+You can monitor live updates and service status at: [https://status.rewst.io/](https://status.rewst.io/)
+
+#### Need help?
+
+Rewst support is always available here: [https://discord.gg/rewst](https://discord.gg/rewst)
+
+#### Create a ticket
+
+[Email the team](mailto:roc@rewst.io)  and someone will be in touch ASAP.
+
+</details>
+
+<details>
+
 <summary>⚠️Resolved: SQL Database Integration – Refactor Issues - AU, EU, UK, and US Region January 13, 2026</summary>
 
 Release 4.83 SQL Database integration refactor triggered multiple related issues over 4 days,\
