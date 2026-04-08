@@ -215,7 +215,7 @@ Write-Host '--------------------------------------------------------' -Foregroun
 
 #### Post-integration steps specific to Rewst workflows
 
-Following the database setup, you must attach the _\[Rewst Master v2] BYOD: Insert Data_ into Database workflow as a [completion handler](../../../automations/workflows/completion-handlers-and-workflow-wrappers.md#completion-handlers) to the on-prem workflows. If you are missing this workflow, please [reach out to Rewst support](../../../../support-and-community/roc-support/).&#x20;
+Following the database setup, you must attach the \[Rewst- TASK] BYOD: Upsert Cache DB Data Listener\_ workflow as a [completion handler](../../../automations/workflows/completion-handlers-and-workflow-wrappers.md#completion-handlers) to the on-prem workflows. If you are missing this workflow, please [reach out to Rewst support](../../../../support-and-community/roc-support/).&#x20;
 
 1. Navigate to **Automations > Workflows.**
 2. Search for `[Rewst- TASK] BYOD: Upsert Cache DB Data Listener`.
