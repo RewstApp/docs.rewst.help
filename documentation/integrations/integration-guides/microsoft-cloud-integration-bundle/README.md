@@ -293,10 +293,11 @@ Follow these instructions to set up GDAP relationships without the Rewst Microso
 11. You'll be redirected to a page that shows the request. Copy the link in that page.&#x20;
 12. Email the link to your customer. They will need to accept the request to continue your bundle set up steps. Once approved, the relationship will show as **Active** in the **Admin Relationships** list. \
     You may also approve on the customer's behalf since you have Global Administrative privileges. To do this, choose to send the email to yourself. Note that if you choose this option, it will still send an email to your customer. You may want to notify them that they can disregard the email.
-13. Return to your Rewst platform. Navigate to Configuration > Integrations > Microsoft Cloud Bundle.
-14. Use the **organization mapping** menu that appears at the bottom of the screen to choose the customer organizations you wish to map the bundle to.&#x20;
-15. Click **consent** next to your organization to consent for just that customer. Alternatively, click <img src="../../../../.gitbook/assets/Screenshot 2025-12-11 at 12.23.48 PM.png" alt="" data-size="line"> to consent to delegated admin permissions for all linked customers. If you haven't completed GDAP set up for all customers, this button will fail on the uncompleted customers.
-16. Check for each of your organizations to ensure that the consent process was successful.&#x20;
+13. Add the 12 Security Groups created to the relationship. This can only be done after the request is accepted.
+14. Return to your Rewst platform. Navigate to **Configuration > Integrations > Microsoft Cloud Bundle**.
+15. Use the **organization mapping** menu that appears at the bottom of the screen to choose the customer organizations you wish to map the bundle to.&#x20;
+16. Click **consent** next to your organization to consent for just that customer. Alternatively, click <img src="../../../../.gitbook/assets/Screenshot 2025-12-11 at 12.23.48 PM.png" alt="" data-size="line"> to consent to delegated admin permissions for all linked customers. If you haven't completed GDAP set up for all customers, this button will fail on the uncompleted customers.
+17. Check for each of your organizations to ensure that the consent process was successful.&#x20;
 
     1. A green shield to the right of the integration name means the GDAP relationship is working and API access is valid.
     2. A blue shield or error means setup failed, and permissions are missing or incorrectly configured.
