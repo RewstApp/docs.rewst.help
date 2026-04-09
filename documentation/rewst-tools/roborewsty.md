@@ -58,7 +58,7 @@ You can manage your previously determined approvals any time in the preferences 
 
 <figure><img src="../../.gitbook/assets/image (326).png" alt=""><figcaption></figcaption></figure>
 
-### Set custom instructions for RoboRewsty - Feature currently in beta
+### Set custom instructions for RoboRewsty&#x20;
 
 Use custom instructions to tailor how RoboRewsty works for you. Any instructions you set will be applied to all future RoboRewsty queries. Note that if your MSP has multiple Rewst users, custom instructions apply on a user-by-user basis, and can't be set to apply to all of your employee user accounts.&#x20;
 
@@ -114,7 +114,7 @@ Once complete, RoboRewsty will assemble the workflow for you right on the Workfl
 
 Always test your workflow after it’s assembled. If the workflow fails, ask RoboRewsty to explain the failure for the most recent execution of the workflow. Then, have him update the workflow as needed to correct errors. When finished updating your workflow, remember to click **Publish** to save the workflow changes. RoboRewsty won't be able to do this final step for you. RoboRewsty may forget to document the workflow he built for you. If this happens, follow [our steps here](../roborewsty/document-with-roborewsty.md) for traditional RoboRewsty workflow documenting.&#x20;
 
-#### [Forms](../automations/forms/) - Feature currently in beta
+#### [Forms](../automations/forms/)&#x20;
 
 RoboRewsty can build forms for you in Rewst. Enter your desired form query and watch him design and create, asking follow-up questions throughout the process to get to the root of your needs. Failure messages will appear in the flow of conversation as he runs into them. You can switch between browser tabs while he works without stopping the process, but closing the browser tab entirely will stop his work. You will likely need to [grant permissions](roborewsty.md#additional-roborewsty-approval) to build the form, so paying attention to the processing to allow him to continue is necessary.
 
