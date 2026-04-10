@@ -1,4 +1,4 @@
-# April 3, 2026 - Dev update
+# March 27, 2026 - Dev update
 
 Explore what new changes the Dev team has deployed in the last week.
 
@@ -8,12 +8,10 @@ This can be anything from new features, bug fixes, or QoL changes!
 
 <summary><strong>New features and items</strong></summary>
 
-* **Onboarding**
-  * Added Crate guidance to the onboarding checklist.
-* **RoboRewsty**
-  * RoboRewsty's underlying instructions were restructured to follow AI best practices, resulting in clearer and more accurate guidance when building workflows, especially around variable creation, Jinja expressions, and error handling patterns.
-* **Special UI bonus**
-  * We've hidden a little holiday surprise in the app, but you'll have to wait for the right day to find it.
+* **Integrations**
+  * Hatz AI integration - documentation found [here](../../../documentation/integrations/integration-guides/hatz-integration.md)
+  * Expanded the Microsoft Cloud Bundle to expose all supported permissions, added recommended permission selection, and improved guidance and validation around Microsoft permission limit errors.
+  * Added Huntress POST and DELETE actions to support creating and managing accounts, organizations, incident resolutions, remediations, and memberships.
 
 </details>
 
@@ -22,19 +20,18 @@ This can be anything from new features, bug fixes, or QoL changes!
 <summary><strong>Bug fixes and chores</strong></summary>
 
 * **Dashboard**
-  * Fixed inconsistent historical task stats.
-* **Engine**
-  * Fixed an issue where stat buffers were not fully flushed during batching, which could result in incomplete data being processed.
-  * Fixed an issue where workflow sequences could enter an unrecognized status, causing unexpected errors during execution.
-  * Fixed bundle packs not being included in pack discovery.
+  * Preserved historical dashboard task and time-saved metrics when sub-organizations are deleted or moved.
+* **Forms**
+  * Fixed an issue where stale form name filters persisted in browser storage, causing the Forms page to display incomplete results without an active filter.
 * **Integrations**
-  * Fixed a crash caused by a TypeError when using 'Suggest Customer Mappings' for Microsoft Cloud Bundle integration.&#x20;
-  * Fixed unsaved packs defaulting to all permissions selected on CPV consent in Microsoft Cloud Bundle integration.&#x20;
-  * Added a contacts field to the 'Create Company' action in Pax8 integration.&#x20;
+  * Fixed an issue where the SentinelOne "List Threats" action returned only a single threat when multiple threat IDs were provided.
+  * Fixed an issue where the SuperOps New Ticket Record trigger did not activate when new tickets were created.
 * **RoboRewsty**
-  * Improved task positioning for tasks added by RoboRewsty.
-* **Workflow Builder**&#x20;
-  * Preserved large numeric strings that exceed JavaScript precision in object field parsing.
+  * Fixed an issue where RoboRewsty created triggers without saving trigger criteria in a valid format, ensuring criteria now appear and work correctly.
+* **Triggers**
+  * Fixed an error preventing users from sorting triggers by type in the Trigger View.
+* **Workflows**
+  * Ensured parent workflows were reliably notified of sub-workflow completion, preventing workflows from getting stuck due to transient notification failures.
 
 </details>
 
@@ -42,6 +39,6 @@ This can be anything from new features, bug fixes, or QoL changes!
 
 <summary><strong>Coming soon</strong></summary>
 
-* New Workflow Builder - currently in select customer beta.
+* Workflow canvas redesign beta
 
 </details>
