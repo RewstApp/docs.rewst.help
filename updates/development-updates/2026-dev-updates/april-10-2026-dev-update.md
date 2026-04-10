@@ -11,7 +11,6 @@ This can be anything from new features, bug fixes, or QoL changes!
 * **Dashboard**
   * Optimized hourly task count queries to improve dashboard performance while preserving complete 24-hour reporting, including zero-count hours.
 * **Integrations**
-  * Enabled pack health visibility for all integrations without requiring a Save Configuration or Authorize action, including for existing and legacy organizations.
   * Added support for token-based authentication in the Cove integration, enabling new API users to connect using API tokens.
 * **Onboarding**
   * Self-guided onboarding
