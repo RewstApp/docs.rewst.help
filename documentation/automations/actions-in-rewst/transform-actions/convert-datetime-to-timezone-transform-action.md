@@ -12,7 +12,7 @@ Convert a DateTime to a different timezone.
 
 ## Parameters
 
-<table><thead><tr><th width="217">Parameter</th><th width="417.3333333333333">Description</th><th data-type="checkbox">Required</th></tr></thead><tbody><tr><td>DateTime to convert</td><td>Use https://strftime.org/ for various options</td><td>true</td></tr><tr><td>Timezone to convert</td><td>Use https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for various options not listed</td><td>true</td></tr></tbody></table>
+<table><thead><tr><th width="217">Parameter</th><th width="417.3333333333333">Description</th><th data-type="checkbox">Required</th></tr></thead><tbody><tr><td>DateTime to convert</td><td>Use <a href="https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior">https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior</a> for various options</td><td>true</td></tr><tr><td>Timezone to convert</td><td>Use https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for various options not listed</td><td>true</td></tr></tbody></table>
 
 {% hint style="info" %}
 Some timezone values are timezone naive, such as EST. If you would like to use a timezone aware value then, as an example, you should use America/New\_York or US/Eastern.
