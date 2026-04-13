@@ -13,7 +13,7 @@ Our Lexful integration enables the automation of IT documentation management. Us
 ### Set up steps in Lexful
 
 1. Navigate to your [Lexful Dashboard](https://app.lexful.com/) and log in with your account credentials.
-2. Navigate to **Settings > Account Settings > APIs** .
+2. Navigate to **Settings > Platform > APIs** .
 3. Enter `Rewst` into the **API key name** **field**.
 4. Click **Generate API Key**
 5. Copy the **API Key ID**, **Account ID**, and **API Key Secret** and store these values somewhere secure. You'll need them for further steps in Rewst. Note that the secret will only be displayed once, and can't be retrieved again after you navigate away from the page.
