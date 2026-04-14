@@ -7,7 +7,7 @@ This page will cover how to add a new child organization with the Add Client to 
 
 ## What does the Add Client to Rewst Crate do?
 
-The Add Client to Rewst Crate lets you easily use a form to add a new child organization to Rewst, and map your installed integrations to the organization. Use this form every time you sign on a new customer and need to add them as a new child org in Rewst. The form will prompt you to create users and set specific org variables. Note that this Crate does not handle Microsoft Mappings.
+The Add Client to Rewst Crate lets you easily use a form to add a new child organization to Rewst and map your installed integrations to the organization. Use this form every time you sign on a new customer and need to add them as a new child org in Rewst. The form will prompt you to create users and set specific [organization variables](../../integrations/organization-variables.md#what-is-an-organization-variable). Note that this Crate does not handle Microsoft Mappings.
 
 ### Workflow breakdown
 
@@ -33,8 +33,6 @@ The Add Client to Rewst Crate lets you easily use a form to add a new child orga
 5. Click **Continue**.
 6. Click **Unpack**.
 
-<figure><img src="../../../.gitbook/assets/unpack-client-add-crate.gif" alt=""><figcaption><p>Adding the Crate</p></figcaption></figure>
-
 ### Use the Crate
 
 After unpacking, use the Crate's form to add a new child organization.
@@ -43,7 +41,7 @@ After unpacking, use the Crate's form to add a new child organization.
 2. Search for `Add New Client to Rewst`.
 3. Click **⋮ > Usages > View Direct URLs.**
 4. Click on the link for the organization which contains the user you wish to manage. This will launch the form in a new tab.
-5. Fill out the form as follows:
+5. Fill out the form following the guidance below.
 
 #### What you need to fill out the form
 
