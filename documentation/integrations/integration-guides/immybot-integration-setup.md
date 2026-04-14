@@ -20,7 +20,7 @@ Our ImmyBot integration enables the automation of remote machine management and 
 
 ### Set up steps in ImmyBot
 
-Before configuring the Rewst integration,  you'll need to get the application ID and client secret value from your ImmyBot account.
+Before configuring the Rewst integration,  you'll need to get the application ID and client secret value from your ImmyBot account. To retrieve these, your permissions in ImmyBot must be set to System Administrator. If your account was previously designated as Admin, ImmyBot automatically granted you the permission level of System Administrator (Legacy) in their recent permissioning change update. This is sufficient to set up the integration with Rewst.
 
 Please refer to [ImmyBot's Documentation](https://docs.immy.bot/azure-graph-permissions-setup.html) for up-to-date instructions on retrieving your API key information. Once you have the client secret, store the value somewhere safe. You'll need it for further set up steps in Rewst.
 
