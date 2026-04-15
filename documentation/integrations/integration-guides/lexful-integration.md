@@ -27,9 +27,7 @@ Our Lexful integration enables the automation of IT documentation management. Us
    1. **API Key ID**&#x20;
    2. **API Key Secret**&#x20;
    3. **Account ID**
-5. Enter the **Base URL**:
-   * **Production**: `https://api.lexful.com` - default, use this for most integrations
-   * **UAT**: `https://api.uat.lexful.net` - for testing, only use this if you are certain it applies to your instance of Lexful
+5. Enter the **Base URL, Production**: `https://api.lexful.com`&#x20;
 6. Click **Save Configuration**.
 7. Rewst will do a quick validation of your input. Once completed, you'll see a new section beneath the configuration form for[ organization mapping](https://docs.rewst.help/documentation/integrations#what-is-organization-mapping). Complete your mapping as desired.&#x20;
 
