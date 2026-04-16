@@ -23,6 +23,16 @@ The Crate runs on a scheduled rotation, based on configured frequency preference
 
 Before unpacking this Crate, you'll need to successfully integrate either [IT Glue](../../integrations/integration-guides/it-glue-integration-setup.md) or [Hudu](../../integrations/integration-guides/hudu-integration-setup.md) with Rewst.
 
+## Workflow breakdown
+
+1. The workflow has a disabled trigger named `Monthly`, which when enabled would kick off this workflow on a recurring schedule.
+2. The **START** task executes the **noop** action, serving as the entry point of the workflow and performing no operation other than initiating the flow.
+3. On success, the **START** task transitions to the **workflows\_rewst\_task\_rotate\_admin\_password** task, which calls the sub-workflow action **\[REWST - TASK] Rotate Account Password**. This task is configured with a with-items loop that reads the organization variable `ORG.VARIABLES.rotate_admins`, splits it by comma into a list of usernames, and iterates over each one with a concurrency of 1. Each iteration passes the current username via `item()` as the `user_name` input to the sub-workflow.
+4. If the **workflows\_rewst\_task\_rotate\_admin\_password** task succeeds, it transitions to the **END** task and publishes a data alias called `log_workflows_rewst_task_rotate_admin_password`. This alias contains a structured log object with a computed status code, an empty message, an empty data object, and the sub-automation log extracted from the result.
+5. If the **workflows\_rewst\_task\_rotate\_admin\_password** task fails, it also transitions to the **END** task and publishes the same `log_workflows_rewst_task_rotate_admin_password` data alias with identical log-aggregation logic, ensuring that failure information is still captured.
+6. The **END** task executes the **noop** action and has a single terminal transition that publishes the `automation_log` variable into CTX. This Jinja template iterates over all CTX variables whose keys start with "log\_", aggregates them into a list of log entries, computes an overall status code — 1000 for full success, 1001 for warnings, or 2000 for errors — and assembles a final summary object containing the status code, a succeeded flag, aggregated data, a list of errors, a list of warnings, and all individual log entries.
+7. The workflow outputs the `automation_log` from CTX as its final output, making the aggregated results of all password rotation operations available to any parent workflow.
+
 ## Unpack the Rotate Account Passwords Crate
 
 1. Navigate to **Marketplace > Crates** in the left side menu of the Rewst platform.
@@ -46,43 +56,23 @@ In the organization variable, give a list of users for all accounts you want to 
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-08-19 at 3.52.50 PM.png" alt=""><figcaption></figcaption></figure>
 
-### Use the Crate
-
 {% hint style="warning" %}
 Note that if you test or run the workflow in this Crate before setting up the rotate\_admins organization variable, your workflow will still show as successful, but will consider the list of users to be empty.&#x20;
 {% endhint %}
 
-To manually run the workflow, create an always trigger with the desired organization enabled, then click the **test** button.&#x20;
+### Update the cron trigger
+
+{% hint style="info" %}
+To test this Crate, you'll need to adjust the cron trigger's schedule to a few minutes in the future, then adjust it back to your regular schedule after the test. Alternatively, you could wait until the regularly scheduled run occurs and check your result, which would not require you to update the cron trigger schedule.&#x20;
+{% endhint %}
 
 1. Navigate to **Automations > Workflows** in the left side menu of your Rewst platform.
-2. Search for `[Rewst - PROCESS] PSA: Update Ticket with New User Onboard Links.`
-3. Click the workflow to view it in the workflow builder.
-4. Click <img src="../../../.gitbook/assets/Screenshot 2025-08-18 at 1.48.13 PM.png" alt="" data-size="line"> to add a trigger.
-5. Enter a descriptive name for your trigger into the **Name** field.
-6. Click the **Trigger Type** drop-down selector.&#x20;
-7. Select **Core - Always Pass**.
-8. Click the **Organizations** drop-down selector under the **Activate Trigger To Run For** submenu.
-   1. Choose your relevant organizations for the trigger to run on.&#x20;
-   2. To select all managed organizations, click <img src="../../../.gitbook/assets/Screenshot 2025-08-18 at 2.12.27 PM.png" alt="" data-size="line">.
-   3. To set up this trigger to run for all future managed organizations, toggle the **All current and future managed organizations** setting on.
-9. Click **Submit**.
-10. Click **Test**.
-11. Click **View Result**.
-
-![](<../../../.gitbook/assets/Screenshot 2025-08-18 at 2.15.02 PM.png>)
-
-To run the workflow on a schedule, you'll need to add the list of users in the organization variable, configure the cron trigger for your desired frequency, and enable it. Note that the default schedule for the cron trigger unpacked with this Crate is monthly.
-
-1. Navigate to **Automations > Workflows** in the left side menu of your Rewst platform.
-2. Search for `[Rewst - PROCESS] PSA: Update Ticket with New User Onboard Links.`
-3. Click the workflow to view it in the workflow builder.
-4. Click ![](<../../../.gitbook/assets/image (197).png>) to edit the trigger.&#x20;
-5.  Update your workflow run frequency as desired in the **Cron Schedule** field. <br>
-
-    <figure><img src="../../../.gitbook/assets/Screenshot 2025-08-18 at 2.17.49 PM.png" alt=""><figcaption></figcaption></figure>
-6. Click **Submit**.
+2. Search for `[REWST - CRATE] Rotate Admin Passwords`.
+3. Click the workflow to view it in the Workflow Builder.
+4. Click on the trigger in the workflow to open its settings in the right side menu.
+5. Update the timing of the cron trigger as desired. Note that when entering the time into the Cron Schedule field, the correct format is minutes followed by hour. For example, 18 3, not 3 18.
+6. Click **Save Trigger**.
 
 {% hint style="info" %}
 Got an idea for a new Crate? Rewst is constantly adding new Crates to our Crate Marketplace. Submit your idea or upvote existing ideas here in our [Canny feedback collector](https://rewst.canny.io/crates).
 {% endhint %}
-
