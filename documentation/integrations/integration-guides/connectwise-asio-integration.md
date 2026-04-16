@@ -45,6 +45,7 @@ The ConnectWise ASIO platform empowers Managed Service Providers (MSPs) to strea
    8. platform.automation.read&#x20;
    9. platform.automation.create
    10. platform.devices.read
+   11. platform.devicegroups.read
 8. Check off the **Consent** box.
 9. Click **Generate API Access**.
 10. The information that appears on your screen can only be viewed this one time and will disappear after you leave the screen. Copy both the **Client ID** and **API Key** and store it some place secure. You'll need it for additional steps in Rewst.
