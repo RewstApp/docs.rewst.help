@@ -422,6 +422,7 @@
     * [TD Synnex StreamOne Ion integration](documentation/integrations/integration-guides/td-synnex-streamone-ion-integration.md)
     * [Traceless integration](documentation/integrations/integration-guides/traceless-integration.md)
     * [Twilio integration](documentation/integrations/integration-guides/twilio-integration-setup.md)
+    * [Ubiquiti integration](documentation/integrations/integration-guides/ubiquiti-integration.md)
     * [Xero integration](documentation/integrations/integration-guides/xero-integration-setup.md)
   * [Custom integrations](documentation/integrations/custom-integrations/README.md)
     * [Custom integrations: V2](documentation/integrations/custom-integrations/custom-integrations-v2.md)
