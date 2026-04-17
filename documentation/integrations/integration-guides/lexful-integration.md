@@ -41,7 +41,7 @@ Got an idea for a new Integration? Rewst is constantly adding new integrations t
 For more on how actions work in Rewst, check out our [introductory actions documentation here](https://docs.rewst.help/documentation/workflows/actions-in-rewst).&#x20;
 {% endhint %}
 
-View Lexful's own API documentation [here](https://lexful.mintlify.app/).
+View Lexful's own API documentation [here](https://developer.lexful.ai/).
 
 | Category                | Action                          | Description                                                                                                                     |
 | ----------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
