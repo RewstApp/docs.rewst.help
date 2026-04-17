@@ -6,7 +6,7 @@ If you’re new to Crates, read through our introductory Crate documentation [he
 
 ## What does the Alert on Unused M365 Licenses Crate do?
 
-This Crate checks daily for unused M365 licenses that can be returned to Pax8, then creates a ticket in your PSA with the information. The ticket will include hyperlinks to update the purchased quantity to match the used quantity and remediate unused licenses.
+This Crate checks daily for unused M365 licenses that can be returned to Pax8, then creates a ticket in your PSA with the information. The ticket will include hyperlinks to update the purchased quantity to match the used quantity and remediate unused licenses. This Crate does facilitate the removal of extra licenses, but only when the end-user clicks the URL generated in the PSA ticket, which is then executed via the webhook trigger in the Crate's workflow. It doesn't automatically remove licenses.
 
 {% hint style="info" %}
 Note that the existence of an SKU in Microsoft doesn’t mean that it was purchased through Pax8. Customers can still buy directly from Microsoft. If a SKU doesn’t have a matching Pax8 subscription, it won’t be alerted on because the automation wouldn’t be able to modify or validate quantities for something that doesn’t exist in Pax8.
@@ -14,7 +14,7 @@ Note that the existence of an SKU in Microsoft doesn’t mean that it was purcha
 
 ### How the Crate works
 
-The workflow unpacked with this Crate runs on a cron trigger, and will generate the ticket at the same time each day. If preferred, it also contains a webhook trigger; the cron trigger could be disabled, and the webhook trigger enabled to allow manual triggering.
+The workflow unpacked with this Crate runs on a cron trigger, and will generate the ticket at the same time each day. It also contains a webhook trigger, which acts as the external API endpoint that kicks off Pax8 license quantity reconciliation — either for a specific SKU or as a full scan — across your managed organizations.
 
 Tickets or alerts are generated only when all of the following is true:
 
@@ -73,7 +73,7 @@ The workflow unpacked with this Crate won't process any licenses that have 10,00
 
 Licenses under 10,000 units will be processed normally and included in the PSA ticket for potential reduction. Licenses with more than 10,000 units will be automatically excluded from processing, but no notification will be sent when these licenses are excluded.&#x20;
 
-The workflow will also exclude free, trial, and consumption-based licenses, as well as licenses with **Year** in the commitment term.
+The workflow will also exclude free, trial, and consumption-based licenses, as well as licenses with Year in the commitment term.
 
 {% hint style="info" %}
 Optionally, you can set the organization variable `pax8_license_removal_exclusions` to exclude specific organizations.
