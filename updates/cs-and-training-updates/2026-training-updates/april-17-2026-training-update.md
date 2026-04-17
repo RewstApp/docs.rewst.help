@@ -6,7 +6,7 @@ Explore what new changes the Cluck University team made in the last week.
 
 <summary><strong>Cluck University updates</strong></summary>
 
-* We’re updating our courses to reflect the new Workflow Builder interface and RoboRewsty capabilities. Expect to see new and improved content by end April 2026.\
+* We’re updating our courses to reflect the new Workflow Builder interface and RoboRewsty capabilities. Expect to see new and improved content by end of April 2026.\
   If you run into anything confusing or out of date, email [CluckU@rewst.io](mailto:CluckU@rewst.io) and we’ll respond within 2 business days.&#x20;
 * We added a new video lesson to [RoboRewsty workflow builder tips & tricks](https://learn.rewst.io/roborewsty-tips-tricks)!&#x20;
 * We've deprecated: How to reference data with variables, Workflow building tips & tricks, and Supporting and troubleshooting dynamic form fields
