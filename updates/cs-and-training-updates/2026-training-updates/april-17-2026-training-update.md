@@ -8,6 +8,7 @@ Explore what new changes the Cluck University team made in the last week.
 
 * We’re updating our courses to reflect the new Workflow Builder interface and RoboRewsty capabilities. Expect to see new and improved content by end April 2026.\
   If you run into anything confusing or out of date, email [CluckU@rewst.io](mailto:CluckU@rewst.io) and we’ll respond within 2 business days.&#x20;
+* We added a new video lesson to [RoboRewsty workflow builder tips & tricks](https://learn.rewst.io/roborewsty-tips-tricks)!&#x20;
 * We've deprecated: How to reference data with variables, Workflow building tips & tricks, and Supporting and troubleshooting dynamic form fields
 * Get certificates for [Automation Fundamentals](https://learn.rewst.io/path/automation-fundamentals) and [Automation Builder Basics](https://learn.rewst.io/path/automation-builder-basics) by completing all courses in these 2 new learning paths.
 * Unlock the [Rewst Foundations and Clean Automation certification quizzes](https://learn.rewst.io/page/advanced-builder-certificates) by completing either live or self-paced training in each path.
