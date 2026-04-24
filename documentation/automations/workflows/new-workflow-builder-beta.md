@@ -92,7 +92,7 @@ At the very bottom of the menu you have the option to add a new custom integrati
 
 1. Click **Add Integrations +**.
 2. The dialog that appears contains many fields for information needed to set up the integration. Pull that relevant information from the partner app you wish to integrate.&#x20;
-3. When finished,&#x20;
+3. When finished, and after building your workflow, you'll still need to complete organization mapping from the traditional integrations menu in Rewst.
 
 ## Canvas view settings
 
