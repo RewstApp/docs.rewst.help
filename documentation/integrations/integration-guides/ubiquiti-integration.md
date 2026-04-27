@@ -1,16 +1,16 @@
-# Ubiquiti integration
+# Ubiquiti UniFi integration
 
 {% hint style="info" %}
 If you’re new to integrations in Rewst, read through our introductory integration documentation [here](https://docs.rewst.help/documentation/integrations).
 {% endhint %}
 
-## What does the Ubiquiti integration do?
+## What does the Ubiquiti UniFi integration do?
 
-Our Ubiquit integration enables the automation of finance processes by seamlessly connecting Xero and Rewst. Automate workflows for managing client financial data, invoices, and more.
+This integration enables the automation of monitoring and management of UniFi deployments at scale. Use the Site Manager API to retrieve detailed information, monitor performance metrics, and efficiently manage your network infrastructure.
 
-## Set up the Ubiquiti integration
+## Set up the Ubiquiti UniFi integration
 
-### Set up steps in Ubiquiti
+### Set up steps in UniFi Site Manager
 
 1. Open [UniFi Site Manager](https://unifi.ui.com/) and log in to your account.
 2. Navigate to the **API** section in the Site Manager.
