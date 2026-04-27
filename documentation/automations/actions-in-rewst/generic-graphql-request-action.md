@@ -1,38 +1,55 @@
 # Generic GraphQL request action
 
-This action is available in the Rewst actions section of the workflow builder's actions list, but is open-ended in its capabilities.&#x20;
+## What is GraphQL?
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2025-09-05 at 10.08.02 AM.png" alt=""><figcaption></figcaption></figure>
+{% hint style="info" %}
+Learn more about GraphQL in its official documentation [here](https://graphql.org/learn/introduction/).&#x20;
+{% endhint %}
+
+GraphQL is an open-source query language for APIs and a server-side runtime for fulfilling those queries with existing data. It enables clients to interact with a single endpoint to get the exact data they need, without chaining requests together. Unlike traditional REST APIs that return fixed datasets, GraphQL allows clients to request exactly the data they need, eliminating over-fetching or under-fetching of data and offering improved efficiency. The [GraphQL Schema](https://graphql.org/learn/schema/) defines the structure of the data and available operations, serving as a clear contract between the frontend and backend. Like REST APIs, GraphQL is composed of a basic request and response for each call. While REST APIs rely on multiple endpoints for this process, GraphQL shifts the responsibility of defining what should be called back to the user.
+
+GraphQL in Rewst works off of two _operation types_:
+
+1. Query: Used for reading or fetching data
+2. Mutation: Used for writing, updating, or deleting data
+
+{% hint style="info" %}
+GraphQL has a third operation type called subscription. Rewst's generic GraphQL action currently only supports queries and mutations. If there is a subscription you are looking to use in Rewst, please submit a request to our product team for a dedicated action.
+{% endhint %}
+
+## What is the Rewst GraphQL generic request action?
+
+{% hint style="warning" %}
+Before using the Generic GraphQL request action, we recommend that you have:
+
+* An understanding of GraphQL query structure and syntax
+* Familiarity with Rewst's data model and the below available schema documentation
+{% endhint %}
 
 \
-A generic action for making authenticated requests against Rewst's GraphQL API, the Generic GraphQL Request action is part of the Rewst action pack and enables:
+The Rewst GraphQL generic request action is used for making authenticated requests against Rewst's GraphQL API. This action is available in the Rewst actions section of the Workflow Builder's actions library, but is open-ended in its capabilities. It enables:
 
 * Direct API access: Execute custom GraphQL queries and mutations against Rewst's backend
 * Advanced data retrieval: Access data structures not available through standard actions
 * Custom automation: Build sophisticated workflows with precise data control
 * Administrative operations: Perform bulk operations and administrative tasks programmatically
 
-{% hint style="warning" %}
-Before using the Generic GraphQL Request action, ensure that you have:
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-04-22 at 10.53.52 AM.png" alt=""><figcaption></figcaption></figure>
 
-* An understanding of GraphQL query structure and syntax
-* Familiarity with Rewst's data model and available schema
-{% endhint %}
+Make your choices in the **Parameters** tab of the action's settings to set it up in your workflow:
 
-**Parameters:**
-
-* Operation type: The type of GraphQL operation: `query` or `mutation`
-* Graph operation: The name of the specific GraphQL operation to execute
+* **Operation type**: Choose the type of GraphQL operation, **query** or **mutation**
+* **Graph operation**: The name of the specific GraphQL operation to execute
   * Uses the Graph Operations reference
-  * Options dynamically populated based on operation\_type
-* Variable values: Variables to pass to the GraphQL operation
-  * JSON object type
+  * Options in the drop-down list will dynamically populate based on your selected operation type
+* **Variable values**: Variables to pass to the GraphQL operation
+  * JSON object type, but can be passed via Jinja
   * Contains the input parameters for the selected operation
-* Response fields: Specify the fields to include in the GraphQL response
+* **Response fields**: Enter text into this field to specify the fields to include in the GraphQL response
   * Only provide the inner content, as it will be wrapped in curly braces
   * Example, `id orgName email { name }`&#x20;
-* Raw query: The complete raw GraphQL query string to execute
-  * An alternative to using operation\_type, operation, and fields
+* **Raw query**: The complete raw GraphQL query string to execute
+  * An advanced alternative to using the other fields and selectors in the Parameters tab
   * Allows for full control over query structure
 
 ## Generic GraphQL request action usage examples
@@ -89,7 +106,22 @@ variable_values:
 
 ## Generic GraphQL request action: Allowed operations&#x20;
 
-### Queries
+{% hint style="info" %}
+## Schema reference
+
+Key entity types include:
+
+* Organization: Core organizational data and settings
+* Workflow: Automation workflow definitions and execution data
+* Action: Available actions and their configurations
+* Trigger: Event triggers and their configurations
+* Form: Dynamic forms and field definitions
+* Template: Reusable templates and scripts
+* User: User accounts and permissions
+* Pack: Integration packs and their components
+{% endhint %}
+
+### Operation type: Queries
 
 #### **Action and configuration queries**
 
@@ -1288,7 +1320,7 @@ pages(
 
 </details>
 
-**Permission queries**
+#### **Permission queries**
 
 <details>
 
@@ -1331,7 +1363,7 @@ permissions(where: PermissionWhereInput): [Permission!]!
 
 </details>
 
-**Sensor type queries**
+#### **Sensor type queries**
 
 <details>
 
@@ -1378,7 +1410,7 @@ sensorTypes(
 
 </details>
 
-**Site and app management queries**
+#### **Site and app management queries**
 
 <details>
 
@@ -1460,7 +1492,7 @@ getSiteTheme(id: ID, domain: String): JSON
 
 </details>
 
-**Tag management queries**
+#### **Tag management queries**
 
 <details>
 
@@ -1526,7 +1558,7 @@ crateTags(
 
 </details>
 
-**Task and execution analytics queries**
+#### **Task and execution analytics queries**
 
 <details>
 
@@ -1626,7 +1658,7 @@ taskLogs(
 
 </details>
 
-**Template management queries**
+#### **Template management queries**
 
 <details>
 
@@ -1696,7 +1728,7 @@ jinjaTemplate(where: TemplateInput): Template
 
 </details>
 
-**Trigger type queries**
+#### **Trigger type queries**
 
 <details>
 
@@ -1745,7 +1777,7 @@ triggerTypes(
 
 </details>
 
-**Trigger management queries**
+#### **Trigger management queries**
 
 <details>
 
@@ -1845,7 +1877,7 @@ type DatabaseNotificationError {
 
 </details>
 
-**User invite queries**
+#### **User invite queries**
 
 <details>
 
@@ -1895,7 +1927,7 @@ userInvites(
 
 </details>
 
-**User management queries**
+#### **User management queries**
 
 <details>
 
@@ -1994,7 +2026,7 @@ getTestUserSession: User
 
 </details>
 
-**Workflow analytics queries**
+#### **Workflow analytics queries**
 
 <details>
 
@@ -2165,7 +2197,7 @@ type TimeSavedByDate {
 
 </details>
 
-**Workflow patch queries**
+#### **Workflow patch queries**
 
 <details>
 
@@ -2210,7 +2242,7 @@ workflowPatches(
 
 </details>
 
-**Workflow management queries**
+#### **Workflow management queries**
 
 <details>
 
@@ -2403,7 +2435,7 @@ workflowTasks(
 
 </details>
 
-### Mutations
+### Operation type: Mutations
 
 #### **Action option mutations**
 
@@ -2438,7 +2470,7 @@ fields: "id, optionLabel, optionValue"
 
 </details>
 
-**Clone operations**
+#### **Clone operations mutations**
 
 <details>
 
@@ -2471,7 +2503,7 @@ variable_values:
 
 </details>
 
-**Component mutations**
+#### **Component mutations**
 
 <details>
 
@@ -2530,7 +2562,7 @@ duplicateComponent(id: ID!): Component
 
 </details>
 
-**Foreign object reference mutations**
+#### **Foreign object reference mutations**
 
 <details>
 
@@ -2570,7 +2602,7 @@ createOrUpdateForeignObjectReference(
 
 </details>
 
-**Form mutations**
+#### **Form mutations**
 
 <details>
 
@@ -2690,7 +2722,7 @@ deleteForm(id: ID!): Void
 
 </details>
 
-**Organization trigger instance mutations**
+#### **Organization trigger instance mutations**
 
 <details>
 
@@ -2717,7 +2749,7 @@ input OrgTriggerInstanceInput {
 
 </details>
 
-**Organization variable mutations**
+#### **Organization variable mutations**
 
 <details>
 
@@ -2792,7 +2824,7 @@ input OrgVariableUpdateInput {
 
 </details>
 
-**Organization management mutations**
+#### **Organization management mutations**
 
 <details>
 
@@ -2912,7 +2944,7 @@ bulkUpdateOrganizationFeaturePreviewSettingByLabel(
 
 </details>
 
-**Pack configuration mutations**
+#### **Pack configuration mutations**
 
 <details>
 
@@ -3018,7 +3050,7 @@ updatePackConfigs(
 
 </details>
 
-**Pack mutations**
+#### **Pack mutations**
 
 <details>
 
@@ -3090,7 +3122,7 @@ updatePack(pack: PackUpdateInput!): Pack
 
 </details>
 
-**Page mutations**
+#### **Page mutations**
 
 <details>
 
@@ -3177,7 +3209,7 @@ updatePageNodeByCraftId(
 
 </details>
 
-**Site mutations**
+#### **Site mutations**
 
 <details>
 
@@ -3256,7 +3288,7 @@ type DNSValidationResponse {
 
 </details>
 
-**Tag mutations**
+#### **Tag mutations**
 
 <details>
 
@@ -3326,7 +3358,7 @@ setOrganizationTags(tagIds: [ID!]!, orgId: ID!): Organization
 
 </details>
 
-**Template mutations**
+#### **Template mutations**
 
 <details>
 
@@ -3388,9 +3420,9 @@ input TemplateCreateInput {
 2. Use organization and permission filters to restrict data access
 3. Track usage patterns for potential security issues
 
-### Common use cases for the Generic GraphQL request action
+## Common use cases for the Generic GraphQL request action
 
-#### Bulk data operations
+### Bulk data operations
 
 **Action configuration:**
 
@@ -3415,7 +3447,7 @@ input TemplateCreateInput {
     }
     ```
 
-#### Complex reporting
+### Complex reporting
 
 **Action configuration:**
 
@@ -3456,7 +3488,7 @@ input TemplateCreateInput {
     }
     ```
 
-#### Data synchronization
+### Data synchronization
 
 **Action configuration:**
 
@@ -3499,15 +3531,3 @@ input TemplateCreateInput {
 3. Review workflow execution logs for detailed error messages
 4. Build queries incrementally, adding fields and filters gradually
 
-## Schema Reference
-
-The Generic GraphQL Request action provides access to Rewst's complete GraphQL schema. Key entity types include:
-
-* Organization: Core organizational data and settings
-* Workflow: Automation workflow definitions and execution data
-* Action: Available actions and their configurations
-* Trigger: Event triggers and their configurations
-* Form: Dynamic forms and field definitions
-* Template: Reusable templates and scripts
-* User: User accounts and permissions
-* Pack: Integration packs and their components
