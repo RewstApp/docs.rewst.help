@@ -57,36 +57,31 @@ The following must be set up before unpacking this Crate:
 
 ### Test the Crate <a href="#test-the-crate" id="test-the-crate"></a>
 
+{% hint style="info" %}
+Since this workflow sends real emails to real users, consider testing against a smaller organization or one where you control the mailboxes, so you don't accidentally notify end users during your test run. Alternatively, you could temporarily mock the **alert\_user** task to prevent emails from going out while you validate the rest of the flow.
+{% endhint %}
+
 1. Navigate to **Automations > Workflows** in the left side menu of your Rewst platform.
-2.  Search for `[REWST - TASK] Run Powershell via RMM`.
-
-
-
-    <figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+2. Search for `Alert: Password Expiry - Notify End User`.
 3. Click on the workflow to view it in the Workflow Builder.
-4. Select either **Form Trigger** or **Password Change Form** from the trigger drop-down list.
-5. Click **Test** in the top right corner of the Workflow Builder Canvas.
-6. Set or fill out the following fields accordingly:
-   * **Trigger Context Organization** - Select the applicable organization\
-     Choose an organization and user you use for testing, to allow you to log in and confirm that the desired results are achieved.&#x20;
-   * **Password**  - Change the user's password
-   * **PSA Ticket ID** - Update ticket with the details of this workflow run
-   * **Username** - User context under which the PowerShell script will run
-   *   **IDP Configuration** - The accepted values are:
+4. Click **Test**.
+5. Click **Run Test** to confirm.&#x20;
+6. You'll see a green success message at the top of your screen if the execution is successful. You'll see a red failure message if the execution fails. Click **View Results** for a more detailed breakdown of each.
+7. Confirm that the **check\_expiring\_passwords** task successfully connected to the domain controller and returned data. If it failed, check that your RMM integration is properly configured and the domain controller is reachable.
+8. Check your inbox or the inbox of the test users to confirm the password expiry notification emails were actually delivered.
+9. If no passwords are currently expiring in your environment, the workflow will follow the No Expiring Passwords path of the workflow, and end cleanly at the **no\_expiring\_passwords** task. This is still a successful test, but there was nothing to alert on.
 
-       * `on_prem`
-       * `hybrid_no_sync`
-       * `azure_ad`
-       * `on_prem_only`&#x20;
+## Organization variables associated with this Crate
 
-       If no value is provided. the value will be determined via organization variable logic.
-   * **skip\_ticket** - Set to true if you do not want any ticketing done
-   * **Unlock Account** - Unlocks account for locked out accounts
-   * **User ID** - User ID if no username provided
-   * **Force Password Reset** - Force the user to change their password when logging in, defaults to true
-7. Click **Test**.
-8. Allow the workflow to run.
-9. You'll see a green success message at the top of your screen if the execution is successful. You'll see a red failure message if the execution fails. Click **View Results** for a more detailed breakdown of each.
+{% hint style="info" %}
+For more on organization variables and how to use them, see our org variable documentation [here](https://docs.rewst.help/documentation/configuration/organization-variables).
+
+Organization variables not found in our standard organization variables documentation, such as the ones listed below. are typically system variables that are handled by integration mappings.
+
+If you haven't done so already, we recommended that you run the [Configure Organization Variables Crate](https://docs.rewst.help/documentation/crates/existing-crate-documentation/configure-organization-variables), which will help you set org variables that are relevant to you and your customer's environments.
+{% endhint %}
+
+The organization variable `password_expiry_crate_admin_email` must be set if you want a fallback email address for users who don't have one on file. You can check this under the organization variable menu in Rewst.
 
 {% hint style="info" %}
 Got an idea for a new Crate? Rewst is constantly adding new Crates to our Crate Marketplace. Submit your idea or upvote existing ideas here in our [Canny feedback collector](https://rewst.canny.io/crates).
