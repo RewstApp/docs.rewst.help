@@ -7,7 +7,7 @@
 * [Rewst Dashboard](documentation/rewst-dashboard.md)
 * [Automations](documentation/automations/README.md)
   * [Workflows](documentation/automations/workflows/README.md)
-    * [New Workflow Builder - Beta](documentation/automations/workflows/new-workflow-builder-beta.md)
+    * [New Workflow Builder](documentation/automations/workflows/new-workflow-builder.md)
     * [Workflow builder: How to set up a workflow](documentation/automations/workflows/workflow-builder-how-to-set-up-a-workflow.md)
     * [Task transitions](documentation/automations/workflows/task-transitions.md)
     * [Data aliases](documentation/automations/workflows/data-aliases.md)

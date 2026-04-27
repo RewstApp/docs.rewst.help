@@ -1,14 +1,9 @@
----
-hidden: true
-noIndex: true
----
-
-# New Workflow Builder - Beta
+# New Workflow Builder
 
 {% hint style="info" %}
-Our new version of Rewst's Workflow Builder is officially in Beta! For the near future, you'll have the option to use the old Workflow Builder or switch to our new experience via the <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 12.37.47 PM.png" alt="" data-size="line"> in the top tool bar.&#x20;
+Our new version of Rewst's Workflow Builder is officially here! For the near future, you'll have the option to use the old Workflow Builder or switch to our new experience via the <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 12.37.47 PM.png" alt="" data-size="line"> in the top tool bar.&#x20;
 
-Submit feedback on our updated Builder here in our dedicated Discord feedback channel. Note that RoboRewsty's workflow building capabilities will be functional for the new Workflow Builder at the time of general release, but are not available for this beta.
+Submit feedback on our updated Builder here in our dedicated Discord feedback channel.&#x20;
 {% endhint %}
 
 Rewst's new Workflow Builder combines everything you loved about our original Builder with clearer menus, enhanced capabilities, and better visualization. The location of buttons and fields may have been moved around, but everything that was present in the old Workflow Builder is still present in the new version. Like before, access workflows in the Rewst platform by navigating to **Automations > Workflows** in the left side menu. Create a new workflow from scratch by clicking **Create Workflow**.
@@ -34,9 +29,9 @@ Use the top left toolbar to open, view, and use the features of the workflow bui
 {% endcolumns %}
 
 * Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.41 PM.png" alt="" data-size="line"> to expand or collapse the general left side menu of the Rewst platform.
-* Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.45 PM.png" alt="" data-size="line"> to reveal the **Library**, where all your actions, triggers, subworkflows and favorites can be found. Read more about it in the [**Library**](new-workflow-builder-beta.md#library) section of this document.
+* Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.45 PM.png" alt="" data-size="line"> to reveal the **Library**, where all your actions, triggers, subworkflows and favorites can be found. Read more about it in the [**Library**](new-workflow-builder.md#library) section of this document.
 * Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.49 PM.png" alt="" data-size="line"> or <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.59 PM.png" alt="" data-size="line"> to undo or redo your last change.
-* Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.54 PM.png" alt="" data-size="line"> to open the **Settings** menu for your workflow. See more about this menu in the [**Settings**](new-workflow-builder-beta.md#settings) section of this document.
+* Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.00.54 PM.png" alt="" data-size="line"> to open the **Settings** menu for your workflow. See more about this menu in the [**Settings**](new-workflow-builder.md#settings) section of this document.
 * Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.01.03 PM.png" alt="" data-size="line">to open the additional **Canvas** controls menu. Zoom in, out, or to fit. Choose from vertical or horizontal layout for your canvas. Here you can also check the view on and off for **Snap to Grid**.
 * Click <img src="../../../.gitbook/assets/Screenshot 2026-03-17 at 2.01.10 PM.png" alt="" data-size="line">to **Show All Comments** or **Hide Comments**.
 
@@ -98,7 +93,7 @@ At the very bottom of the menu you have the option to add a new custom integrati
 
 {% columns %}
 {% column %}
-The canvas view menu is now on the left side of the Workflow Builder canvas. **+** and **-** zoom the view in or out. ![](<../../../.gitbook/assets/Screenshot 2026-03-20 at 1.21.54 PM.png>) snaps the view to fit the entire workflow into the center frame of your screen. ![](<../../../.gitbook/assets/Screenshot 2026-03-20 at 1.21.58 PM.png>)toggles the visualization interactivity of the workflow on or off. See more about this in the [#view-task-flow](new-workflow-builder-beta.md#view-task-flow "mention") and [#view-trigger-flow](new-workflow-builder-beta.md#view-trigger-flow "mention")sections of this document.
+The canvas view menu is now on the left side of the Workflow Builder canvas. **+** and **-** zoom the view in or out. ![](<../../../.gitbook/assets/Screenshot 2026-03-20 at 1.21.54 PM.png>) snaps the view to fit the entire workflow into the center frame of your screen. ![](<../../../.gitbook/assets/Screenshot 2026-03-20 at 1.21.58 PM.png>)toggles the visualization interactivity of the workflow on or off. See more about this in the [#view-task-flow](new-workflow-builder.md#view-task-flow "mention") and [#view-trigger-flow](new-workflow-builder.md#view-trigger-flow "mention")sections of this document.
 {% endcolumn %}
 
 {% column %}
