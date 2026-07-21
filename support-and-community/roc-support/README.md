@@ -28,7 +28,7 @@ Learn more about our support priority levels [here](support-priorities.md).
 
 To create a support request, you have several options.
 
-* Email: Send your request to [support@rewst.io](mailto:roc@rewst.io)
+* Email: Send your request to [support@rewst.io](mailto:support@rewst.io)
 * Self-Service Portal: Log in and submit a ticket at [https://service.rewst.io/portal](https://service.rewst.io/portal)
 * Discord: You can send a message to our team via your private customer channel in Discord. We aim to respond to these messages within 60 minutes.
   * [Create a ticket via Discord](create-a-ticket-via-discord.md). This will alert our support team and they'll respond as quickly as possible.
