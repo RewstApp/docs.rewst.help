@@ -63,7 +63,7 @@ _Scripts_ in Rewst enable you to write scripts in a straightforward and accessib
 
 To access scripts, navigate to **Automations > Scripts** in the left side menu of your Rewst platform.
 
-Write Rewst scripts in any of the following languages: PowerShell, Python, YALM, Jinja. All scripts are assigned a unique URL (GUID).
+Write Rewst scripts in any of the following languages: PowerShell, Python, YAML, Jinja. All scripts are assigned a unique URL (GUID).
 
 <figure><img src="../../.gitbook/assets/Screenshot 2026-03-05 at 4.09.19 PM.png" alt="Screenshot of the Scripts list view in the Rewst Automations section, showing a dark-themed interface with a left navigation menu, a top search bar and Create Template button, and a table of scripts with names, descriptions, dates, attributes, and action icons."><figcaption></figcaption></figure>
 
@@ -77,7 +77,7 @@ Write Rewst scripts in any of the following languages: PowerShell, Python, YALM,
    2. **Description**
    3. **Tags**
 3. Select the language you want to write your script in from the **Language** drop-down selector.
-4. Click into your **Text** panel to begin writing.&#x20;
+4. Click into your **Text** panel to begin writing.
 5. Scroll down and click **Submit** when finished.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-03-21 at 2.40.44 PM.png" alt=""><figcaption></figcaption></figure>
