@@ -12,6 +12,73 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-08-28" %}
+## 💻 August 28, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* **Integrations**
+  * Improved Custom Integration creation options with clearer guidance on choosing between OpenAPI and manual setup.
+  * Added a new ConnectWise ASIO List Computers v2 action option for retrieving endpoint choices from the v2 API.
+* **Workflows**
+  * New workflow engine rollout - synced crates
+  * Restored iframe embed code copying for Form Triggers in the new Workflow Canvas.
+  * Improved the Transition Settings panel to show more Data Aliases when screen space is available.
+  * Added telemetry to detect and measure intermittent connecting-line render failures in the new Workflow Builder.
+  * Restored quick links for opening referenced templates and scripts directly from action parameters in the new Workflow Builder.
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **Forms**
+  * Fixed the Form Builder org context picker to display organization names instead of raw IDs for saved selections.
+* **Integrations**
+  * Fixed OneDrive uploads failing after successful binary file transfers due to UTF-8 response parsing errors.
+  * Fixed fallback icons for Custom Integration actions displaying incorrectly on the workflow canvas.
+  * Fixed Core HTTP Request handling so valid file attachments could be uploaded successfully.
+  * Fixed Core and Rewst integrations to reliably install and display correctly for newly created organizations.
+  * Fixed the NinjaOne List Tickets action to return all paginated ticket results instead of stopping at 50.
+  * Improved the Google Workspace List Users action to work without additional configuration by defaulting to the current customer.
+  * Improved ScreenConnect script execution to surface clear, actionable errors instead of generic failure messages.
+  * Fixed ConnectWise ScreenConnect credential validation so authorization tests and workflow actions use the currently saved credentials.
+* **Permissions**
+  * Fixed Member role access to installed custom integrations when configuring trigger overrides.
+* **RoboRewsty**
+  * Improved RoboRewsty workflow editing to validate builds correctly and add workflow notes successfully on the first attempt.
+  * Improved RoboRewsty’s usage dial to accurately show how much of a conversation remains before reaching its limit.
+  * Fixed RoboRewsty approval prompts failing to appear during multi-step workflow builds.
+  * Fixed RoboRewsty to keep the latest system context and custom instructions across turns and conversation compaction.
+* **Workflows**
+  * Fixed workflow cloning to preserve trigger pack overrides so cloned multitenancy triggers continue working across managed organizations.
+* **Crates**
+  * [Clean up Global Address List from Disabled Users](../../documentation/crates/existing-crate-documentation/clean-up-global-address-list-from-disabled-users-crate.md)
+    * \[ROC] EXO: Hide User from GAL subworkflow: Replaced noop on failure path with `core.fail` so failures surface to parent workflow
+  * [Microsoft: User Onboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
+    * Updated `Product_Display_Name` for GUID a6d18b68-a67e-4cbd-ba00-8744bc468faa to `Microsoft 365 Business Premium with Copilot`
+    * Corrected subscription field mappings and types to match API, preventing silent purchase failures and retry loops
+    * Fixed the Kaseya BMS Upsert Contact workflow to correctly send phone numbers
+  * [Use AI to Suggest Responses to New Tickets](../../documentation/crates/existing-crate-documentation/use-ai-to-suggest-responses-to-new-tickets-crate.md)
+    * Fixed empty AI-generated notes from Anthropic thinking blocks and added safeguard to block empty posts
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* [Early Access](https://rewst.io/earlyaccess)
+* Engine Improvements Rollout
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-08-21" %}
 ## 💻 August 21, 2026 - Dev update
 

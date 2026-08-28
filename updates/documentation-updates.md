@@ -12,6 +12,12 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-08-28" %}
+## ✍️ August 28, 2026 - Recently updated documentation
+
+* [Updated guidance for how to embed a form in an iframe](https://docs.rewst.help/documentation/automations/forms/embedding-a-form-into-an-iframe)
+{% endupdate %}
+
 {% update date="2026-08-21" %}
 ## ✍️ August 21, 2026 - Recently updated documentation
 
