@@ -12,6 +12,58 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-09-04" %}
+## 💻 September 4, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* **Check back next week!**
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **App Builder**
+  * Fixed App Builder exports to include templates referenced in page HTML, preventing broken template references when apps are imported.
+* **Integrations**
+  * Fixed an issue where adding the SentinelOne “List RBAC Roles” action could crash the workflow canvas.
+  * Fixed an issue where the Get Graph Users action could return incomplete results for tenants with large numbers of users.
+  * Fixed an issue where ConnectWise pods could fail to find the correct Rewst workflow when ticket numbers overlapped across customers.
+* **RoboRewsty**
+  * Improved RoboRewsty publishing to report actual save failures instead of incorrectly claiming a workflow was published successfully.
+  * Improved RoboRewsty feedback so longer comments are saved successfully and submission errors are clearly surfaced to users.
+* **Workflows**
+  * Fixed precision loss for large numeric values in integer and array action inputs, preserving long identifiers exactly.
+* **Crates**
+  * [Microsoft: User Onboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
+    * Include M365 Copilot SKU in license lookup; stop retry loops on failed purchases
+    * Add support for M365 Copilot for Business SKU in license lookup template&#x20;
+    * Rewst's AI PSA Analyzer
+      * Wire pipeline end-to-end; include\_custom\_automations flows via Bedrock webhook -> CTX -> subworkflow prompt flag&#x20;
+  * [Rewst's AI PSA Analyzer](../../documentation/crates/existing-crate-documentation/rewsts-ai-psa-analyzer-crate.md)
+    * Improve sub\_id matching: prefix and active filter, then word-overlap scoring to select best subscription
+    * Fix Jinja to trim extra space in product name to match Pax8
+  * [Microsoft: User Offboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-offboarding-crate.md)
+    * Align override trigger settings across regions; remove mismatched overrides to fix sync errors (105726)
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* [Early Access](https://rewst.io/earlyaccess)
+* Engine Improvements Rollout
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-08-28" %}
 ## 💻 August 28, 2026 - Dev update
 
