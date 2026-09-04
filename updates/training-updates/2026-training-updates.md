@@ -12,6 +12,12 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 
 {% updates format="full" %}
 {% update date="2026-08-21" %}
+## September 4, 2026 - Training update
+
+* We've added two videos to our [RoboRewsty YouTube playlist](https://www.youtube.com/playlist?list=PLDWjfoX6CSp86xk5_bji9AUABluuZ8gW7):&#x20;
+  * **Don't overpack your AI** explains why chats get less useful as context piles up, and how to reset: ask for a summary, keep only what matters, start fresh. Works with any AI tool.
+  * **Rewst + AI delegation** covers the three kinds of awareness behind good delegation. You bring goals, context, and judgment, AI handles the build. A useful frame for any AI tool.
+
 ## August 21, 2026 - Training update
 
 * **Course updated:** [Get started with RoboRewsty](https://learn.rewst.io/get-started-with-roborewsty) — now includes guidance on when to start a new chat, two new optional AI guidance videos, and a new RoboRewsty Prompt Guide download.
