@@ -41,14 +41,13 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 * **Crates**
   * [Microsoft: User Onboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
     * Include M365 Copilot SKU in license lookup; stop retry loops on failed purchases
+    * Improved licensing sub\_id matching: prefix and active filter, then word-overlap scoring to select best subscription
     * Add support for M365 Copilot for Business SKU in license lookup template&#x20;
-    * Rewst's AI PSA Analyzer
-      * Wire pipeline end-to-end; include\_custom\_automations flows via Bedrock webhook -> CTX -> subworkflow prompt flag&#x20;
   * [Rewst's AI PSA Analyzer](../../documentation/crates/existing-crate-documentation/rewsts-ai-psa-analyzer-crate.md)
-    * Improve sub\_id matching: prefix and active filter, then word-overlap scoring to select best subscription
+    * Wire pipeline end-to-end; include\_custom\_automations flows via Bedrock webhook -> CTX -> subworkflow prompt flag
     * Fix Jinja to trim extra space in product name to match Pax8
   * [Microsoft: User Offboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-offboarding-crate.md)
-    * Align override trigger settings across regions; remove mismatched overrides to fix sync errors (105726)
+    * Align override trigger settings across regions; remove mismatched overrides to fix sync errors&#x20;
 
 </details>
 
