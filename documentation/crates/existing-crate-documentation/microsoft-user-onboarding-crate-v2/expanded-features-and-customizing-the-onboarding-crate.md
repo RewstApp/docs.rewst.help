@@ -238,7 +238,7 @@ The technician has two options:
 | `default_psa`                             | Defines which PSA system to log ticket updates in.                                                                     |
 | `default_ticket_status`                   | Defines the PSA ticket status when waiting for technician input.                                                       |
 | `ticket_status_waiting_input`             | The status set in PSA when awaiting technician action.                                                                 |
-| `default_ad_list_users`                   | Controls filtering of disabled users; defaults to true with safe boolean conversion, with false reverting to all users |
+| `ad_list_enabled_users_only`              | Controls filtering of disabled users; defaults to true with safe boolean conversion, with false reverting to all users |
 
 ## **Final notes**
 
