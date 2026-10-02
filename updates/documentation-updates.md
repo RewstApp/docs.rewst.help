@@ -11,6 +11,13 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-02" %}
+## ✍️ October 2, 2026 - Recently updated documentation
+
+* Our docs site got a refresh! There are now two tabs to Rewst docs: one for our original product Rewst Classic, and one for our new Rewst product. Make sure you're in the right tab to find the answers for your particular product.
+* [Updated documentation for a changed org variable in our Microsoft User onboarding Crate](https://docs.rewst.help/documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/expanded-features-and-customizing-the-onboarding-crate)
+{% endupdate %}
+
 {% update date="2026-09-18" %}
 ## ✍️ September 18, 2026 - Recently updated documentation
 

@@ -12,6 +12,47 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-02" %}
+## 💻 October 2, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* **Check back next week!**
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **General**
+  * Added a logout option to the access denied page so users can switch accounts without getting stuck.
+* **Integrations**
+  * Fixed IT Glue proxy authentication failures when connecting without a Rewst IP address.
+  * Fixed IT Glue organization syncing to return all organizations for accounts with large organization lists.
+* **Workflows**
+  * Fixed trigger saving in the new workflow builder when required parameters were missing stored default values.
+* **Crates**
+  * [Update User Attributes (On-Prem/Azure) v2](../../documentation/crates/existing-crate-documentation/update-user-attributes-on-prem-azure-v2-crate.md)
+    * Renamed org variable from `default_ad_list_users` to `ad_list_enabled_users_only`
+  * [Microsoft: User Onboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
+    * StreamOne Ion Purchase License workflow now completes seat increases; UPDATE order includes updateSubscription attribute for Microsoft provisioning&#x20;
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* [Granular permissions beta](https://rewst.io/go/granular-permissions-beta-signup)
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-09-25" %}
 ## 💻 September 25, 2026 - Dev update
 
@@ -39,10 +80,10 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 * **Workflows**
   * Fixed workflow saves on the new canvas after reordering comment fields, so comment order now persists without validation errors.
 * **Crates**
-  * PSA: Update Ticket with New User Onboard Form Links&#x20;
+  * [PSA: Update Ticket with New User Onboard Form Links ](../../documentation/crates/existing-crate-documentation/psa-update-ticket-with-user-offboard-links-crate.md)
     * Added `update_ticket_waiting_input_pod`; sets ticket status before `pod_confirmation`; flow: `associate_external_object` → `update_ticket_waiting_input_pod` → `pod_confirmation`&#x20;
-  * Microsoft: User Onboarding
-    * Default `force_password_change` set to true (108611)
+  * [Microsoft: User Onboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
+    * Default `force_password_change` set to true&#x20;
 
 </details>
 
