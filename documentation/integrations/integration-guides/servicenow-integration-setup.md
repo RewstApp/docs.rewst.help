@@ -48,10 +48,10 @@ If your account has MFA enabled, the ServiceNow API will ignore this requirement
 
 ### Additional ServiceNow steps
 
-Several of the ServiceNow endpoints require you to set up plugins for them to work for the Rewst integration.&#x20;
+Several of the ServiceNow endpoints require you to set up plugins for them to work for the Rewst integration.
 
 1. Navigate to **All > System Definition > Plugins** in your ServiceNow instance.
-2. Search for the below listed plugins and install them.&#x20;
+2. Search for the below listed plugins and install them.
    1. Customer Service plugin (com.sn\_customerservice) and csm\_ws\_integration role and is provided within the now namespace.
    2. Order Management for Customer Service Management (app-csm-order-mgmt) and sn\_csm\_order\_mgmt role.
    3. Order Management for Telecommunications (sn\_ind\_tmt\_orm) - Optional
@@ -74,6 +74,13 @@ _Domain Separation_ in ServiceNow is a way to separate data, processes, and admi
 Note that Domain Separated ServiceNow users will need to [clone and customize](../../../prebuilt-automations/crates/#synced-versus-unsynced-crates) any related Rewst Crates to successfully use them. When using Rewst tasks for ServiceNow, they can be scoped at either the global - parent - level or the domain - child - level. In some tasks, you can use the **No Domain** field to add a flag that indicates whether the record search should be restricted to only domains for which the logged-in user is configured.
 
 <figure><img src="../../../.gitbook/assets/image (335).png" alt=""><figcaption><p>An example of a task with the <strong>No Domain</strong> field</p></figcaption></figure>
+
+## Troubleshoot the ServiceNow integration
+
+If every Basic authorization call returns a 401 with a Bearer challenge regardless of account configuration:
+
+* Check to see if you have a REST API Access Policy on your instance titled "Table GET API Access Policy" that restricted the Table API to OAuth Inbound only.
+* This is ServiceNow Yokohama-era behavior on instances that have adopted API access policies. Since the Rewst connector only supports Basic auth, you'll need to add a Basic Auth inbound authentication profile to the relevant Table API policies (GET and POST), scoped with an IP filter restricting it to Rewst's published UK egress IPs as a compensating control.
 
 ## Triggers for ServiceNow integration
 
