@@ -11,6 +11,14 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-09" %}
+## ✍️ October 9, 2026 - Recently updated documentation
+
+* [Updated setup instructions for our ServiceNow integration](../documentation/integrations/integration-guides/servicenow-integration-setup.md)
+* [New troubleshooting guidance for our Microsoft Cloud Integration Bundle](../documentation/integrations/integration-guides/microsoft-cloud-integration-bundle/microsoft-cloud-integration-bundle-troubleshooting-guide.md)
+* Please take our survey on how you use our Open Mic notes and what you'd like to see included in them going forward. A link to the survey, which will run through the month of October, can be found in the banner display across your Rewst platform when you log in.
+{% endupdate %}
+
 {% update date="2026-10-02" %}
 ## ✍️ October 2, 2026 - Recently updated documentation
 

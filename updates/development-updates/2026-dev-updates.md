@@ -12,6 +12,55 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-09" %}
+## 💻 October 9, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* Check back next week
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **App Builder**
+  * Fixed an issue where removing all options from a dropdown component caused the App Builder to crash.
+* **Integrations**
+  * Added support for specifying a different Duo deployment in integration actions to prevent API errors for clients hosted on separate deployments.
+  * Restored access to secret organization variables in the Get Organization Variable action while keeping their values masked in execution history and API responses.
+  * Fixed an issue where ConnectWise PSA organization mappings displayed company IDs instead of selectable company names after importing organizations.
+  * Fixed an issue where the HaloPSA Add or Update Tickets action failed to attach assets to tickets using their asset IDs.
+* **Marketplace**
+  * Fixed an issue where outdated organization references prevented Marketplace crates from unpacking or updating successfully.
+* **RoboRewsty**
+  * Fixed an issue where Redis connection failures could cause RoboRewsty to become unresponsive until services were manually restarted.
+* **Workflows**
+  * Fixed an issue where transition lines intermittently disappeared between tasks when viewing workflow execution results in the new Workflow Builder.
+  * Fixed an issue where the selected task was missing from the Context Viewer when building workflows, requiring users to manually enter task references.
+* **Crates**
+  * [Microsoft: User Onboarding      ](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
+    * Added routing for supervisor lookup:
+      * `azure_ad`/`hybrid_no_sync` -> `graph_get_supervisor`
+      * `on_prem` or `hybrid_no_sync` (no @) ->  `graph_get_supervisor_by_sam`
+    * `update_qty_pax8` now passes trimmed CTX.license as ms\_sku, replacing hardcoded SKU
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* [Granular permissions beta](https://rewst.io/go/granular-permissions-beta-signup)
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-10-02" %}
 ## 💻 October 2, 2026 - Dev update
 
