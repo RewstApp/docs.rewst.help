@@ -12,18 +12,18 @@ Click to expand each of the Rewst action accordions below to see its documentati
 
 <summary>Associate External Object action</summary>
 
-Linking external resources, like tickets from a PSA system, to your workflow executions can streamline management and enhance traceability. This action connects an external system's resource to your workflow. It optionally fails if a pre-existing link is detected, and runs under specified user or default user.
+This action links an external resource (like a PSA ticket ID) to the current workflow execution. This creates a traceable relationship between a Rewst execution and an object in another system. Call this early in a workflow triggered by a PSA ticket or other external event. It lets you correlate executions to external objects for auditing and lookup purposes.
 
-**Parameters:**
+**Parameters**
 
 * **identifier:** Unique identifier of the external resource you'd like to associate.
 * **reference\_id:** Reference for the external resource that you will be able to call back on.
 * **run\_as\_user (optional):** Defined user's ID or default user's ID (if blank) for running the task.
 * **fail\_on\_conflict (optional):** Set this option to true if you don't want to overwrite any existing `reference_id`/`identifier` pair already exists.
 
-**Output:**
+**Output**
 
-The resulting task's output returns the verified information about the associated external object.
+None
 
 </details>
 
@@ -31,17 +31,19 @@ The resulting task's output returns the verified information about the associate
 
 <summary>Bulk Create Organizations action</summary>
 
-Create multiple organizations at once within Rewst.
+This action creates multiple Rewst organizations in a single action call, rather than looping through Create Organization actions individually. It's ideal for MSP onboarding automation where you're provisioning multiple client orgs at once. Feed in a list built from a PSA or spreadsheet import.
 
-**Parameters:**
+**Parameters**
 
-* Managing **Organization ID:** The ID of the managing organization. If not provided, the organization that initiated the operation will be set as the managing organization.
-* Organizations (Required): List of organization details to be created. Each entry in the list should contain the following parameters:
-  * Is Enabled: Boolean indicating if the organization should be enabled.
-  * Name: The name of the organization in Rewst. The name must be unique.
-  * Domain: The domain name of the organization's website, excluding protocol.
+* **Managing** **Organization ID:** The ID of the managing organization. If not provided, the organization that initiated the operation will be set as the managing organization.
+* **Organizations**, Required: List of organization details to be created. Each entry in the list should contain the following parameters:
+  * **Is Enabled**: Boolean indicating if the organization should be enabled.
+  * **Name**: The name of the organization in Rewst. The name must be unique.
+  * **Domain**: The domain name of the organization's website, excluding protocol.
 
-**Output:** Outputs a list of newly created organizations, each with its corresponding Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
+**Output**
+
+* An array of created organization objects is returned, each with `id`, `name`, `domain`, `org_slug`, `managing_org_id`, and `managingOrg`.
 
 </details>
 
@@ -49,18 +51,20 @@ Create multiple organizations at once within Rewst.
 
 <summary>Bulk Upsert Organization Variables action</summary>
 
-Performs a bulk operation to create or update organization variables.
+This action creates or updates multiple org variables in one call. If a variable with the given name already exists for the org, it's updated; otherwise it's created. It's the go-to action for provisioning a new client org with all its required org variables in one shot. Build the array in a noop transition data alias, then pass it here.
 
-**Parameters:**
+**Parameters**
 
 * **Organization Variables:** A list of objects where each object represents an organization variable to be created or updated. Each object must include:
   * **Name:** The name of the organization variable.
   * **Value:** The value of the organization variable.
   * **Category:** The category used to define the organization variable. Options include: `general`, `contact`, `system`, `secret`.
   * **Use as default:** If true, this variable's value will be used as the default value for any managed organizations without a defined value.
-  * **Organization ID:** (Optional) The ID of the organization.
+  * **Organization ID**, optional: The ID of the organization.
 
-**Output:** Returns a list of objects. Each object represents an upserted organization variable and includes properties such as ID, name, value, organization ID, category, timestamps, associated organization, and more.
+**Output**
+
+* Returns a list of objects. Each object represents an upserted organization variable and includes properties such as ID, name, value, organization ID, category, timestamps, associated organization, and more.
 
 </details>
 
@@ -68,16 +72,20 @@ Performs a bulk operation to create or update organization variables.
 
 <summary>Create Organization action</summary>
 
-Create a single organization within Rewst.
+This action creates a single organization within Rewst. Use it in client onboarding workflows. Always check if the org already exists first via List Organizations to avoid duplicate creation errors.
 
-**Parameters:**
+**Parameters**
 
-* Name (Required): The name of the organization to be created. This name must be unique within Rewst.
-* Domain (Optional): The domain of the new organization, excluding protocol.
-* Managing **Organization ID:** Identifier of the managing organization. If not provided, the organization that initiated the operation will be set as the managing organization.
-* Is Enabled (Optional, default is true): A boolean indicating whether the new organization is enabled or not.
+* **Name**, required: The name of the organization to be created. This name must be unique within Rewst.
+* **Domain**, optional: The domain of the new organization, excluding protocol.
+* **Org Slug**: A kebab-case unique identifier, auto-generated if not provided.
+* **Is Enabled**, Optional, default is true: A boolean indicating whether the new organization is enabled or not.
+* **Tag IDs**: tags to apply to the org.
+* **Managing Organization ID:** Identifier of the managing organization. If not provided, the organization that initiated the operation will be set as the managing organization.
 
-**Output:** Outputs the details of the newly created organization, which includes the Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
+**Output**
+
+* Outputs the details of the newly created organization, which includes the Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
 
 </details>
 
@@ -85,17 +93,20 @@ Create a single organization within Rewst.
 
 <summary>Create Organization Variable action</summary>
 
-Creates a new organization variable that's available for use within an organization's workflow context.
+Creates a new organization variable that's available for use within an organization's workflow context. Use it when you need to set a single config value for an org. For setting many at once, use the Bulk Upsert Organization Variables action instead.
 
-**Parameters:**
+**Parameters**
 
 * **Name:** The name of the organization variable.
 * **Value:** The value of the organization variable.
-* **Category:** The category used to define the organization variable. Options include: `general`, `contact`, `system`, `secret`.
+* **Organization ID**, optional: The ID of the organization.
 * **Use as default:** If true, this variable's value will be used as the default value for any managed organizations without a defined value.
-* **Organization ID:** (Optional) The ID of the organization.
+* **Category:** The category used to define the organization variable. Options include: - `general`, `contact`, `system`, `secret`.
+* **Pack Config ID**: Associates the variable with a specific integration config if relevant.
 
-**Output:** Returns an object containing the new variable details including the ID, name, value, organization ID, category, timestamps, associated organization, and more.
+**Output**
+
+* The action returns an object containing the new variable details including the ID, name, value, organization ID, category, timestamps, associated organization, and more.
 
 </details>
 
@@ -103,9 +114,9 @@ Creates a new organization variable that's available for use within an organizat
 
 <summary>Create Template action</summary>
 
-Lets you create a new template. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization.
+This action programmatically creates a new Rewst Template— message or script— within the organization. It's useful in provisioning workflows where you need to dynamically generate and store templates per client org.
 
-**Parameters:**
+**Parameters**
 
 * **Name:** The name of the template.
 * **Description:** A brief description of the template.
@@ -113,7 +124,9 @@ Lets you create a new template. Template actions are used to manage templates th
 * **Content Type:** The type of content used in the template.
 * **Language:** The language used in the template. Options include: `html`, `markdown`, `powershell`, `python`, `yaml`.
 
-**Output:** The action returns the newly created template's information, including its `id`.
+**Output**
+
+* The action returns the newly created template's information, including its `id`.
 
 </details>
 
@@ -121,14 +134,16 @@ Lets you create a new template. Template actions are used to manage templates th
 
 <summary>Delete Organization Variable action</summary>
 
-Deletes a specific organization variable for a selected organization using the variable's name.
+This action deletes a specific organization variable for a selected organization using the variable's name. Use it in offboarding or cleanup workflows to remove org variables that are no longer needed. Always confirm the variable exists first if you want to avoid silent failures
 
-**Parameters:**
+**Parameters**
 
 * **Organization ID:** The ID of an organization.
 * **Name:** The name of the organization variable to be deleted.
 
-**Output:** Returns an object indicating the success of the operation, including the name of the deleted variable and the ID of the organization from which it was deleted.
+**Output**
+
+* The action returns an `is_deleted` object indicating the success of the operation, including the name of the deleted variable and the ID of the organization from which it was deleted.
 
 </details>
 
@@ -138,11 +153,13 @@ Deletes a specific organization variable for a selected organization using the v
 
 This action lets you delete an existing template. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization.
 
-**Parameters:**
+**Parameters**
 
 * **Template ID**: The ID of the template you wish to delete.
 
-**Output:** The action does not return any specific output, but its execution status indicates whether the deletion was successful.
+**Output**
+
+None
 
 </details>
 
@@ -150,13 +167,15 @@ This action lets you delete an existing template. Template actions are used to m
 
 <summary>Delete User Invite action</summary>
 
-Delete a user invite from your organization in Rewst.
+This action cancels and removes a pending user invite from your Rewst organization. Use it in offboarding or access revocation workflows to clean up any outstanding invites for a user who should no longer have access.
 
-**Parameters:**
+**Parameters**
 
 * **Email:** Email address of the user invite to delete.
 
-**Output:** The returned object shows the number of invites deleted.
+**Output**
+
+* The returned object shows the number of invites deleted.
 
 </details>
 
@@ -208,18 +227,16 @@ This action has its own separate documentation page [here](generic-graphql-reque
 
 This action facilitates the retrieval of details about the any external integration or manually set references. You can use it to fetch all external integration references associated with a specific organization in Rewst or to find the organization and workflow execution associated with a specific external reference ID. It runs under specified user credentials or default user, but requires organization ID for context.
 
-**Parameters:**
+**Parameters**
 
-* **org\_id:** ID of the organization in Rewst.
-* **identifier:** Unique identifier of the external resource.
-* **reference\_id:** Reference ID of the external resource.
-* **run\_as\_user (optional):** Specify user credentials.
+* **org\_id**: ID of the organization in Rewst.
+* **identifier**: Unique identifier of the external resource.
+* **reference\_id**: Reference ID of the external resource.
+* **run\_as\_user**, optional: Specify user credentials.
 
-**Output:**
+**Output**
 
-Returns detailed information about the external reference(s), such as the `org_id` in Rewst linked to it, the type of `identifier`, and the external `reference_id`. This information is helpful for cross-system data synchronization and management.
-
-***
+The action returns detailed information about the external reference, such as the `org_id` in Rewst linked to it, the type of `identifier`, and the external `reference_id`. This information is helpful for cross-system data synchronization and management.
 
 </details>
 
@@ -227,14 +244,18 @@ Returns detailed information about the external reference(s), such as the `org_i
 
 <summary>Get Form action</summary>
 
-Retrieves details about a specific form in the system.
+This action retrieves a single Rewst Form by ID or name. Use it when you need to dynamically reference a form's metadata or trigger information within a workflow.
 
-**Parameters:**
+<br>
+
+**Parameters**
 
 * **Name:** The name of the form.
 * **ID:** The ID of the form.
 
-**Output:** The action returns information about the specified form.
+**Output**
+
+* The action returns information about the specified form: `id`, `name`, `org_id`, `triggers`, `tags`, `description`, `is_synchronized`, `created_at`, `updated_at`.
 
 </details>
 
@@ -242,11 +263,16 @@ Retrieves details about a specific form in the system.
 
 <summary>Get Microsoft CSP Customer action</summary>
 
-Get data for a single Microsoft CSP customer in Rewst.
+This action retrieves a single Microsoft CSP customer record from Rewst's CSP integration data. Use it to look up a specific CSP customer by tenant ID or company name before linking or unlinking it to a Rewst org.
 
-**Parameters:**
+**Parameters**
 
 * **CSP Integration Configuration ID**: The ID of a Microsoft integration configuration in Rewst.
+* **Where**, filter object: Filter by `tenantId`, `companyName`, `hasConsent`, or `linkedOrganizations.id`
+
+**Output**
+
+* The action returns the CSP customer record with `id`, `tenant_id`, `company_name`, `has_consent`, `csp_tenant_id`, and `linked_organizations`.
 
 </details>
 
@@ -254,13 +280,15 @@ Get data for a single Microsoft CSP customer in Rewst.
 
 <summary>Get Organization action</summary>
 
-Retrieve data for a single organization in Rewst.
+This action retrieves data for a single organization in Rewst. Use it when you need to confirm an org's details or retrieve its metadata mid-workflow. Often used after Create Organization to confirm the result.
 
-**Parameters:**
+**Parameters**
 
 * **Organization ID:** Identifier of the organization to fetch data for. This ID is unique for each organization within Rewst.
 
-**Output:** Outputs the details of the organization, which includes the Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
+**Output**
+
+* The action returns the details of the organization, which includes the Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
 
 </details>
 
@@ -268,15 +296,17 @@ Retrieve data for a single organization in Rewst.
 
 <summary>Get Organization Variable action</summary>
 
-Retrieves a specific organization variable for a selected organization using the variable's name or value.
+This action retrieves a specific organization variable for a selected organization using the variable's name or value. Use it when you need to check if a specific org variable exists or retrieve its current value programmatically. Note: secret variables will be masked — use `ORG.VARIABLES` in Jinja to access secret values at runtime instead.
 
-**Parameters:**
+**Parameters**
 
-* **Name:** (Optional) The name of the organization variable.
-* **Organization ID:** (Optional) A dropdown list of the labels that correlate with the ID of an organization you'd like to retrieve.
-* **Value:** (Optional) The value of the organization variable.
+* **Name**, optional: The name of the organization variable to look up.
+* **Organization ID**, optional: A drop-down list of the labels that correlate with the ID of an organization you'd like to look in.
+* **Value**, optional: Filter by the value of the organization variable.
 
-**Output:** Returns an object (or list of objects) representing the organization variable, including the ID, name, value, organization ID, category, timestamps, associated organization, and more.
+**Output**
+
+* The action returns an object or list of objects representing the organization variable, including the ID, name, value, organization ID, category, timestamps, associated organization, and more.
 
 </details>
 
@@ -284,13 +314,15 @@ Retrieves a specific organization variable for a selected organization using the
 
 <summary>Get Template action</summary>
 
-Lets you retrieve the details of an existing template. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization.
+This action lets you retrieve the details of an existing template. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. Use when you need to read the body of a template programmatically — for example, to render it with dynamic data or pass it to another system. This action won't work for child orgs of the workflow's organization.
 
-**Parameters:**
+**Parameters**
 
 * **Template ID**: The ID of the template you wish to retrieve.
 
-**Output:** The action returns the requested template's information, including its `name`, `description`, `body`, `content_type`, and `language`.
+**Output**
+
+* The action returns the requested template's information:  `id`, `name`, `body`, `language`, `content_type`, `org_id`, `created_at`, `updated_at`.
 
 </details>
 
@@ -298,15 +330,17 @@ Lets you retrieve the details of an existing template. Template actions are used
 
 <summary>Get Trigger action</summary>
 
-Retrieves details about a specific trigger in the system.
+This action retrieves a single workflow trigger by ID, name, or enabled status. Use it to inspect a trigger's current state before updating it, or to retrieve trigger metadata for reporting purposes.<br>
 
-**Parameters:**
+**Parameters**
 
 * **Name:** The name of the trigger.
 * **ID:** The ID of the trigger.
 * **Enabled:** A boolean value that indicates whether the trigger is enabled or not.
 
-**Output:** The action returns information about the specified trigger.
+**Output**
+
+* The action returns information about the specified trigger:  `id`, `name`, `enabled`, `criteria`, `parameters`, `workflow_id`, `triggerType`, `organization`, `activatedForOrgs`.
 
 </details>
 
@@ -314,15 +348,17 @@ Retrieves details about a specific trigger in the system.
 
 <summary>Get User action</summary>
 
-Get user by email or ID in Rewst.
+This action retrieves a single Rewst user by email address or user ID. Use it to verify a user exists in Rewst before inviting them, or to retrieve their ID for use in other actions.
 
-**Parameters:**
+**Parameters**
 
 * **ID:** The ID of a user in Rewst.
 * **Organization ID:** The ID of an organization in Rewst.
 * **Email address:** The email of a user in Rewst.
 
-**Output:** The returned object includes the user's details like ID, role, organization ID, assigned role IDs, username, and a boolean indicating superuser status.
+**Output**
+
+* The returned object includes the user's details like ID, role, organization ID, assigned role IDs, username, and a boolean indicating superuser status.
 
 </details>
 
@@ -330,14 +366,17 @@ Get user by email or ID in Rewst.
 
 <summary>Invite User to Rewst action</summary>
 
-Invite a user to your organization in Rewst.
+Invite a user to join your organization in Rewst. Use it in client onboarding workflows to automatically provision Rewst access for new users. Set `send_email` to true if you want Rewst to handle the notification.
 
-**Parameters:**
+**Parameters**
 
 * **Email:** Email address of the user to invite.
 * **Roles:** Role IDs to assign to user.
+* **Send Email?**: Whether to send the invitation email; default is false — useful if you're managing the invite flow yourself.
 
-**Output:** The returned object includes the invite details such as ID, email, organization ID, assigned role IDs, a boolean indicating acceptance status, and the ID of the inviter.
+**Output**
+
+* The returned object includes the invite details such as ID, email, organization ID, assigned role IDs, a boolean indicating acceptance status, and the ID of the inviter.
 
 </details>
 
@@ -345,15 +384,17 @@ Invite a user to your organization in Rewst.
 
 <summary>Link Microsoft CSP Customer action</summary>
 
-Link one or more Rewst organizations to a microsoft CSP customer in Microsoft
+This acton links one or more Rewst organizations to a Microsoft CSP customer in Microsoft. Use it in Microsoft CSP onboarding workflows after creating a Rewst org, to establish the CSP relationship that enables Microsoft-scoped actions to run against that tenant.
 
-**Parameters:**
+**Parameters**
 
 * **CSP Integration Configuration ID**: The ID of a Microsoft CSP integration configuration in Rewst.
 * **Microsoft CSP Customer ID**: The ID of the Microsoft CSP Customer in Rewst that you want to link your organization or organizations to.
-* **Organization IDs**: The list of Rewst organization IDs to link.
+* **Organization IDs** The list of Rewst organization IDs to link.
 
-**Output:** The returned object lists a confirmation of the linked organizations
+**Output**
+
+None
 
 </details>
 
@@ -361,25 +402,43 @@ Link one or more Rewst organizations to a microsoft CSP customer in Microsoft
 
 <summary>List Apps action</summary>
 
-Lists all apps, also known as sites, associated with the current organization in Rewst.
+Lists all apps, also known as sites, associated with the current organization in Rewst. Use it to enumerate available apps, typically as a precursor to the List Pages or List Page Elements actions.
 
-**Parameters:**
+**Parameters**
 
-* **Run as user - optional:** The ID of the user to run the query as. If omitted, defaults to the workflow's context user.
+* **Run as user**, optional: The ID of the user to run the query as. If omitted, defaults to the workflow's context user.
 
-**Output:** Returns a list of apps, including details such as ID, name, and organization association.
+**Output**
+
+* The action returns a list of apps, including details such as ID, name, and organization association.
 
 </details>
 
 <details>
 
-<summary>List Forms action</summary>
+<summary>List Forms </summary>
 
-Retrieves a list of all forms in the system.
+This action returns all Rewst Forms for the current organization. Use it to enumerate forms for reporting, or to find a form's ID dynamically before passing it to Get Form or other actions.
 
-**Parameters:** No parameters are required for this action.
+**Parameters**
 
-**Output:** The action returns a list of all forms, each item including information about a form.
+* **run\_as\_user**, required: The user ID that the action will run as. If not specified, the default user for your organization will be used.
+
+**Outputs**
+
+* The task returns an array of form objects, where each form contains:
+
+| Field                | Type    | Description                                                                                  |
+| -------------------- | ------- | -------------------------------------------------------------------------------------------- |
+| **id**               | String  | Unique identifier for the form                                                               |
+| **name**             | String  | Display name of the form                                                                     |
+| **description**      | String  | Form description                                                                             |
+| **org\_id**          | String  | Organization ID that owns the form                                                           |
+| **created\_at**      | String  | Timestamp when the form was created                                                          |
+| **updated\_at**      | String  | Timestamp when the form was last modified                                                    |
+| **is\_synchronized** | Boolean | Whether the form is synchronized                                                             |
+| **tags**             | Array   | List of tags associated with the form (each tag has `id` and `name`)                         |
+| **triggers**         | Array   | List of triggers associated with the form (each trigger has `id`, `name`, and `workflow_id`) |
 
 </details>
 
@@ -387,15 +446,15 @@ Retrieves a list of all forms in the system.
 
 <summary>List Forms With Granular Permissions</summary>
 
-The rewst\_list\_forms\_with\_granular\_permissions task retrieves a list of all forms in your Rewst organization that the specified user has permission to access, taking into account granular permission settings. If run\_as\_user is set to null, it will use the default organization user. This action is useful for building dynamic interfaces or workflows that need to work with forms based on user permissions, ensuring users only see forms they have access to.
+This action is the same as the List Forms action, but filters the results based on the permissions of the specified Run As User. This means it only returns forms the given user is actually allowed to see/use. Use it when building user-facing workflows where you need to show only the forms a specific user has access to, rather than all forms in the org.
 
-**Parameters:**
+**Parameters**
 
-run\_as\_user - required: The user ID that the action will run as. If not specified, the default user for your organization will be used.
+* **run\_as\_user**, required: The user whose permissions determine which forms are returned.
 
-**Outputs:**
+**Outputs**
 
-The task returns an array of form objects, where each form contains:
+* The task returns an array of form objects, where each form contains:
 
 | Field                | Type    | Description                                                                                  |
 | -------------------- | ------- | -------------------------------------------------------------------------------------------- |
@@ -415,13 +474,13 @@ The task returns an array of form objects, where each form contains:
 
 <summary>List Integrations For Organization action</summary>
 
-This action retrieves a comprehensive list of integrations installed for a specific organization in Rewst, providing a detailed overview of each integration's attributes.
+This action retrieves a comprehensive list of integrations installed for a specific organization in Rewst, providing a detailed overview of each integration's attributes. Use it to check which integrations are configured for a client org before running integration-dependent tasks, or to audit integration coverage across your client base.
 
-**Parameters:**
+**Parameters**
 
 * **Organization ID:** The unique identifier for an organization in Rewst. This parameter is required to fetch the specific integration details pertinent to the organization.
 
-**Output:**
+**Output**
 
 The action generates a detailed list of integrations, including:
 
@@ -436,13 +495,17 @@ The action generates a detailed list of integrations, including:
 
 <summary>List Microsoft CSP Customer action</summary>
 
-Get a list of Microsoft CSP customers in Rewst.
+This action returns all Microsoft CSP customers associated with your CSP integration. Use it to enumerate all CSP customers, typically to find unlinked customers and pair them with Rewst orgs during onboarding automation.<br>
 
-**Parameters:**
+**Parameters**
 
-* **CSP Integration Configuration ID**: The ID of a Microsoft integration configuration in Rewst.
+* **CSP Integration Configuration ID**: Your Microsoft CSP pack config ID.
 * **Microsoft CSP Customer ID**: The ID of the Microsoft CSP Customer in Rewst that you want to link your organization or organizations to.
 * **Organization IDs**: The list of Rewst organization IDs to link.
+
+**Output**
+
+* The action returns an array of CSP customer objects with `id`, `tenant_id`, `company_name`, `has_consent`, `csp_tenant_id`, `linked_organizations`.
 
 </details>
 
@@ -450,14 +513,16 @@ Get a list of Microsoft CSP customers in Rewst.
 
 <summary>List Organizations action</summary>
 
-Fetch a list of all organizations in Rewst.
+This action fetches a list of all organizations in Rewst. This is the standard way to enumerate all your client orgs. It's commonly used at the start of multi-tenant workflows that need to iterate over all managed organizations.
 
-**Parameters:**
+**Parameters**
 
 * Managing **Organization ID:** Identifier of the managing organization to fetch organizations for. This ID is unique for each organization within Rewst.
-* Name (Optional): Name of the organization to search for. The name must be unique within Rewst.
+* **Name**, optional: Name of the organization to search for. The name must be unique within Rewst.
 
-**Output:** Outputs a list of organizations, each with its corresponding Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
+**Output**
+
+* The action returns a list of organizations, each with its corresponding Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
 
 </details>
 
@@ -465,13 +530,15 @@ Fetch a list of all organizations in Rewst.
 
 <summary>List Organization Variables action</summary>
 
-Lists all organization variables visible to the selected organization.
+This action lists all organization variables visible to the selected organization. Use it to audit what org variables are set for a client, or to check for the existence of a variable before creating it. Remember: for secret variable values at runtime, use `ORG.VARIABLES.variable_name` in Jinja instead.
 
-**Parameters:**
+**Parameters**
 
-* **Organization ID:** (Optional) A dropdown list of the labels that correlate with the ID (visible in the code editor window) of an organization you'd like to retrieve.
+* **Organization ID**, optional: A dropdown list of the labels that correlate with the ID, visible in the code editor window, of an organization you'd like to retrieve.
 
-**Output:** Returns a list of objects. Each object represents an organization variable and includes the ID, name, value, organization ID, category, timestamps, associated organization, and more.
+**Output**
+
+* The action returns a list of objects. Each object represents an organization variable and includes the ID, name, value, organization ID, category, timestamps, associated organization, and more.
 
 </details>
 
@@ -479,11 +546,15 @@ Lists all organization variables visible to the selected organization.
 
 <summary>List Templates action</summary>
 
-Lets you retrieve a list of all existing templates. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization.
+This action retrieves a list of all existing templates. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization. Use it to find a template's ID dynamically, audit template content, or enumerate templates for reporting.
 
-**Parameters:** _No parameters are required for this action._
+**Parameters**
 
-**Output:** The action returns a list of all templates, with each entry including information about a template, such as its `id`, `name`, `description`, `body`, `content_type`, and `language`.
+* No parameters are required for this action.
+
+**Output**
+
+* The action returns a list of all templates, with each entry including information about a template, such as its `id`, `name`, `description`, `body`, `content_type`, and `language`.
 
 </details>
 
@@ -491,11 +562,15 @@ Lets you retrieve a list of all existing templates. Template actions are used to
 
 <summary>List Triggers action</summary>
 
-Retrieves a list of all triggers in the system.
+This action returns all workflow triggers for the current organization. Use it  to audit trigger configurations, find a trigger's ID before updating it, or check which workflows have active triggers.
 
-**Parameters:** No parameters are required for this action.
+**Parameters**
 
-**Output:** The action returns a list of all triggers, each item including information about a trigger.
+* No parameters are required for this action.
+
+**Output**
+
+* The action returns a list of all triggers, each item including information about a trigger:  `id`, `name`, `enabled`, `criteria`, `parameters`, `workflow_id`, `triggerType`, `organization`, `activatedForOrgs`.
 
 </details>
 
@@ -503,11 +578,15 @@ Retrieves a list of all triggers in the system.
 
 <summary>List User Invites to Rewst action</summary>
 
-Get user invite list by your organization in Rewst.
+This action returns all pending and/or accepted user invites for the current organization. Use it to check whether a user has already been invited before calling Invite User to Rewst, to avoid duplicate invites.
 
-**Parameters:** _No parameters needed for this action._
+**Parameters**
 
-**Output:** The returned list includes a list of user invite objects. Each object contains the invite's ID, email, organization ID, assigned role IDs, a boolean indicating acceptance status, and the ID of the inviter.
+* No parameters needed for this action.
+
+**Output**
+
+* The returned list includes a list of user invite objects. Each object contains the invite's ID, email, organization ID, assigned role IDs, a boolean indicating acceptance status, and the ID of the inviter.
 
 </details>
 
@@ -515,14 +594,16 @@ Get user invite list by your organization in Rewst.
 
 <summary>List Users by Organization action</summary>
 
-Get user list and optionally invited users by your organization in Rewst.
+This action returns all users and optionally invitees for the current organization. Use it to audit who has access to a Rewst org, check for existing users before inviting, or build user-management automation.
 
-**Parameters**:
+**Parameters**
 
-* **Include User Invites?:** Whether or not to include user invites in the results.
-* **Which Invites:** Which invitees to include. Can be `all`, `accepted`, or `pending`.
+* **Include User Invites?:** Whether or not to include user invites in the results; default is true.
+* **Which Invites to Include:** Which invitees to include. Can be **all**, **accepted**, or **pending**, with a default to all.
 
-**Output**: A list of users with details like ID, role, organization ID, assigned role IDs, username, and a boolean indicating superuser status.
+**Output**
+
+* A list of users with details like ID, role, organization ID, assigned role IDs, username, and a boolean indicating superuser status.
 
 </details>
 
@@ -530,13 +611,13 @@ Get user list and optionally invited users by your organization in Rewst.
 
 <summary>List Workflows actions</summary>
 
-This action retrieves a comprehensive list of all workflows in your Rewst organization, giving you visibility into your automation library. This action is particularly useful for workflow management tasks, reporting, and as a starting point for more complex workflow operations that require workflow IDs.
+This action returns all workflows for the current organization. Use it to enumerate workflows for auditing, find a workflow's ID dynamically, or build meta-automation that operates on workflows themselves.
 
-**Parameters:**
+**Parameters**
 
-* `run_as_user` (optional): Specifies which user the action should run as. If not provided, it uses your organization's default user.
+* **Run As User**
 
-**Output:**
+**Output**
 
 The action returns detailed information for each workflow:
 
@@ -551,13 +632,6 @@ The action returns detailed information for each workflow:
 * `unpacked_from`: Template source information (if the workflow was created from a template)
 * `cloned_from_id`: Source workflow ID (if the workflow was cloned from another)
 
-**Common use cases:**
-
-* Workflow Inventory: Get a complete overview of all workflows in your organization
-* Trigger Analysis: Identify which workflows have active triggers
-* Workflow Management: Use the returned workflow IDs for subsequent operations on specific workflows
-* Organizational Reporting: Generate reports on workflow usage and organization
-
 {% hint style="info" %}
 Note that this action won't return workflow notes. To retrieve that information, use the [Rewst - Generic GraphQL Request](rewst-actions.md#generic-graphql-request-action) action to query `workflowNotes` .
 {% endhint %}
@@ -568,21 +642,15 @@ Note that this action won't return workflow notes. To retrieve that information,
 
 <summary>List Workflow Executions With Time Savings action</summary>
 
-The `rewst_list_workflow_executions_with_time_savings` task is an action from the Rewst integration that lists workflow executions with calculated time savings data. This action retrieves execution data and calculates how much time has been saved through automation. It provides comprehensive analytics about workflow performance and efficiency.
+This action returns workflow execution data aggregated with time savings metrics, useful for ROI reporting. Use it in reporting workflows to generate ROI summaries for clients or internal dashboards. Feed the output into a Send Mail or PSA ticket update.
 
-* Retrieves execution data including total executions, seconds saved, workflow names, and organization information
-* Calculates time savings for automated workflows
-* Filters executions by date, status, and organization
-* Groups results either by individual workflow or by sub-organization
+**Parameters**
 
-**Parameters:**
+* **Updated At**, required: Only include executions updated after this datetime.
+* **Workflow Status**: Filter by `succeeded`, `failed`, or `running`.
+* **Group by Sub Org**: If true, groups results by child org instead of by workflow; default is false.
 
-* **`updated_at`** (required): Include any executions updated after this date (datetime format)
-* **`workflow_status`** (optional): Filter by execution status (`succeeded`, `failed`, or `running`)
-* **`group_by_sub_org`** (optional): Choose whether to group results by sub-organization (default: false, groups by workflow)
-* **`run_as_user`** (optional): The user that the action will run as
-
-**Output:**
+**Output**
 
 The action returns data including:
 
@@ -598,17 +666,17 @@ The action returns data including:
 
 <summary>Unlink Microsoft CSP Customer action</summary>
 
-Unlink one or more Rewst organizations from a Microsoft CSP customer in Rewst.
+This action removes the link between one or more Rewst organizations and a Microsoft CSP customer record. Use it in offboarding workflows when a client is leaving your CSP or being migrated to a different tenant relationship.<br>
 
 **Parameters:**
 
-* **CSP Integration Configuration ID**: The ID of a Microsoft integration configuration in Rewst.
-* **Microsoft CSP Customer ID**: The ID of the Microsoft CSP Customer in Rewst that you want to link your organization or organizations to.
-* **Organization IDs**: The list of Rewst organization IDs to link.
+* **CSP Integration Configuration ID**: Your Microsoft CSP pack config ID.
+* **Microsoft CSP Customer ID**: The CSP customer to unlink from.
+* **Organization IDs**: The list of Rewst organization IDs to unlink.
 
-**Output:** The returned object lists a status for the unlink action
+**Output**
 
-***
+None
 
 </details>
 
@@ -616,16 +684,21 @@ Unlink one or more Rewst organizations from a Microsoft CSP customer in Rewst.
 
 <summary>Update Organization action</summary>
 
-Update details of an existing organization within Rewst.
+This action updates properties of an existing Rewst organization. Use it in onboarding/offboarding workflows to enable/disable orgs, or to update org metadata when client details change.
 
-**Parameters:**
+**Parameters**
 
 * **Organization ID:** Identifier of the organization to be updated. This ID is unique for each organization within Rewst.
-* Name (Optional): New name for the organization. This name must be unique within Rewst.
-* Domain (Optional): New domain for the organization, excluding protocol.
-* Is Enabled (Optional): Updated enabled status for the organization. It is a boolean value.
+* **Name**: New name for the organization. This name must be unique within Rewst.
+* **Domain**: New domain for the organization, excluding protocol.
+* **Org Slug**: New slug.
+* **Is Enabled**: Enable or disable user login for this org.
+* **Tag IDs**: Replace the org's tags with this list.
+* **Remove All Tags**: If true, strips all tags from the org; tag IDs are ignored when this is true.
 
-**Output:** Outputs the updated details of the organization, which includes the Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
+**Output**
+
+Outputs the updated details of the organization, which includes the Organization ID, Domain, Name, Managing Organization ID, and Enabled Status.
 
 </details>
 
@@ -633,9 +706,9 @@ Update details of an existing organization within Rewst.
 
 <summary>Update Template action</summary>
 
-This action lets you update the details of an existing template. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization.
+This action lets you update the details of an existing template. Template actions are used to manage templates that exist at the organization level of the workflow in which you are building. This action won't work for child orgs of the workflow's organization. Use it in workflows that dynamically maintain template content — for example, updating a weekly report template with new data before sending it.
 
-**Parameters:**
+**Parameters**
 
 * **Template ID:** The ID of the template you wish to update, it is a required field.
 * **Body:** The new content of the template.
@@ -643,7 +716,9 @@ This action lets you update the details of an existing template. Template action
 * **Description:** A brief description of the template.
 * **Language:** The new language used in the template. The options include: `html`, `markdown`, `powershell`, `python`, `yaml`.
 
-**Output:** The action returns the updated template's information, including its `id`.
+**Output**
+
+* The action returns the updated template's information, including its `id`.
 
 </details>
 
@@ -651,17 +726,17 @@ This action lets you update the details of an existing template. Template action
 
 <summary>Update Trigger action</summary>
 
-The rewst\_update\_trigger task is used to modify existing workflow triggers within the Rewst platform. This action allows you to update properties of a trigger such as its name, enabled status, description, and the user it runs as. This task is particularly useful for dynamically managing trigger states within workflows, such as enabling ordisabling triggers based on certain conditions or updating trigger configurations programmatically.
+The rewst\_update\_trigger task is used to modify existing workflow triggers within the Rewst platform. This action allows you to update properties of a trigger such as its name, enabled status, description, and the user it runs as. Useit  to programmatically enable or disable triggers as part of maintenance windows, scheduled automation pauses, or onboarding flows that need to activate triggers for new client orgs.
 
-**Parameters:**
+**Parameters**
 
-* Trigger\_id - required: The ID of the trigger to be updated
-* Name: New name for the trigger
-* Enabled: Whether the trigger should be enabled or disabled
-* Description: New description for the trigger
-* Run\_as\_user: The user ID that the trigger will run as (defaults to organization default user if not specified)
+* **Trigger\_id**: The ID of the trigger to be updated
+* **Name**: New name for the trigger
+* **Enabled**: Whether the trigger should be enabled or disabled
+* **Description**: New description for the trigger
+* **Run\_as\_user**: The user ID that the trigger will run as; defaults to organization default user if not specified
 
-**Outputs:**
+**Output**
 
 The action returns an object containing the updated trigger information:
 
@@ -689,14 +764,16 @@ These Rewst actions are for use with [App Builder](../../app-builder/) only. Don
 
 <summary>List Pages action</summary>
 
-Lists all pages for a specified app in Rewst.
+This action lists all pages for a specified app in Rewst.
 
-**Parameters:**
+**Parameters**
 
 * **App ID:** The ID of the app for which to fetch pages.
 * **Run as user - optional:** The ID of the user to run the query as.
 
-**Output:** Returns a list of pages within the specified app, including each page's ID, name, and metadata.
+**Output**
+
+* The action returns a list of pages within the specified app, including each page's ID, name, and metadata.
 
 </details>
 
@@ -706,12 +783,14 @@ Lists all pages for a specified app in Rewst.
 
 Lists all elements within a specific page in an app, including their Element IDs and key properties.
 
-**Parameters:**
+**Parameters**
 
 * **Page ID:** The ID of the page whose elements you want to retrieve.
-* **Run as user - optional:** The ID of the user to run the query as.
+* **Run as user**, optional: The ID of the user to run the query as.
 
-**Output:** Returns a dictionary mapping element IDs to their properties, including type, Craft ID, and other element-specific details.
+**Output**
+
+* The action returns a dictionary mapping element IDs to their properties, including type, Craft ID, and other element-specific details.
 
 </details>
 
@@ -721,13 +800,15 @@ Lists all elements within a specific page in an app, including their Element IDs
 
 Updates the text-based content of a page element— such as a text block, button, link, HTML container, markdown block, or accordion— within a specified page.
 
-**Parameters:**
+**Parameters**
 
 * **Content:** The new text content to set for the element.
 * **Page ID:** The ID of the page containing the element to update.
 * **Element ID:** The ID of the page element whose text content you want to update.
-* **Run as user - optional:** The ID of the user to run the query as.
+* **Run as user**, optional: The ID of the user to run the query as.
 
-**Output:** Returns the updated element's details, including confirmation of the new text content.
+**Output**
+
+* The action returns the updated element's details, including confirmation of the new text content.
 
 </details>
