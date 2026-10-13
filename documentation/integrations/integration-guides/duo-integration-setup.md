@@ -38,6 +38,8 @@ This API allows developers to add two-factor authentication to their application
 
 {% hint style="warning" %}
 For all of the following, make sure to copy the designated information into a secure location. Once you migrate away from the page where it is displayed, you won't be able to view that information again.
+
+You will need a Duo account with Admin permissions to complete these steps.
 {% endhint %}
 
 1. Create the Duo Admin API by following the instructions [here](https://duo.com/docs/adminapi#first-steps).
