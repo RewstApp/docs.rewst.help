@@ -12,11 +12,17 @@ Expand each of the action types below to see their individual information. Actio
 
 <summary>Await Webhook Request action</summary>
 
-Waits for a request to a created one-off webhook. Once a request is received, the workflow continues.
+This action pauses the workflow and waits for an incoming HTTP request to a previously created one-off webhook. Once a request arrives, the workflow resumes with the request data available. Always pair this with the Create Webhook acgtion. Create the webhook first, publish its `webhook_id` to CTX, then feed `{{ CTX.webhook_id }}` into this action downstream. To access the results of a webhook, publish a [data alias](../workflows/data-aliases.md) with a value of `{/{ RESULT }/}.` You cannot merely publish the results as or use task.
 
-* **Parameters**: This action only requires the ID of the webhook created from the `Create Webhook` action.
-* **Output**: The output includes the HTTP method, query params, headers, JSON or form/multipart data in the body of the request, and the timestamp when the request was received.
-* To access the results of a webhook, publish a [data alias](../workflows/data-aliases.md) with a value of `{/{ RESULT }/}.` You cannot merely publish the results as or use task.
+**Parameters**
+
+* **Webhook ID**: The ID returned by the Create Webhook action, this tells the workflow which webhook to listen on.
+
+**Output**
+
+* The output includes the HTTP method, query params, headers, JSON or form/multipart data in the body of the request, and the timestamp when the request was received.
+
+
 
 </details>
 
@@ -24,21 +30,22 @@ Waits for a request to a created one-off webhook. Once a request is received, th
 
 <summary>Compare Strings Set Ratio action</summary>
 
-This action calculates the ratio of how many words from the smaller string are found in the larger string. It's designed for measuring string similarity based on word overlap rather than character-by-character comparison. This action is particularly useful when you need to determine how similar two text strings are based on shared words, making it ideal for scenarios where exact string matching is too strict but you still need to measure content similarity.
-
-**Use Cases**:
+This action calculates the ratio of how many words from the smaller string are found in the larger string. It's designed for measuring string similarity based on word overlap rather than character-by-character comparison. This action is particularly useful when you need to determine how similar two text strings are based on shared words, making it ideal for scenarios where exact string matching is too strict but you still need to measure content similarity. Use it for:
 
 * Fuzzy matching between text strings
 * Duplicate detection in datasets
 * Content similarity analysis
 * Partial string matching scenarios
 
-**Parameters**:
+**Parameters**
 
 * **original\_string** (required): The original string to compare
 * **comparison\_string** (required): The comparison string that is being compared to
 
-**Output**: Returns an integer representing the ratio of word overlap between the two strings. Higher values indicate greater similarity.
+**Output**
+
+* Returns an integer representing the ratio of word overlap between the two strings
+* Higher values indicate greater similarity
 
 </details>
 
@@ -51,27 +58,34 @@ This action pauses the workflow and places it in an `Awaiting-User-Input` state.
 \
 ![](<../../../.gitbook/assets/image (83).png>)
 
-* **Parameters:** This action requires the recipient's email address (`to`), the subject of the email (`subject`), the title of the email (`title`), and the message body (`message`). It also offers user interaction buttons (`buttons`) and has the option to render markdown as HTML (`render_markdown`).
-  * The parameters have several optional settings:
-    * Custom Button CSS - Custom CSS to be applied to the buttons
-    * Custom Footer - Custom footer to be displayed in the email. If not provided, this will default to the Rewst footer unless the footer is set to be removed.
-    * Custom Title CSS - Custom CSS to be applied to the title
-    * Logo Link - URL to go to if the logo is clicked. If not provided, this will default to [https://rewst.io](https://rewst.io/)
-    * Logo URI - String value URI of the logo to be displayed in the email. If not provided, this will default to the Rewst logo image. This is essentially providing a value for the src param of a img tag. You could also provide a base64 encoded value. The file format for your hosted file will need to follow the guidance for your particular email client, which is independent of Rewst. For example, Outlook does not accept PNG formatted files. For broader guidance for all email clients, we recommend using this resource called [caniemail](https://www.caniemail.com/features/).
-    * Remove Footer - Removes the Rewst footer from the email
-    * Render Markdown - Renders markdown as HTML when set to **True**
-* **Output:** If the action is correctly executed, a confirmation email will be sent. Output variable `inquiry_result` is an output of the task and can be used to route the workflow in a specific path. `Inquiry_result` 's value is that of the button clicked, and is configured as a string value on the action itself in the workflow builder.
+**Parameters**
+
+* This action requires the recipient's email address (`to`), the subject of the email (`subject`), the title of the email (`title`), and the message body (`message`). It also offers user interaction buttons (`buttons`) and has the option to render markdown as HTML (`render_markdown`).
+* The parameters have several optional settings:
+  * Custom Button CSS - Custom CSS to be applied to the buttons
+  * Custom Footer - Custom footer to be displayed in the email. If not provided, this will default to the Rewst footer unless the footer is set to be removed.
+  * Custom Title CSS - Custom CSS to be applied to the title
+  * Logo Link - URL to go to if the logo is clicked. If not provided, this will default to [https://rewst.io](https://rewst.io/)
+  * Logo URI - String value URI of the logo to be displayed in the email. If not provided, this will default to the Rewst logo image. This is essentially providing a value for the src param of a img tag. You could also provide a base64 encoded value. The file format for your hosted file will need to follow the guidance for your particular email client, which is independent of Rewst. For example, Outlook does not accept PNG formatted files. For broader guidance for all email clients, we recommend using this resource called [caniemail](https://www.caniemail.com/features/).
+  * Remove Footer - Removes the Rewst footer from the email
+  * Render Markdown - Renders markdown as HTML when set to **True**
+
+**Output**
+
+* If the action is correctly executed, a confirmation email will be sent.&#x20;
+* Output variable `inquiry_result` is an output of the task and can be used to route the workflow in a specific path. `Inquiry_result` 's value is that of the button clicked, and is configured as a string value on the action itself in the workflow builder.
 
 <figure><img src="../../../.gitbook/assets/image (80).png" alt=""><figcaption></figcaption></figure>
 
-* **Confirmation email class and confirmation examples**
+* Confirmation email class and confirmation examples
   * Button classes:
     * Primary; primary
     * Default; default
     * Danger; danger
   * Title class:
     * Title; title
-* **Example custom button CSS**
+
+**Example custom button CSS**
 
 ```css
 a,
@@ -111,52 +125,53 @@ background: #dc2626;
 }
 ```
 
-*   **Example custom footer**
+**Example custom footer**
 
-    ```
-    <tr>
+```
+<tr>
 
-    <td
+<td
 
-    style="text-align:center;padding:30px 0 30px 0;background-color:#1a2e05;color:#ffffff;">
+style="text-align:center;padding:30px 0 30px 0;background-color:#1a2e05;color:#ffffff;">
 
-    <p style="display:inline-block;margin-right:10px;">&copy; The Dougnut {% now 'local', '%Y' %}</p>
+<p style="display:inline-block;margin-right:10px;">&copy; The Dougnut {% now 'local', '%Y' %}</p>
 
-    <p style="display:inline-block;margin-right:10px;"><a
+<p style="display:inline-block;margin-right:10px;"><a
 
-    href="https://rewst.io/terms-of-service/">Order</a></p>
+href="https://rewst.io/terms-of-service/">Order</a></p>
 
-    <p style="display:inline-block;margin-right:10px;"><a href="https://rewst.io/privacy-policy/">Contact Us</a></p>
+<p style="display:inline-block;margin-right:10px;"><a href="https://rewst.io/privacy-policy/">Contact Us</a></p>
 
-      
+  
 
-    <p style="display:inline-block;margin-right:10px;color:#84cc16"><a href="mailto:support@rewst.io">Need
+<p style="display:inline-block;margin-right:10px;color:#84cc16"><a href="mailto:support@rewst.io">Need
 
-    Delivery?</a></p>
+Delivery?</a></p>
 
-      
+  
 
-    <p style="display:inline-block;margin:0px 4px 0 4px;vertical-align:middle;"><a href="https://www.linkedin.com/company/rewst"><img
+<p style="display:inline-block;margin:0px 4px 0 4px;vertical-align:middle;"><a href="https://www.linkedin.com/company/rewst"><img
 
-    src="https://rewst-splash.s3.us-east-2.amazonaws.com/linkedin.png" width="24" height="24"
+src="https://rewst-splash.s3.us-east-2.amazonaws.com/linkedin.png" width="24" height="24"
 
-    alt="linkedin"></a></p>
+alt="linkedin"></a></p>
 
-      
+  
 
-    <p style="display:inline-block;margin:0px 4px 0 4px;vertical-align:middle;"><a href="https://twitter.com/rewst_dot_io"><img
+<p style="display:inline-block;margin:0px 4px 0 4px;vertical-align:middle;"><a href="https://twitter.com/rewst_dot_io"><img
 
-    src="https://rewst-splash.s3.us-east-2.amazonaws.com/twitter.png" width="24" height="24" alt="twitter"></a>
+src="https://rewst-splash.s3.us-east-2.amazonaws.com/twitter.png" width="24" height="24" alt="twitter"></a>
 
-    </p>
+</p>
 
-      
+  
 
-    </td>
+</td>
 
-    </tr>
-    ```
-* **Example custom title CSS**
+</tr>
+```
+
+**Example custom title CSS**
 
 ```
 .title {
@@ -180,13 +195,13 @@ padding: 25px 30px 0 30px;
 }
 ```
 
-* **Example logo link**
+**Example logo link**
 
 ```
 https://google.com
 ```
 
-* **Example logo URI**
+**Example logo URI**
 
 ```
 https://www.svgrepo.com/download/533811/donuts-cake.svg
@@ -226,11 +241,20 @@ This action is essential for creating interactive workflows that require human o
 
 <summary>Create Webhook action</summary>
 
-Allows for the creation of a one-off webhook for which can then be used by the `Await Webhook` action.
+This action creates a temporary, one-off webhook URL that can receive a single HTTP request. It's always used in tandem with the Await Webhook Request action.
 
-**Parameters**: This action requires the methods allowed to access the webhook, the response status, response headers, response body, and an expiration timeout.
+**Parameters**
 
-**Output**: The output of this action is the webhook ID and the full URL of the webhook.
+* **Expiration Timeout** — How many seconds the webhook stays active before it stops accepting requests (default: 600 seconds / 10 minutes).
+* **Response Body** _(required)_ — What the webhook sends back to the caller. You can use `{{ REQUEST }}` here to echo back request data.
+* **Allowed Methods** _(required)_ — Which HTTP methods the webhook will accept (default: POST).
+* **Response Status** _(required)_ — The HTTP status code returned to the caller (default: 200).
+* **Response Headers** _(required)_ — HTTP headers included in the response (default: `{}`).
+
+**Output**
+
+* The output of this action is the webhook ID and the full URL of the webhook.
+* Create the webhook, publish `webhook_id` and `url` to CTX, send the URL to whatever external system needs to call back, then use Await Webhook Request to pause and listen.
 
 </details>
 
@@ -238,28 +262,29 @@ Allows for the creation of a one-off webhook for which can then be used by the `
 
 <summary>Debug action</summary>
 
-The `Debug` action is a utility feature in our workflow system, specifically designed to assist with debugging and logging purposes. This action can help in understanding the flow of data within your workflows, troubleshoot problems, and generally help you understand what's happening at a certain point in the workflow execution. It logs the input parameters it receives and returns the same as its output.
+This action outputs a text string or rendered template to the workflow execution log. It's useful for inspecting values mid-workflow without affecting flow. Drop this in between tasks when troubleshooting to log the value of a CTX variable, e.g. `{{ CTX.user_email }}`. Remove or bypass it once you're done debugging.
 
-**Use cases**
-
-You might want to use the `Debug` action in the following scenarios:
+You might want to use the Debug action in the following scenarios:
 
 * When developing workflows, to see how data is flowing between tasks and actions.
 * If you're troubleshooting an issue, to inspect the data that's being passed around.
 * When you want to log specific information for auditing or reporting purposes.
 
-**Input Parameters**
+**Parameters**
 
-The `Debug` action accepts the following parameters:
+* **Text:** This is a general-purpose text field that will be logged and returned by the `Debug` action.
+* **Template:** This field takes a reference to a template in your environment that will be rendered and used as part of the action's input. The system will replace any variables in the template with its actual value at the time of template rendering.
 
-* **text:** This is a general-purpose text field that will be logged and returned by the `Debug` action.
-* **template:** This field takes a reference to a template in your environment that will be rendered and used as part of the action's input. The system will replace any variables in the template with its actual value at the time of template rendering.
+**Output**
 
-**Example Usage**
+* There is no output for this action.
+* Output appears in the execution log only.
 
-Let's say we have a template named "Greeting Message" with content `# Hey there {{ CTX.name }}`.
+**Example usage**
 
-We can use this template in the `Debug` action with the following parameters:
+You have a template named "Greeting Message" with content `# Hey there {{ CTX.name }}`.
+
+Use this template in the `Debug` action with the following parameters:
 
 ```yaml
 text: Testing Debug Action
@@ -268,7 +293,7 @@ template: Greeting Message
 
 Assuming `CTX.name` is set to `Rewsty`, the rendered template would be `# Hey there Rewsty`.
 
-The `Debug` action will log these parameters and also return them as its output. The results of the action on the workflow results page would look like this:
+The Debug action will log these parameters and also return them as its output. The results of the action on the workflow results page would look like this:
 
 **Output:**
 
@@ -279,7 +304,7 @@ The `Debug` action will log these parameters and also return them as its output.
 }
 ```
 
-This tells us that `CTX.name` was set to`Rewsty`, and the text provided with this action was `Testing Debug Action`. Using this, you can better understand the state of your workflow at the point this `Debug` action was executed.
+This tells us that `CTX.name` was set to`Rewsty`, and the text provided with this action was `Testing Debug Action`. Using this, you can better understand the state of your workflow at the point this Debug action was executed.
 
 </details>
 
@@ -287,10 +312,18 @@ This tells us that `CTX.name` was set to`Rewsty`, and the text provided with thi
 
 <summary>DNS Query action</summary>
 
-Queries a nameserver for DNS records associated with a given URL.
+This action queries a public nameserver for DNS records associated with a given domain. It's useful for verifying domain configurations, checking MX records before email setup, or validating SPF/TXT records as part of onboarding workflows.
 
-* **Parameters:** The URL to query the Nameserver for, the field to query from the nameserver, timeout for the DNS Query (optional, default 60), and the nameserver to use for the query (several options available including Google, Cloudflare, OpenDNS).
-* **Output:** The specified DNS records associated with the given URL from the queried nameserver.
+**Parameters**
+
+* **URL** _(required)_ — The domain to query (e.g. `example.com`).
+* **Field to Query** _(required)_ — The DNS record type (A, MX, TXT, CNAME, NS, SPF, etc. — full list available in the action).
+* **Nameserver** _(required)_ — Which DNS resolver to use: Google (8.8.8.8 / 8.8.4.4), Cloudflare (1.1.1.1 / 1.0.0.1), or OpenDNS (default: Google 8.8.8.8).
+* **Timeout** — Query timeout in seconds (default: 60).
+
+**Output**
+
+* The specified DNS records associated with the given URL from the queried nameserver.
 
 </details>
 
@@ -309,7 +342,7 @@ An upgrade from the deprecated password generation action. It crafts a cryptogra
 
 <summary>HTTP Request action</summary>
 
-Performs an HTTP request to a specified URL, supporting a variety of methods, body content types, and configurations. This is useful for interacting with APIs or other web services within a workflow, or for performing any other tasks that involve HTTP requests.
+This action performs an HTTP request to a specified URL, supporting a variety of methods, body content types, and configurations. This is useful for interacting with APIs or other web services within a workflow, or for performing any other tasks that involve HTTP requests.
 
 {% hint style="info" %}
 _In most cases, we recommend that you use a_ [_Custom Integration_](../../integrations/custom-integrations/) _instead of this HTTP Request action. This allows for enhanced security and customization when interacting with your external APIs. The_ HTTP Request action will require building out all endpoints as individual actions/subworkflows. It is only recommended for when Custom Integration is not possible or repeatedly fails.
@@ -344,10 +377,19 @@ _In most cases, we recommend that you use a_ [_Custom Integration_](../../integr
 
 <summary>Delay Workflow For Period action</summary>
 
-Pauses the workflow for a specified duration.
+This action pauses the workflow for a relative duration:  a set number of days, hours, minutes, or seconds from the current moment. All four fields are additive, so you can combine them — e.g. 1 day + 4 hours. Use this when you know the duration but not the exact target time. For a specific target time, use the Delay Workflow Until Date/Time action instead.
 
-* **Parameters:** The number of days, hours, minutes or seconds to delay the workflow.
-* **Output:** No specific output, the workflow resumes after the specified delay.
+**Parameters**
+
+* **Days to Delay**: Number of days (default: 0)
+* **Hours to Delay**: Number of hours (default: 0)
+* **Minutes to Delay**: Number of minutes (default: 0)
+* **Seconds to Delay**: Number of seconds (default: 0)
+
+**Output**
+
+* There is no specific output.
+* The workflow resumes after the specified delay.
 
 </details>
 
@@ -359,31 +401,34 @@ This action pauses a workflow execution at that point until a specific date and 
 
 It's commonly used for scheduling maintenance windows, delayed user creation, cooling-off periods on escalations, or any time-separated multi-step process. There's a 30-day limit on how far into the future you can delay. Requests beyond that will fail, so validate your input if it's user-supplied. Since the workflow is just paused, not re-triggered, the full execution context is preserved when it resumes; all your `CTX` variables are still intact.
 
-* **Parameters**
-  * **Delay Until**: This is the date and time you want the workflow to resume at. It expects a datetime string in `datetime-local` format. In practice, you'll almost always want to supply this dynamically via Jinja rather than hardcoding a static value.
-  *   The key is feeding the `expires_at` field a properly formatted datetime string. Here are the most common patterns:
+**Parameters**
 
-      Delay until a specific future time (e.g. tomorrow at 9am UTC):
+* **Delay Until**: This is the date and time you want the workflow to resume at. It expects a datetime string in `datetime-local` format. In practice, you'll almost always want to supply this dynamically via Jinja rather than hardcoding a static value.
+*   The key is feeding the `expires_at` field a properly formatted datetime string. Here are the most common patterns:
 
-      ```
-      {{ now() | convert_from_epoch | time_delta(days=1) | format_datetime('%Y-%m-%dT09:00:00') }}
-      ```
+    Delay until a specific future time (e.g. tomorrow at 9am UTC):
 
-      Delay until a datetime stored in CTX (e.g. from a form input or ticket field):
+    ```
+    {{ now() | convert_from_epoch | time_delta(days=1) | format_datetime('%Y-%m-%dT09:00:00') }}
+    ```
 
-      ```
-      {{ CTX.scheduled_datetime }}
-      ```
+    Delay until a datetime stored in CTX (e.g. from a form input or ticket field):
 
-      Just make sure the value is already in a compatible datetime format.
+    ```
+    {{ CTX.scheduled_datetime }}
+    ```
 
-      Delay until a calculated time (e.g. 2 hours from now):
+    Just make sure the value is already in a compatible datetime format.
 
-      ```
-      {{ now() | convert_from_epoch | time_delta(hours=2) | format_datetime('%Y-%m-%dT%H:%M:%S') }}
-      ```
-* **Output**
-  * The action produces no output. There's nothing to publish or reference after it. Its only job is to pause and resume.
+    Delay until a calculated time (e.g. 2 hours from now):
+
+    ```
+    {{ now() | convert_from_epoch | time_delta(hours=2) | format_datetime('%Y-%m-%dT%H:%M:%S') }}
+    ```
+
+**Output**
+
+* The action produces no output. There's nothing to publish or reference after it. Its only job is to pause and resume.
 
 </details>
 
@@ -391,23 +436,23 @@ It's commonly used for scheduling maintenance windows, delayed user creation, co
 
 <summary>Mock action</summary>
 
-The `Mock` action is designed to provide you with the capability to simulate the result of a not yet implemented action. This is particularly useful during workflow development and testing phases as it allows you to simulate responses from services that are not yet available or are impractical to call during the development process.
-
-**Use cases**
-
-The `Mock` action comes in handy in scenarios such as:
+This action returns a fake, predefined result as if a real action had run. It's used during workflow development to simulate responses from services not yet available. Drag this in place of a real action while building, configure the shape of the expected response, and build your downstream logic against it. Swap it out for the real action when ready:
 
 * When designing new workflows where certain steps are not fully implemented.
 * In testing stages, to simulate conditions without making actual calls to the services.
 * To create controlled conditions in your workflow for troubleshooting issues.
 
-**Input Parameters**
+**Parameters**
 
-The `Mock` action accepts the following parameter:
+* **Mock Result:** This parameter should contain the key / value pairs that you want to be returned by this action. You can press the `+` to add as many objects as necessary. Jinja expressions inside this object are returned as-is, not evaluated.
 
-* **Mock Result:** This parameter should contain the key / value pairs that you want to be returned by this action. You can press the `+` to add as many objects as necessary.
+**Output**
 
-**Example Usage**
+*   The mock result object wrapped in a `data` property is returned.
+
+
+
+**Example use**
 
 You are developing a workflow that is expected to interact with a service which is not yet implemented. You know the expected format of the response, and you want to build and test your workflow logic based on that response.
 
@@ -452,10 +497,15 @@ This can be useful for catching issues early in the development phase such as in
 
 <summary>No-Operation (Noop) action</summary>
 
-A noop action does nothing. It's often used for logic or as a placeholder in the workflow.
+A noop action does nothing. It's often used for logic or as a placeholder in the workflow. Use noops for routing logic (fan-out/fan-in), convergence points where multiple branches meet, and creating CTX variables via transition data aliases. Never use `publish_result_as` on a noop since it produces no output — use transition data aliases instead.
 
-* **Parameters:** None.
-* **Output:** None
+**Parameters**
+
+None
+
+**Output**
+
+None
 
 </details>
 
@@ -463,7 +513,7 @@ A noop action does nothing. It's often used for logic or as a placeholder in the
 
 <summary>Parse HTML action</summary>
 
-The Parse HTML action is a versatile tool within Rewst, geared to pinpoint and extract specific elements or data from HTML documents. It leverages the power of BeautifulSoup, a Python library recognized for extracting data from HTML and XML files effectively.
+The Parse HTML action is a versatile tool within Rewst, geared to pinpoint and extract specific elements or data from HTML documents. It parses an HTML string using BeautifulSoup and extracts matching elements or text from HTML files.
 
 **Use cases**
 
@@ -473,19 +523,21 @@ This action is particularly beneficial in these situations:
 * **Content Clean-Up**: sieving out only the necessary data from complex HTML content.
 * **Web Scraping**: automating the extraction of specific information from various web pages using defined tags, classes, or identifiers.
 
-**Action Parameters**
-
-The `Parse HTML` action accepts the following parameters:
+**Parameters**
 
 * **HTML**: The HTML content to be parsed. This could be HTML content from a webpage, obtained using the `HTTP Request` Core Action.
 * **Class**: Optionally finds HTML elements based on their `class` attribute.
 * **ID**: Optionally searches for HTML elements based on their `ID` attribute.
 * **Query**: Employs [BeautifulSoup filters](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#kinds-of-filters) to specify the operation type:
-  * `find_all` returns all instances of the defined HTML tag.
-  * `find` returns only the first instance of the defined HTML tag.
-  * `select` enables the use of CSS selectors for nested HTML tags.
+  * find\_all returns all instances of the defined HTML tag.
+  * find returns only the first instance of the defined HTML tag.
+  * select enables the use of CSS selectors for nested HTML tags.
 * **String**: Optionally searches for specific text within the HTML content.
 * **Value**: Identifies the tag or selector to search for in the HTML content. For example, `a` would find all anchor (`<a>`) tags in the HTML content.
+
+**Output**
+
+* An array of mayching string values is returned.
 
 **Practical Use Case: Extracting Links from 'Hacker News'**
 
@@ -587,19 +639,21 @@ Consider using the Parse XML action in these scenarios:
 * **Data Extraction and Content Clean-Up:** Capture specific information or filter out necessary data from XML-formatted content. This is particularly useful in processing responses from HTTP requests or handling complex XML documents.
 * **Web Scraping:** Automate the extraction of specific information from various XML sources using defined tags, attributes, or identifiers. It enables you to precisely target the data you need from web resources.
 
-**Action parameters**
-
-The Core Parse XML action requires the following parameters:
+**Parameters**
 
 * **XML**: The XML content that needs to be parsed. This could be XML content from an API response, obtained using the HTTP Request Core Action.
 * **Attributes**: (Optional) Allows you to find XML elements based on their attribute key.
 * **ID**: (Optional) Permits searching for XML elements based on their ID attribute.
 * **Selector**: Determines the operation type. Options include:
-  * `find`: Returns only the first instance of the defined XML tag.
-  * `find_all`: Returns all instances of the defined XML tag.
-  * `select`: Enables the use of XPath expressions for nested XML tags or conditional searches.
+  * find: Returns only the first instance of the defined XML tag.
+  * find\_all: Returns all instances of the defined XML tag.
+  * select: Enables the use of XPath expressions for nested XML tags or conditional searches.
 * **String**: (Optional) Allows you to search for specific text within the XML content.
 * **Value**: Specifies the tag or selector to search for in the XML content.
+
+**Output**
+
+* An array of matching string values is returned.
 
 **Practical Use Case: Extracting Books from a Bookstore's XML Data**
 
@@ -677,14 +731,23 @@ The result includes all `book` tags where the `category` attribute is `children`
 
 <summary>Send Mail action</summary>
 
-Allows for the sending of an email.
+This action sends a plain or markdown-formatted email via Rewst's email infrastructure. Use it for notifications, summaries, and reports. For interactive emails where the recipient needs to make a choice, use the Confirmation Email action instead.
 
-* **Parameters:** This action requires a sender prefix (`sender`), with multiple options available, the recipient's email address (`to`), the subject of the email (`subject`), the title of the email (`title`), and the message body (`message`). It also has the option to render markdown as HTML (`render_markdown`). You can also fully control the HTML of the email with `(Custom HTML)`. This can also reference a template using the `{{ template(“guid”) }}` function.
-  * Note that if you're using the `Custom HTML` field, the message and title fields will be ignored.\
-    ![](<../../../.gitbook/assets/Screenshot 2026-03-03 at 9.44.26 AM.png>)
-  * You cannot upload images to Rewst, so any image will need to be externally referenced via URL. The file format will need to follow the guidance for your particular email client, which is independent of Rewst. For example, Outlook does not accept PNG formatted files. For broader guidance for all email clients, we recommend using this resource called [caniemail](https://www.caniemail.com/features/).
-  * Emails will still be sent from the rewst.io domain.
-* **Output:** The task doesn't yield an output upon success. It will fail if there are any errors during the process of sending the email.
+&#x20;You can't upload images to Rewst, so any image will need to be externally referenced via URL. The file format will need to follow the guidance for your particular email client, which is independent of Rewst. For example, Outlook does not accept PNG formatted files. For broader guidance for all email clients, we recommend using this resource called [caniemail](https://www.caniemail.com/features/). Emails will still be sent from the rewst.io domain.
+
+**Parameters**
+
+* **Recipient**, required: The destination email address.
+* **Sender**, required: The Rewst sending address to use (options: noreply@, no-reply@, donotreply@, rewsty@, rewstybot@, response@, auto-reply@, forms@ — all @rewst.io)
+* **Subject**, required: Email subject line
+* **Title**, required: Heading displayed at the top of the email body
+* **Message**, required: Body content; can reference a saved Rewst Template
+* **Custom HTML**: Fully custom HTML for the email body; if provided, Title and Message are ignored
+* **Render Markdown**: Renders markdown syntax as HTML, with a default to true
+
+**Output**
+
+* &#x20;The task doesn't yield an output upon success. It will fail if there are any errors during the process of sending the email.
 
 </details>
 
@@ -692,12 +755,18 @@ Allows for the sending of an email.
 
 <summary>Send SMS action</summary>
 
-Allows you to send a text message to a specified phone number.
+This action sends a text message to a phone number via Rewst's built-in SMS capability. Use it for alerting or notification workflows where email isn't sufficient. Keep messages concise and ensure phone numbers are in the correct format for your region
 
-*   **Parameters**: This action requires the recipient's phone number (`phone_number`) and the text message (`message`) to be sent. All phone numbers must be provided using the E.164 international format, which includes the country code. Improperly formatted numbers may result in validation errors or delivery failures.
+**Parameters**
 
-    Example: `+14155552671`
-* **Output**: The output of this action will depend on the implementation details. Usually, it will return a confirmation message or an error message.
+* **Phone Number**, required: The recipient's phone number
+  * All phone numbers must be provided using the E.164 international format, which includes the country code: example: `+14155552671`
+  * Improperly formatted numbers may result in validation errors or delivery failures
+* **Message**, required: The text message content. Can reference a saved Rewst Template
+
+**Output**
+
+* The output of this action will depend on the implementation details. Usually, it will return a confirmation message or an error message.
 
 **Sending number origin**
 
@@ -879,9 +948,17 @@ The action returns a simple object with two properties:
 
 <summary>UUID action</summary>
 
-Generates a new UUID (Universally Unique Identifier).
+This action generates a new universally unique identifier (UUID).  Use `publish_result_as` to store the UUID in CTX and use it as a unique correlation ID, idempotency key, or reference number for records created across multiple systems in the same workflow run.
 
-* **Parameters:** UUID type (options include `uuid1` and `uuid4`, defaults to `uuid4`).
-* **Output:** The generated UUID.
+**Parameters**
+
+* UUID type:
+  * **UUID1**: time-based
+  * **UUID4**: random, most common, default
+  * **UUID7**: time-ordered, random
+
+**Output**
+
+* The generated UUID is returned as a string.
 
 </details>
