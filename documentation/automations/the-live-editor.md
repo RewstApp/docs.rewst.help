@@ -14,7 +14,9 @@ Access the Live Editor by navigating to **Automations > Live Editor** in the lef
 
 <figure><img src="../../.gitbook/assets/Screenshot 2026-03-05 at 4.10.41 PM.png" alt="Screenshot of the Templates list view in the Rewst Automations section, showing a dark-themed interface with a left navigation menu, a top search bar and Create Template button, and a table of templates with names, descriptions, dates, attributes, and action icons.  Alt text: Screenshot of the Live Editor in the Rewst Automations section, showing a dark-themed interface with a left navigation menu and three side-by-side panels for Context, Editor (with a “Hello World” example), and Result for testing and rendering code output."><figcaption></figcaption></figure>
 
-Switch between the two available languages in the editor by clicking the switch button in the top right of your **Editor** panel. The name of the language currently in use for the editor will display in blue on the button.
+The **Context** panel in the Live Editor is where you provide mock or sample data that your Jinja template can reference during rendering. Since the Live Editor runs outside of an actual workflow execution, there's no real `CTX`, `TASKS`, or other runtime data available. The Context panel lets you simulate that data so you can test your templates realistically. Variables you define in the Context panel are accessed in your template using the `CTX.` prefix. If you add `"username": "Alice"` in the context, your template should reference it as `{{ CTX.username }}`, not just `{{ username }}`.
+
+Click the **switch** button in the top right of your **Editor** panel to switch between the two available languages in the editor. The name of the language currently in use for the editor will display in blue on the button.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-04-17 at 11.04.07 AM.png" alt=""><figcaption></figcaption></figure>
 

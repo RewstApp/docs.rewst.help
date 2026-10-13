@@ -355,10 +355,35 @@ Pauses the workflow for a specified duration.
 
 <summary>Delay Workflow Until Date/Time action</summary>
 
-Pauses the workflow until a specified date and time.
+This action pauses a workflow execution at that point until a specific date and time is reached, then resumes automatically. Think of it as a "sleep until" instruction — the workflow just waits, consuming no active resources, until the clock hits the target time. If no date/time is provided, the workflow continues immediately without any delay.
 
-* **Parameters:** The date and time when the workflow should resume.
-* **Output:** No specific output, the workflow resumes at the specified date and time.
+It's commonly used for scheduling maintenance windows, delayed user creation, cooling-off periods on escalations, or any time-separated multi-step process. There's a 30-day limit on how far into the future you can delay. Requests beyond that will fail, so validate your input if it's user-supplied. Since the workflow is just paused, not re-triggered, the full execution context is preserved when it resumes; all your `CTX` variables are still intact.
+
+* **Parameters**
+  * **Delay Until**: This is the date and time you want the workflow to resume at. It expects a datetime string in `datetime-local` format. In practice, you'll almost always want to supply this dynamically via Jinja rather than hardcoding a static value.
+  *   The key is feeding the `expires_at` field a properly formatted datetime string. Here are the most common patterns:
+
+      Delay until a specific future time (e.g. tomorrow at 9am UTC):
+
+      ```
+      {{ now() | convert_from_epoch | time_delta(days=1) | format_datetime('%Y-%m-%dT09:00:00') }}
+      ```
+
+      Delay until a datetime stored in CTX (e.g. from a form input or ticket field):
+
+      ```
+      {{ CTX.scheduled_datetime }}
+      ```
+
+      Just make sure the value is already in a compatible datetime format.
+
+      Delay until a calculated time (e.g. 2 hours from now):
+
+      ```
+      {{ now() | convert_from_epoch | time_delta(hours=2) | format_datetime('%Y-%m-%dT%H:%M:%S') }}
+      ```
+* **Output**
+  * The action produces no output. There's nothing to publish or reference after it. Its only job is to pause and resume.
 
 </details>
 

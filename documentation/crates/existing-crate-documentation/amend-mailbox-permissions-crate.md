@@ -43,23 +43,14 @@ Easily manage permissions for mail-enabled mailboxes in your environment. This C
 
 1. Navigate to **Marketplace** **> Crates** in the left side menu Rewst platform.
 2. Search for the `Amend Mailbox Permissions` Crate.
-3.  Click on the Crate tile to begin unpacking.
-
-    \
-    ![](<../../../.gitbook/assets/image (122).png>)
+3. Click on the Crate tile to begin unpacking.
 4. This will open that PSA integration’s configuration form in a new tab. Note that this list will have check marks if you have already met the prerequisite integration and org variable setup needs.
 5. Click **Unpack Crate**.
-6.  Choose your PSA from the drop down list.<br>
-
-    <figure><img src="../../../.gitbook/assets/Screenshot 2025-02-19 at 12.11.13 PM.png" alt=""><figcaption></figcaption></figure>
+6. Choose your PSA from the drop down list.
 7. Click **Continue**.
 8. Change the **Workflow name**, if desired.
 9. Leave form options at their default state.
 10. Click **Unpack**.
-
-### Example: Unpack the Amend Mailbox Permissions Crate
-
-<figure><img src="../../../.gitbook/assets/Unpack Amend Mailbox Permissions.gif" alt=""><figcaption></figcaption></figure>
 
 ## Amend Mailbox Permissions form
 
@@ -70,15 +61,18 @@ Easily manage permissions for mail-enabled mailboxes in your environment. This C
 3. Click **⋮ > Usages > View Direct URLs.**
 4.
 
-    <figure><img src="../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+```
+<figure><img src="../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+```
+
 5. Click on the form for the child organization, or use the parent org form for MSPs form users.
 
 ### Fill out the form
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-09-15 at 4.15.45 PM.png" alt=""><figcaption></figcaption></figure>
 
-1. Choose the specific client for whom permissions will be modified. Click the drop down arrow of the **Client** field, or begin typing the name into the field to jump to the client name.&#x20;
-2. Click the drop down arrow of the **Ticket** field, or begin typing the name into the field to jump to the ticket name related to the request.&#x20;
+1. Choose the specific client for whom permissions will be modified. Click the drop down arrow of the **Client** field, or begin typing the name into the field to jump to the client name.
+2. Click the drop down arrow of the **Ticket** field, or begin typing the name into the field to jump to the ticket name related to the request.
 3. Select the mail-enabled user to perform the permission modification action on.
    1. Both of these mailbox types will work with the form:
       1. Individual User Accounts: `john.smith@pedroaviary.com`
@@ -209,4 +203,3 @@ Easily manage permissions for mail-enabled mailboxes in your environment. This C
 {% hint style="info" %}
 Got an idea for a new Crate? Rewst is constantly adding new Crates to our Crate Marketplace. Submit your idea or upvote existing ideas here in our [Canny feedback collector](https://rewst.canny.io/crates).
 {% endhint %}
-

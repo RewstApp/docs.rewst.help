@@ -8,7 +8,7 @@ Options filter works for the following form field types:
 
 * [Dropdown](https://docs.rewst.help/documentation/automations/forms/intro-to-forms#drop-down)
 * [Radio Button](https://docs.rewst.help/documentation/automations/forms/intro-to-forms#radio-buttons)
-* [Multi-Select ](https://docs.rewst.help/documentation/automations/forms/intro-to-forms#multi-select)
+* [Multi-Select](https://docs.rewst.help/documentation/automations/forms/intro-to-forms#multi-select)
 
 Option generators are still a fantastic option for those who need a more powerful, in-depth, solution. We cover what these are and how to use them in Cluck University's [Rewst Foundations](https://learn.rewst.io/creating-an-option-generator) . If you’ve already taken our courses and want a refresher, see our documentation on option generators [here](https://docs.rewst.help/documentation/workflows/workflow-generated-options).
 
@@ -16,8 +16,8 @@ Option generators are still a fantastic option for those who need a more powerfu
 
 * Modifying a form using the options filter will work for both parent and child organizations, as long as data formatting is set up the same way for both organizations.
 * Add as many conditions as desired.
-* Access the options filter feature in our standard form builder.&#x20;
-* Options filter works in the context of the current organization.&#x20;
+* Access the options filter feature in our standard form builder.
+* Options filter works in the context of the current organization.
 
 ## Practical uses for options filter
 
@@ -35,9 +35,7 @@ You work at an MSP and are building a license request form for technicians. Your
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2026-03-05 at 4.04.18 PM.png" alt=""><figcaption><p>What is seen after clicking <strong>filter options</strong></p></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2026-03-05 at 4.04.49 PM.png" alt=""><figcaption><p>Filtering using the <strong>simple</strong>  logic option. The $.label equals Microsoft 365 Business Premium. Note that you haven't clicked <strong>apply filter</strong> on the bottom right, so there are still 4 filtered options shown under <strong>Dropdown Options</strong>.</p></figcaption></figure>
-
-
+<figure><img src="../../../.gitbook/assets/Screenshot 2026-03-05 at 4.04.49 PM.png" alt=""><figcaption><p>Filtering using the <strong>simple</strong> logic option. The $.label equals Microsoft 365 Business Premium. Note that you haven't clicked <strong>apply filter</strong> on the bottom right, so there are still 4 filtered options shown under <strong>Dropdown Options</strong>.</p></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2026-03-05 at 4.06.14 PM.png" alt=""><figcaption><p>What you see after you click <strong>apply filter</strong>. Now, there's only 1 filtered option: Microsoft 365 Business Premium</p></figcaption></figure>
 
@@ -49,11 +47,9 @@ Click **Filter Options** under the **Dynamic Options** submenu of the right side
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-11-20 at 11.47.53 AM.png" alt=""><figcaption></figcaption></figure>
 
-
-
 ### All Options
 
-The **All Options** drop-down selector holds all of the options which you’ve set in the standard form builder right side menu. Adding more options in that menu will populate those options into your drop-down selector.&#x20;
+The **All Options** drop-down selector holds all of the options which you’ve set in the standard form builder right side menu. Adding more options in that menu will populate those options into your drop-down selector.
 
 <figure><img src="../../../.gitbook/assets/Screenshot 2025-02-25 at 5.02.18 PM.png" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -67,8 +63,6 @@ If your form field uses a custom options filter, there will be a badge indicator
 
 <figure><img src="../../../.gitbook/assets/indicator.png" alt=""><figcaption></figcaption></figure>
 
-
-
 #### The JSON interface
 
 Toggle from the default **Simple** view to the **JSON** view. This will switch to show the code of the filter. You may have a scenario where your desired filter is more complex than just label and value, such as ID. Using this code editor, filter out custom objects from complex queries.
@@ -77,7 +71,7 @@ Toggle from the default **Simple** view to the **JSON** view. This will switch t
 
 #### Jinja for options filters
 
-If you manage many organizations, use Jinja in options filters to scale filtering logic without manually configuring filters for every suborganization. When simple boolean logic operators feel limiting, go straight to Jinja for greater customization.&#x20;
+If you manage many organizations, use Jinja in options filters to scale filtering logic without manually configuring filters for every suborganization. When simple boolean logic operators feel limiting, go straight to Jinja for greater customization.
 
 {% hint style="info" %}
 The CTX variable you want to reference will always be called `options`.
@@ -131,8 +125,6 @@ By grouping terms, you can control the order in which Boolean operators like AND
 
 ![](<../../../.gitbook/assets/Screenshot 2025-02-26 at 12.28.51 PM.png>)
 
-
-
 ### Options filter and syncing of forms
 
 The greatest advantage of the options filter is that it allows for the overriding of a form. Synchronized forms will block you from modifying attributes to prevent sync malfunction, by default. Under filter options in the form builder, you’ll find an **Override** button at the bottom right. Clicking will override this individual filter. Note that if you have multiple filters, and want to modify all of them, you’ll need to click **Override** for each filter.
@@ -141,14 +133,14 @@ The greatest advantage of the options filter is that it allows for the overridin
 
 ### Org-based preview and org-specific instances
 
-Use the org context drop-down selector to choose the child organization that you'd like to preview, and see how the form will function for that specific organization. Previews don't require cloning, and won't affect the saved form configurations except for the options filter. The options generator will display data as if the form were triggered in just that specific organization.  The default-set options filter will be used if no custom filters were provided for the selected organization.
+Use the org context drop-down selector to choose the child organization that you'd like to preview, and see how the form will function for that specific organization. Previews don't require cloning, and won't affect the saved form configurations except for the options filter. The options generator will display data as if the form were triggered in just that specific organization. The default-set options filter will be used if no custom filters were provided for the selected organization.
 
-Click the drop-down selector to view and chose from your list of all total organizations.
+Click the drop-down selector to view and chose from your list of all total organizations.&#x20;
 
 <div data-full-width="false"><figure><img src="../../../.gitbook/assets/Screenshot 2025-06-03 at 12.16.25 PM.png" alt=""><figcaption></figcaption></figure></div>
 
-Selecting the preview organization sets the context of the form builder. and opening the preview dialog will use that organization's context to generate the correct preview, tailoring filtering logic for each instance without duplicating forms or unsyncing fields.
+Select the preview organization to set the context of the form builder and open the preview dialog. Rewst will use that organization's context to generate the correct preview and tailor filtering logic for each instance without duplicating forms or unsyncing fields. Note that you must click **Save** before changing the preview organization— changes made to a selected will not be stored once you switch to another organization.
 
 {% hint style="info" %}
-By default, a field will inherit the parent organization's filter unless if it explicitly overridden. <br>
+By default, a field will inherit the parent organization's filter unless if it explicitly overridden.
 {% endhint %}
