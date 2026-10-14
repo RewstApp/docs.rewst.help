@@ -483,6 +483,7 @@
 
 * [Incoming and outgoing domains and IPs](security/security-policy.md)
 * [Rewst trust and security center](security/rewst-trust-and-security-center.md)
+* [Encryption and key management](security/encryption-and-key-management.md)
 * [Webhook trigger rate limits](security/webhook-trigger-rate-limits.md)
 
 ## Terms and Definitions
