@@ -1,5 +1,9 @@
 # Webhook trigger rate limits
 
+{% hint style="warning" %}
+These rate limits apply only to the Rewst Classic product, not our new Rewst product. For rate limiting info for new Rewst, see our guidance [here](https://docs.rewst.help/rewst-documentation/security/organization-rate-limits).&#x20;
+{% endhint %}
+
 {% hint style="info" %}
 _Rate limiting_ is a technique to control the number of requests a user or application can make to a service within a specific time frame. It's used to prevent system overload, ensure fair usage, and protect against attacks like DDoS or scraping by temporarily slowing or rejecting requests that exceed predefined limits.
 

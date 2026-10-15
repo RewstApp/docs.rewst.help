@@ -1,4 +1,8 @@
-# Incoming and outgoing domains and IPs
+# Incoming and outgoing domains and IPs - Rewst Classic
+
+{% hint style="warning" %}
+These domains and addresses apply only to the Rewst Classic product, not our new Rewst product. For domain and address info for new Rewst, see our guidance [here](https://docs.rewst.help/rewst-documentation/security/security-policy).&#x20;
+{% endhint %}
 
 ## **Outgoing IP addresses**
 

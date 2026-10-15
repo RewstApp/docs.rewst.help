@@ -1,5 +1,9 @@
 # Rewst support
 
+{% hint style="warning" %}
+These instructions apply only to the Rewst Classic product, not our new Rewst product. For support info for new Rewst, see our guidance [here](https://docs.rewst.help/rewst-documentation/support-and-community/roc-support).&#x20;
+{% endhint %}
+
 Our support team is here to assist with all Rewst Classic platform-related questions and technical guidance. They're not a fit to talk about account issues or commercial needs such as contract, billing, or general relationship questions. For those, please contact your Customer Success Advisor (CSA).
 
 {% hint style="info" %}
