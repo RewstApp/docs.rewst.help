@@ -12,6 +12,46 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-16" %}
+## 💻 October 16, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* Check back next week
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **Integrations**
+  * Fixed the Sophos integration to correctly map tenant IDs instead of client tokens to organization variables.
+  * Fixed the ConnectWise PSA Update Time Entry action to correctly apply changes to time entries instead of reporting success without updating them.
+* **Workflows**
+  * Improved workflow reliability by automatically reconnecting lost database connections and adding alerts to detect notification delivery failures.
+  * Fixed an issue where missed notifications could fail to reprocess, preventing workflow completion and organization setup tasks from finishing.
+* **Crates**
+  * Billing Count Report
+    * Fixed M365 tenant lookup failure clearing all orgs; now retains successful orgs when one lookup fails. (
+  * Microsoft: User Onboarding
+    * Fixed Pax8 license failures misreported as success; now returns 2000 and notes failure in onboarding ticket.
+    * Replaced 11 deprecated ConnectWise Manage actions.
+    * Removed azure\_ad\_license\_groups from parent inputs; gbl\_groups is now the single supported input for Entra group-based licensing.&#x20;
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* [Granular permissions beta](https://rewst.io/go/granular-permissions-beta-signup)
+
+</details>
+{% endupdate %}
+
 {% update date="2026-10-09" %}
 ## 💻 October 9, 2026 - Dev update
 

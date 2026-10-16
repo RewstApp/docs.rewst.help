@@ -11,6 +11,20 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-16" %}
+## ✍️ October 16, 2026 - Recently updated documentation
+
+* [Updated guidance for our Amend Mailbox Permissions Crate](../documentation/crates/existing-crate-documentation/amend-mailbox-permissions-crate.md)
+* [Updated guidance for persistence of org data when using options filters](../documentation/automations/forms/options-filter-filtering-in-forms.md)
+* [Updated guidance for the context field of the live editor](../documentation/automations/the-live-editor.md)
+* [Updated guidance for setting up our Duo integration ](../documentation/integrations/integration-guides/duo-integration-setup.md)
+* [Expanded guidance for our Core actions](../documentation/automations/actions-in-rewst/core-actions.md)
+* [Expanded guidance for our Rewst actions](../documentation/automations/actions-in-rewst/rewst-actions.md)
+* [Updated guidance for setting up our Lexful integration ](../documentation/integrations/integration-guides/lexful-integration.md)
+* [Updated guidance for setting up our SentinelOne integration](../documentation/integrations/integration-guides/sentinelone-integration-setup.md)
+* Please take our survey on how you use our Open Mic notes and what you'd like to see included in them going forward. A link to the survey, which will run through the month of October, can be found in the banner display across your Rewst platform when you log in.
+{% endupdate %}
+
 {% update date="2026-10-09" %}
 ## ✍️ October 9, 2026 - Recently updated documentation
 
