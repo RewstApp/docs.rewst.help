@@ -2,11 +2,6 @@
 
 * [Welcome to Rewst Classic documentation](README.md)
 
-## FLOW 2026 ANNOUNCEMENT
-
-* [Coming soon to Rewst](flow-2026-announcement/coming-soon-to-rewst.md)
-* [AI basics](flow-2026-announcement/ai-basics.md)
-
 ## Documentation
 
 * [Rewst Dashboard](documentation/rewst-dashboard.md)
