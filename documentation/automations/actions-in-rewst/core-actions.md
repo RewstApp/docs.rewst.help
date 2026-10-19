@@ -5,49 +5,10 @@ _Core actions_ in Rewst Classic are your gateway to the platform's vast array of
 Core actions are used in the same way as regular actions within workflows. They are selected from the list of available actions, configured based on their parameters, and then added to the workflow at the appropriate place.
 
 {% hint style="info" %}
-Expand each of the action types below to see their individual information. Actions are listed alphabetically in both this doc and the Rewst platform.
+Expand each of the action types below to see their individual information.&#x20;
 {% endhint %}
 
-<details>
-
-<summary>Await Webhook Request action</summary>
-
-This action pauses the workflow and waits for an incoming HTTP request to a previously created one-off webhook. Once a request arrives, the workflow resumes with the request data available. Always pair this with the Create Webhook acgtion. Create the webhook first, publish its `webhook_id` to CTX, then feed `{{ CTX.webhook_id }}` into this action downstream. To access the results of a webhook, publish a [data alias](../workflows/data-aliases.md) with a value of `{/{ RESULT }/}.` You cannot merely publish the results as or use task.
-
-**Parameters**
-
-* **Webhook ID**: The ID returned by the Create Webhook action, this tells the workflow which webhook to listen on.
-
-**Output**
-
-* The output includes the HTTP method, query params, headers, JSON or form/multipart data in the body of the request, and the timestamp when the request was received.
-
-
-
-</details>
-
-<details>
-
-<summary>Compare Strings Set Ratio action</summary>
-
-This action calculates the ratio of how many words from the smaller string are found in the larger string. It's designed for measuring string similarity based on word overlap rather than character-by-character comparison. This action is particularly useful when you need to determine how similar two text strings are based on shared words, making it ideal for scenarios where exact string matching is too strict but you still need to measure content similarity. Use it for:
-
-* Fuzzy matching between text strings
-* Duplicate detection in datasets
-* Content similarity analysis
-* Partial string matching scenarios
-
-**Parameters**
-
-* **original\_string** (required): The original string to compare
-* **comparison\_string** (required): The comparison string that is being compared to
-
-**Output**
-
-* Returns an integer representing the ratio of word overlap between the two strings
-* Higher values indicate greater similarity
-
-</details>
+## Core actions: Communication
 
 <details>
 
@@ -211,301 +172,167 @@ https://www.svgrepo.com/download/533811/donuts-cake.svg
 
 <details>
 
-<summary>Create Pending Task action</summary>
+<summary>Send SMS action</summary>
 
-This action creates a pending task that pauses workflow execution and requires manual intervention through the Rewst UI. It's designed for scenarios where human approval, confirmation, or decision-making is needed within an automated workflow.
-
-**Use Cases**:
-
-* Manual approval workflows
-* User confirmation before critical actions
-* Decision points requiring human judgment
-* Interactive workflow processes
-* Quality control checkpoints
-
-**Parameters**:
-
-* **message** (required): The message to display in the pending task that explains what action is needed from the user
-* **buttons** (required): An array of button objects that users can click to respond. Each button has:
-  * **label**: The text displayed on the button
-  * **style**: Visual style (`default`, `primary`, `danger`)
-  * **value**: The value returned when the button is clicked
-
-**Output**: The workflow pauses at this task until a user interacts with it via the Rewst UI. When a button is clicked, the action returns the corresponding button value, allowing the workflow to continue based on the user's choice.
-
-This action is essential for creating interactive workflows that require human oversight or decision-making at specific points in the automation process.
-
-</details>
-
-<details>
-
-<summary>Create Webhook action</summary>
-
-This action creates a temporary, one-off webhook URL that can receive a single HTTP request. It's always used in tandem with the Await Webhook Request action.
+This action sends a text message to a phone number via Rewst's built-in SMS capability. Use it for alerting or notification workflows where email isn't sufficient. Keep messages concise and ensure phone numbers are in the correct format for your region
 
 **Parameters**
 
-* **Expiration Timeout** — How many seconds the webhook stays active before it stops accepting requests (default: 600 seconds / 10 minutes).
-* **Response Body** _(required)_ — What the webhook sends back to the caller. You can use `{{ REQUEST }}` here to echo back request data.
-* **Allowed Methods** _(required)_ — Which HTTP methods the webhook will accept (default: POST).
-* **Response Status** _(required)_ — The HTTP status code returned to the caller (default: 200).
-* **Response Headers** _(required)_ — HTTP headers included in the response (default: `{}`).
+* **Phone Number**, required: The recipient's phone number
+  * All phone numbers must be provided using the E.164 international format, which includes the country code: example: `+14155552671`
+  * Improperly formatted numbers may result in validation errors or delivery failures
+* **Message**, required: The text message content. Can reference a saved Rewst Template
 
 **Output**
 
-* The output of this action is the webhook ID and the full URL of the webhook.
-* Create the webhook, publish `webhook_id` and `url` to CTX, send the URL to whatever external system needs to call back, then use Await Webhook Request to pause and listen.
+* The output of this action will depend on the implementation details. Usually, it will return a confirmation message or an error message.
+
+**Sending number origin**
+
+The `core_send_sms` action sends messages from a US-based phone number owned and managed by Rewst.
+
+Due to this setup:
+
+* SMS delivery is most reliable for United States phone numbers
+* Some international carriers restrict or block messages originating from US long-code numbers
+* Certain countries require locally registered sender IDs or approved messaging routes
+
+These limitations are imposed by telecommunications carriers and regional messaging regulations.
+
+**When to use your own messaging account**
+
+If you need to send SMS messages to a region that is not supported by the shared Rewst sending number, you can set up your own messaging account and use it through Rewst’s [Twilio integration](../../integrations/integration-guides/twilio-integration-setup.md).
+
+Using your own account allows you to:
+
+* Purchase local phone numbers in supported countries
+* Configure which countries your numbers can send messages to
+* Register country-specific sender IDs
+* Meet regional compliance requirements
+
+**Delivery behavior**
+
+When the `core_send_sms` action is executed, it returns the **current delivery status** for the message. This status reflects the system's understanding of the message state after it has been sent to the carrier networks. Even when a message is reported as sent, final delivery still depends on external telecom carrier networks and the recipient device.
+
+Because SMS delivery involves multiple third-party carriers, failures may still occur due to:
+
+* Carrier filtering
+* Regional messaging restrictions
+* Unreachable devices
+* Network congestion
+* Recipient opt-outs
+
+**Common SMS error responses**
+
+* SMS service is temporarily unavailable, please try again later
+* Invalid phone number format
+* SMS cannot be sent to this region - geographic permissions not enabled
+* This recipient has opted out of receiving messages
+* SMS cannot be delivered to this number due to carrier or regional restrictions
+* This number is a landline and cannot receive SMS messages
+* The phone is currently unreachable (switched off or no signal)
+* This phone number is unknown or may no longer exist
+* This number cannot receive SMS messages (likely a landline or unsupported carrier)
+* Network congestion - please try again in a few minutes
+
+**Error scenario: Carrier or regional restrictions**
+
+This situation occurs when the destination carrier or region doesn't allow messages from the sending number.
+
+Possible causes include:
+
+* Sender ID restrictions in the destination country – Some countries limit which numbers, shortcodes, or alphanumeric sender IDs can be used.
+* Sender ID restrictions on the destination network – Certain networks may block messages from shortcodes or restrict MMS messages from longcodes that originate outside the country.
+* Alphanumeric sender IDs – If you are using an alphanumeric sender ID, the destination country must support it, and some countries may require pre-registration.
+* Number formatting – The “To” or “From” number may not be in the proper international format (E.164). Check that numbers are correctly formatted.
+* Destinations with no connectivity – Some carriers or regions may not have messaging routes available for your sending number.
+  * This error is more common when sending international messages from a US-based number. If you need to reliably reach a destination with restrictions, consider using your own messaging account via the Twilio integration, where you can configure allowed countries, local numbers, and sender IDs.
+
+**Error scenario: Messaging geo-permissions disabled**
+
+This situation occurs when an SMS or MMS message is sent to a country or region that the Rewst-managed sending number is not authorized to send messages to.
+
+Possible causes:
+
+* The destination country is not included in the allowed countries for the Rewst sending number
+* The region is not supported for SMS delivery from the Rewst-managed sending number
+* Messaging to that region is restricted by telecom regulations
+  * If you need to send messages to a country that is not supported, consider using your own Twilio account via the Twilio integration, where you can configure allowed countries and sender IDs.
+
+**Error scenario: Recipient has opted out**
+
+The recipient has opted out of receiving messages from the sending number.
+
+**Error scenario: Landline number**
+
+The destination phone number is a landline and cannot receive SMS messages.
+
+**Error scenario: Phone unreachable**
+
+The destination device cannot currently be reached. Retrying later may resolve the issue.
+
+Possible causes:
+
+* Device powered off
+* No cellular signal
+* Temporary carrier network issues
+
+**Error scenario: Unknown or unreachable numbers**
+
+The destination number may not exist, cannot receive SMS, or is otherwise unreachable due to carrier restrictions.
+
+**Error scenario: Network congestion**
+
+The carrier network is currently congested. Retrying the message later may resolve the issue.
 
 </details>
 
 <details>
 
-<summary>Debug action</summary>
+<summary>Send Mail action</summary>
 
-This action outputs a text string or rendered template to the workflow execution log. It's useful for inspecting values mid-workflow without affecting flow. Drop this in between tasks when troubleshooting to log the value of a CTX variable, e.g. `{{ CTX.user_email }}`. Remove or bypass it once you're done debugging.
+This action sends a plain or markdown-formatted email via Rewst's email infrastructure. Use it for notifications, summaries, and reports. For interactive emails where the recipient needs to make a choice, use the Confirmation Email action instead.
 
-You might want to use the Debug action in the following scenarios:
-
-* When developing workflows, to see how data is flowing between tasks and actions.
-* If you're troubleshooting an issue, to inspect the data that's being passed around.
-* When you want to log specific information for auditing or reporting purposes.
+&#x20;You can't upload images to Rewst, so any image will need to be externally referenced via URL. The file format will need to follow the guidance for your particular email client, which is independent of Rewst. For example, Outlook does not accept PNG formatted files. For broader guidance for all email clients, we recommend using this resource called [caniemail](https://www.caniemail.com/features/). Emails will still be sent from the rewst.io domain.
 
 **Parameters**
 
-* **Text:** This is a general-purpose text field that will be logged and returned by the `Debug` action.
-* **Template:** This field takes a reference to a template in your environment that will be rendered and used as part of the action's input. The system will replace any variables in the template with its actual value at the time of template rendering.
+* **Recipient**, required: The destination email address.
+* **Sender**, required: The Rewst sending address to use (options: noreply@, no-reply@, donotreply@, rewsty@, rewstybot@, response@, auto-reply@, forms@ — all @rewst.io)
+* **Subject**, required: Email subject line
+* **Title**, required: Heading displayed at the top of the email body
+* **Message**, required: Body content; can reference a saved Rewst Template
+* **Custom HTML**: Fully custom HTML for the email body; if provided, Title and Message are ignored
+* **Render Markdown**: Renders markdown syntax as HTML, with a default to true
 
 **Output**
 
-* There is no output for this action.
-* Output appears in the execution log only.
-
-**Example usage**
-
-You have a template named "Greeting Message" with content `# Hey there {{ CTX.name }}`.
-
-Use this template in the `Debug` action with the following parameters:
-
-```yaml
-text: Testing Debug Action
-template: Greeting Message
-```
-
-Assuming `CTX.name` is set to `Rewsty`, the rendered template would be `# Hey there Rewsty`.
-
-The Debug action will log these parameters and also return them as its output. The results of the action on the workflow results page would look like this:
-
-**Output:**
-
-```json
-{
-  "template": "# Hey there Rewsty",
-  "text": "Testing Debug Action"
-}
-```
-
-This tells us that `CTX.name` was set to`Rewsty`, and the text provided with this action was `Testing Debug Action`. Using this, you can better understand the state of your workflow at the point this Debug action was executed.
+* &#x20;The task doesn't yield an output upon success. It will fail if there are any errors during the process of sending the email.
 
 </details>
 
+## Core actions: Data transformation
+
 <details>
 
-<summary>DNS Query action</summary>
+<summary>Compare Strings Set Ratio action</summary>
 
-This action queries a public nameserver for DNS records associated with a given domain. It's useful for verifying domain configurations, checking MX records before email setup, or validating SPF/TXT records as part of onboarding workflows.
+This action calculates the ratio of how many words from the smaller string are found in the larger string. It's designed for measuring string similarity based on word overlap rather than character-by-character comparison. This action is particularly useful when you need to determine how similar two text strings are based on shared words, making it ideal for scenarios where exact string matching is too strict but you still need to measure content similarity. Use it for:
+
+* Fuzzy matching between text strings
+* Duplicate detection in datasets
+* Content similarity analysis
+* Partial string matching scenarios
 
 **Parameters**
 
-* **URL** _(required)_ — The domain to query (e.g. `example.com`).
-* **Field to Query** _(required)_ — The DNS record type (A, MX, TXT, CNAME, NS, SPF, etc. — full list available in the action).
-* **Nameserver** _(required)_ — Which DNS resolver to use: Google (8.8.8.8 / 8.8.4.4), Cloudflare (1.1.1.1 / 1.0.0.1), or OpenDNS (default: Google 8.8.8.8).
-* **Timeout** — Query timeout in seconds (default: 60).
+* **original\_string** (required): The original string to compare
+* **comparison\_string** (required): The comparison string that is being compared to
 
 **Output**
 
-* The specified DNS records associated with the given URL from the queried nameserver.
-
-</details>
-
-<details>
-
-<summary>Generate Password V2 action</summary>
-
-An upgrade from the deprecated password generation action. It crafts a cryptographically secure password with user-specified values. (_This is recommended for use over the deprecated Password Action due to its upgraded structure.)_
-
-* **Parameters:** length, minimum counts of numeric and capital letter characters, and optional punctuation characters.
-* **Output:** the generated password is presented under the "password" key in the output.
-
-</details>
-
-<details>
-
-<summary>HTTP Request action</summary>
-
-This action performs an HTTP request to a specified URL, supporting a variety of methods, body content types, and configurations. This is useful for interacting with APIs or other web services within a workflow, or for performing any other tasks that involve HTTP requests.
-
-{% hint style="info" %}
-_In most cases, we recommend that you use a_ [_Custom Integration_](../../integrations/custom-integrations/) _instead of this HTTP Request action. This allows for enhanced security and customization when interacting with your external APIs. The_ HTTP Request action will require building out all endpoints as individual actions/subworkflows. It is only recommended for when Custom Integration is not possible or repeatedly fails.
-{% endhint %}
-
-**Parameters**
-
-* **URL**: The URL to which the HTTP request is sent.
-* **Request Method**: The HTTP method to use for the request. You can select from the dropdown options (`HEAD`, `GET`, `POST`, `PUT`, `DELETE`, `OPTIONS`, `TRACE`, `PATCH`, `PURGE`).
-* **Auth Username**: The username for basic HTTP Authentication, if needed.
-* **Auth Password**: The password for basic HTTP Authentication, if needed. _(This parameter is secret to ensure security.)_
-* **Allow Redirects**: Specifies whether the HTTP request will follow redirects. By default, it's set to `true`.
-* **Body**: The body to send with the request. This parameter is not required if `JSON` or `Files` is provided.
-* **JSON**: The JSON body to send with the request. This field is not required if `Body` or `Files` is provided.
-* **Files**: Here, you can add files to be uploaded with the HTTP request using `multipart/form-data`. Each file requires the following information:
-  * **Field Name**: The name of the form field (not the filename).
-  * **File Name**: The name of the file.
-  * **File Contents**: Contents of the file to upload.
-  * **File URL**: A publicly-accessible URL to the file contents to upload.
-  * **Content Type**: The MIME type of the file to include in the multipart field.
-* **Cookies**: Input the cookies to send with the request. You can add more than one cookie by clicking on the `+` icon.
-* **Headers**: Specify the custom HTTP headers to be sent with the request. You can add more than one header by clicking on the `+` icon.
-* **Params**: Enter the query parameters to be used with the HTTP request. You can add more than one parameter by clicking on the `+` icon.
-* **Timeout**: Enter the timeout for the HTTP request in seconds. The default value is `5`.
-* **Require Success Status**: If you check this box, the task will fail if a non-2xx HTTP status code is returned. This is useful for identifying and handling HTTP errors during the task's execution.
-
-**Output**: The action returns the content returned by the server in response to the HTTP request. This could be a success message, a failure message, a data object, or any other content that the server sends as a response.
-
-</details>
-
-<details>
-
-<summary>Delay Workflow For Period action</summary>
-
-This action pauses the workflow for a relative duration:  a set number of days, hours, minutes, or seconds from the current moment. All four fields are additive, so you can combine them — e.g. 1 day + 4 hours. Use this when you know the duration but not the exact target time. For a specific target time, use the Delay Workflow Until Date/Time action instead.
-
-**Parameters**
-
-* **Days to Delay**: Number of days (default: 0)
-* **Hours to Delay**: Number of hours (default: 0)
-* **Minutes to Delay**: Number of minutes (default: 0)
-* **Seconds to Delay**: Number of seconds (default: 0)
-
-**Output**
-
-* There is no specific output.
-* The workflow resumes after the specified delay.
-
-</details>
-
-<details>
-
-<summary>Delay Workflow Until Date/Time action</summary>
-
-This action pauses a workflow execution at that point until a specific date and time is reached, then resumes automatically. Think of it as a "sleep until" instruction — the workflow just waits, consuming no active resources, until the clock hits the target time. If no date/time is provided, the workflow continues immediately without any delay.
-
-It's commonly used for scheduling maintenance windows, delayed user creation, cooling-off periods on escalations, or any time-separated multi-step process. There's a 30-day limit on how far into the future you can delay. Requests beyond that will fail, so validate your input if it's user-supplied. Since the workflow is just paused, not re-triggered, the full execution context is preserved when it resumes; all your `CTX` variables are still intact.
-
-**Parameters**
-
-* **Delay Until**: This is the date and time you want the workflow to resume at. It expects a datetime string in `datetime-local` format. In practice, you'll almost always want to supply this dynamically via Jinja rather than hardcoding a static value.
-*   The key is feeding the `expires_at` field a properly formatted datetime string. Here are the most common patterns:
-
-    Delay until a specific future time (e.g. tomorrow at 9am UTC):
-
-    ```
-    {{ now() | convert_from_epoch | time_delta(days=1) | format_datetime('%Y-%m-%dT09:00:00') }}
-    ```
-
-    Delay until a datetime stored in CTX (e.g. from a form input or ticket field):
-
-    ```
-    {{ CTX.scheduled_datetime }}
-    ```
-
-    Just make sure the value is already in a compatible datetime format.
-
-    Delay until a calculated time (e.g. 2 hours from now):
-
-    ```
-    {{ now() | convert_from_epoch | time_delta(hours=2) | format_datetime('%Y-%m-%dT%H:%M:%S') }}
-    ```
-
-**Output**
-
-* The action produces no output. There's nothing to publish or reference after it. Its only job is to pause and resume.
-
-</details>
-
-<details>
-
-<summary>Mock action</summary>
-
-This action returns a fake, predefined result as if a real action had run. It's used during workflow development to simulate responses from services not yet available. Drag this in place of a real action while building, configure the shape of the expected response, and build your downstream logic against it. Swap it out for the real action when ready:
-
-* When designing new workflows where certain steps are not fully implemented.
-* In testing stages, to simulate conditions without making actual calls to the services.
-* To create controlled conditions in your workflow for troubleshooting issues.
-
-**Parameters**
-
-* **Mock Result:** This parameter should contain the key / value pairs that you want to be returned by this action. You can press the `+` to add as many objects as necessary. Jinja expressions inside this object are returned as-is, not evaluated.
-
-**Output**
-
-*   The mock result object wrapped in a `data` property is returned.
-
-
-
-**Example use**
-
-You are developing a workflow that is expected to interact with a service which is not yet implemented. You know the expected format of the response, and you want to build and test your workflow logic based on that response.
-
-Let's say you know the response will look something like this:
-
-```json
-{
-  "name": "Rewsty",
-  "valid": true,
-  "message": "Successfully completed the task."
-}
-```
-
-You can simulate this response using the `Mock` action as follows:
-
-```yaml
-mock_result:
-  name: {{ CTX.name }}
-  valid: true
-  message: Successfully completed the task.
-```
-
-While using the `Mock` action, the values can be literal Jinja expressions like `{{ CTX.name }}`above. The action will return this exact input structure wrapped inside a `data` object, and the Jinja expressions will not be evaluated but returned as is. The result of the action on the workflow results page would look like:
-
-**Output:**
-
-```json
-{
-  "data": {
-    "name": "{{ CTX.name }}",
-    "valid": true,
-    "message": "Successfully completed the task."
-  }
-}
-```
-
-This can be useful for catching issues early in the development phase such as incorrect Jinja expression usage, understanding how the workflow will handle dynamic data, or verifying that your workflow is properly constructed to handle the expected responses from services. It's a way to ensure that your workflow behaves as expected when it starts receiving actual dynamic data.
-
-</details>
-
-<details>
-
-<summary>No-Operation (Noop) action</summary>
-
-A noop action does nothing. It's often used for logic or as a placeholder in the workflow. Use noops for routing logic (fan-out/fan-in), convergence points where multiple branches meet, and creating CTX variables via transition data aliases. Never use `publish_result_as` on a noop since it produces no output — use transition data aliases instead.
-
-**Parameters**
-
-None
-
-**Output**
-
-None
+* Returns an integer representing the ratio of word overlap between the two strings
+* Higher values indicate greater similarity
 
 </details>
 
@@ -727,144 +554,307 @@ The result includes all `book` tags where the `category` attribute is `children`
 
 </details>
 
+## Core actions: Execution control
+
 <details>
 
-<summary>Send Mail action</summary>
+<summary>Create Pending Task action</summary>
 
-This action sends a plain or markdown-formatted email via Rewst's email infrastructure. Use it for notifications, summaries, and reports. For interactive emails where the recipient needs to make a choice, use the Confirmation Email action instead.
+This action creates a pending task that pauses workflow execution and requires manual intervention through the Rewst UI. It's designed for scenarios where human approval, confirmation, or decision-making is needed within an automated workflow.
 
-&#x20;You can't upload images to Rewst, so any image will need to be externally referenced via URL. The file format will need to follow the guidance for your particular email client, which is independent of Rewst. For example, Outlook does not accept PNG formatted files. For broader guidance for all email clients, we recommend using this resource called [caniemail](https://www.caniemail.com/features/). Emails will still be sent from the rewst.io domain.
+**Use Cases**:
 
-**Parameters**
+* Manual approval workflows
+* User confirmation before critical actions
+* Decision points requiring human judgment
+* Interactive workflow processes
+* Quality control checkpoints
 
-* **Recipient**, required: The destination email address.
-* **Sender**, required: The Rewst sending address to use (options: noreply@, no-reply@, donotreply@, rewsty@, rewstybot@, response@, auto-reply@, forms@ — all @rewst.io)
-* **Subject**, required: Email subject line
-* **Title**, required: Heading displayed at the top of the email body
-* **Message**, required: Body content; can reference a saved Rewst Template
-* **Custom HTML**: Fully custom HTML for the email body; if provided, Title and Message are ignored
-* **Render Markdown**: Renders markdown syntax as HTML, with a default to true
+**Parameters**:
 
-**Output**
+* **message** (required): The message to display in the pending task that explains what action is needed from the user
+* **buttons** (required): An array of button objects that users can click to respond. Each button has:
+  * **label**: The text displayed on the button
+  * **style**: Visual style (`default`, `primary`, `danger`)
+  * **value**: The value returned when the button is clicked
 
-* &#x20;The task doesn't yield an output upon success. It will fail if there are any errors during the process of sending the email.
+**Output**: The workflow pauses at this task until a user interacts with it via the Rewst UI. When a button is clicked, the action returns the corresponding button value, allowing the workflow to continue based on the user's choice.
+
+This action is essential for creating interactive workflows that require human oversight or decision-making at specific points in the automation process.
 
 </details>
 
 <details>
 
-<summary>Send SMS action</summary>
+<summary>Delay Workflow For Period action</summary>
 
-This action sends a text message to a phone number via Rewst's built-in SMS capability. Use it for alerting or notification workflows where email isn't sufficient. Keep messages concise and ensure phone numbers are in the correct format for your region
+This action pauses the workflow for a relative duration:  a set number of days, hours, minutes, or seconds from the current moment. All four fields are additive, so you can combine them — e.g. 1 day + 4 hours. Use this when you know the duration but not the exact target time. For a specific target time, use the Delay Workflow Until Date/Time action instead.
 
 **Parameters**
 
-* **Phone Number**, required: The recipient's phone number
-  * All phone numbers must be provided using the E.164 international format, which includes the country code: example: `+14155552671`
-  * Improperly formatted numbers may result in validation errors or delivery failures
-* **Message**, required: The text message content. Can reference a saved Rewst Template
+* **Days to Delay**: Number of days (default: 0)
+* **Hours to Delay**: Number of hours (default: 0)
+* **Minutes to Delay**: Number of minutes (default: 0)
+* **Seconds to Delay**: Number of seconds (default: 0)
 
 **Output**
 
-* The output of this action will depend on the implementation details. Usually, it will return a confirmation message or an error message.
+* There is no specific output.
+* The workflow resumes after the specified delay.
 
-**Sending number origin**
+</details>
 
-The `core_send_sms` action sends messages from a US-based phone number owned and managed by Rewst.
+<details>
 
-Due to this setup:
+<summary>Delay Workflow Until Date/Time action</summary>
 
-* SMS delivery is most reliable for United States phone numbers
-* Some international carriers restrict or block messages originating from US long-code numbers
-* Certain countries require locally registered sender IDs or approved messaging routes
+This action pauses a workflow execution at that point until a specific date and time is reached, then resumes automatically. Think of it as a "sleep until" instruction — the workflow just waits, consuming no active resources, until the clock hits the target time. If no date/time is provided, the workflow continues immediately without any delay.
 
-These limitations are imposed by telecommunications carriers and regional messaging regulations.
+It's commonly used for scheduling maintenance windows, delayed user creation, cooling-off periods on escalations, or any time-separated multi-step process. There's a 30-day limit on how far into the future you can delay. Requests beyond that will fail, so validate your input if it's user-supplied. Since the workflow is just paused, not re-triggered, the full execution context is preserved when it resumes; all your `CTX` variables are still intact.
 
-**When to use your own messaging account**
+**Parameters**
 
-If you need to send SMS messages to a region that is not supported by the shared Rewst sending number, you can set up your own messaging account and use it through Rewst’s [Twilio integration](../../integrations/integration-guides/twilio-integration-setup.md).
+* **Delay Until**: This is the date and time you want the workflow to resume at. It expects a datetime string in `datetime-local` format. In practice, you'll almost always want to supply this dynamically via Jinja rather than hardcoding a static value.
+*   The key is feeding the `expires_at` field a properly formatted datetime string. Here are the most common patterns:
 
-Using your own account allows you to:
+    Delay until a specific future time (e.g. tomorrow at 9am UTC):
 
-* Purchase local phone numbers in supported countries
-* Configure which countries your numbers can send messages to
-* Register country-specific sender IDs
-* Meet regional compliance requirements
+    ```
+    {{ now() | convert_from_epoch | time_delta(days=1) | format_datetime('%Y-%m-%dT09:00:00') }}
+    ```
 
-**Delivery behavior**
+    Delay until a datetime stored in CTX (e.g. from a form input or ticket field):
 
-When the `core_send_sms` action is executed, it returns the **current delivery status** for the message. This status reflects the system's understanding of the message state after it has been sent to the carrier networks. Even when a message is reported as sent, final delivery still depends on external telecom carrier networks and the recipient device.
+    ```
+    {{ CTX.scheduled_datetime }}
+    ```
 
-Because SMS delivery involves multiple third-party carriers, failures may still occur due to:
+    Just make sure the value is already in a compatible datetime format.
 
-* Carrier filtering
-* Regional messaging restrictions
-* Unreachable devices
-* Network congestion
-* Recipient opt-outs
+    Delay until a calculated time (e.g. 2 hours from now):
 
-**Common SMS error responses**
+    ```
+    {{ now() | convert_from_epoch | time_delta(hours=2) | format_datetime('%Y-%m-%dT%H:%M:%S') }}
+    ```
 
-* SMS service is temporarily unavailable, please try again later
-* Invalid phone number format
-* SMS cannot be sent to this region - geographic permissions not enabled
-* This recipient has opted out of receiving messages
-* SMS cannot be delivered to this number due to carrier or regional restrictions
-* This number is a landline and cannot receive SMS messages
-* The phone is currently unreachable (switched off or no signal)
-* This phone number is unknown or may no longer exist
-* This number cannot receive SMS messages (likely a landline or unsupported carrier)
-* Network congestion - please try again in a few minutes
+**Output**
 
-**Error scenario: Carrier or regional restrictions**
+* The action produces no output. There's nothing to publish or reference after it. Its only job is to pause and resume.
 
-This situation occurs when the destination carrier or region doesn't allow messages from the sending number.
+</details>
 
-Possible causes include:
+<details>
 
-* Sender ID restrictions in the destination country – Some countries limit which numbers, shortcodes, or alphanumeric sender IDs can be used.
-* Sender ID restrictions on the destination network – Certain networks may block messages from shortcodes or restrict MMS messages from longcodes that originate outside the country.
-* Alphanumeric sender IDs – If you are using an alphanumeric sender ID, the destination country must support it, and some countries may require pre-registration.
-* Number formatting – The “To” or “From” number may not be in the proper international format (E.164). Check that numbers are correctly formatted.
-* Destinations with no connectivity – Some carriers or regions may not have messaging routes available for your sending number.
-  * This error is more common when sending international messages from a US-based number. If you need to reliably reach a destination with restrictions, consider using your own messaging account via the Twilio integration, where you can configure allowed countries, local numbers, and sender IDs.
+<summary>No-Operation (Noop) action</summary>
 
-**Error scenario: Messaging geo-permissions disabled**
+A noop action does nothing. It's often used for logic or as a placeholder in the workflow. Use noops for routing logic (fan-out/fan-in), convergence points where multiple branches meet, and creating CTX variables via transition data aliases. Never use `publish_result_as` on a noop since it produces no output — use transition data aliases instead.
 
-This situation occurs when an SMS or MMS message is sent to a country or region that the Rewst-managed sending number is not authorized to send messages to.
+**Parameters**
 
-Possible causes:
+None
 
-* The destination country is not included in the allowed countries for the Rewst sending number
-* The region is not supported for SMS delivery from the Rewst-managed sending number
-* Messaging to that region is restricted by telecom regulations
-  * If you need to send messages to a country that is not supported, consider using your own Twilio account via the Twilio integration, where you can configure allowed countries and sender IDs.
+**Output**
 
-**Error scenario: Recipient has opted out**
+None
 
-The recipient has opted out of receiving messages from the sending number.
+</details>
 
-**Error scenario: Landline number**
+<details>
 
-The destination phone number is a landline and cannot receive SMS messages.
+<summary>Fail action</summary>
 
-**Error scenario: Phone unreachable**
+This action immediately terminates the workflow in a failed state. The workflow execution stops and is marked as failed. It's the explicit, intentional counterpart to a workflow completing successfully. There is no result, so nothing can be published or referenced downstream. No further actions will run after this action is reached. If you need cleanup logic before ending, route through a noon-based cleanup path before reaching the fail action.
 
-The destination device cannot currently be reached. Retrying later may resolve the issue.
+It's commonly used for scheduling maintenance windows, delayed user creation, cooling-off periods on escalations, or any time-separated multi-step process. There's a 30-day limit on how far into the future you can delay. Requests beyond that will fail, so validate your input if it's user-supplied. Since the workflow is just paused, not re-triggered, the full execution context is preserved when it resumes; all your `CTX` variables are still intact.
 
-Possible causes:
+**Parameters**
 
-* Device powered off
-* No cellular signal
-* Temporary carrier network issues
+* **Message**: The failure message that will appear in the workflow execution log, explaining why the workflow was intentionally failed
+  * Default message is `Task manually failed`
 
-**Error scenario: Unknown or unreachable numbers**
+**Output**
 
-The destination number may not exist, cannot receive SMS, or is otherwise unreachable due to carrier restrictions.
+None
 
-**Error scenario: Network congestion**
+</details>
 
-The carrier network is currently congested. Retrying the message later may resolve the issue.
+## Core actions: HTTP and networking
+
+<details>
+
+<summary>DNS Query action</summary>
+
+This action queries a public nameserver for DNS records associated with a given domain. It's useful for verifying domain configurations, checking MX records before email setup, or validating SPF/TXT records as part of onboarding workflows.
+
+**Parameters**
+
+* **URL** _(required)_ — The domain to query (e.g. `example.com`).
+* **Field to Query** _(required)_ — The DNS record type (A, MX, TXT, CNAME, NS, SPF, etc. — full list available in the action).
+* **Nameserver** _(required)_ — Which DNS resolver to use: Google (8.8.8.8 / 8.8.4.4), Cloudflare (1.1.1.1 / 1.0.0.1), or OpenDNS (default: Google 8.8.8.8).
+* **Timeout** — Query timeout in seconds (default: 60).
+
+**Output**
+
+* The specified DNS records associated with the given URL from the queried nameserver.
+
+</details>
+
+<details>
+
+<summary>HTTP Request action</summary>
+
+This action performs an HTTP request to a specified URL, supporting a variety of methods, body content types, and configurations. This is useful for interacting with APIs or other web services within a workflow, or for performing any other tasks that involve HTTP requests.
+
+{% hint style="info" %}
+_In most cases, we recommend that you use a_ [_Custom Integration_](../../integrations/custom-integrations/) _instead of this HTTP Request action. This allows for enhanced security and customization when interacting with your external APIs. The_ HTTP Request action will require building out all endpoints as individual actions/subworkflows. It is only recommended for when Custom Integration is not possible or repeatedly fails.
+{% endhint %}
+
+**Parameters**
+
+* **URL**: The URL to which the HTTP request is sent.
+* **Request Method**: The HTTP method to use for the request. You can select from the dropdown options (`HEAD`, `GET`, `POST`, `PUT`, `DELETE`, `OPTIONS`, `TRACE`, `PATCH`, `PURGE`).
+* **Auth Username**: The username for basic HTTP Authentication, if needed.
+* **Auth Password**: The password for basic HTTP Authentication, if needed. _(This parameter is secret to ensure security.)_
+* **Allow Redirects**: Specifies whether the HTTP request will follow redirects. By default, it's set to `true`.
+* **Body**: The body to send with the request. This parameter is not required if `JSON` or `Files` is provided.
+* **JSON**: The JSON body to send with the request. This field is not required if `Body` or `Files` is provided.
+* **Files**: Here, you can add files to be uploaded with the HTTP request using `multipart/form-data`. Each file requires the following information:
+  * **Field Name**: The name of the form field (not the filename).
+  * **File Name**: The name of the file.
+  * **File Contents**: Contents of the file to upload.
+  * **File URL**: A publicly-accessible URL to the file contents to upload.
+  * **Content Type**: The MIME type of the file to include in the multipart field.
+* **Cookies**: Input the cookies to send with the request. You can add more than one cookie by clicking on the `+` icon.
+* **Headers**: Specify the custom HTTP headers to be sent with the request. You can add more than one header by clicking on the `+` icon.
+* **Params**: Enter the query parameters to be used with the HTTP request. You can add more than one parameter by clicking on the `+` icon.
+* **Timeout**: Enter the timeout for the HTTP request in seconds. The default value is `5`.
+* **Require Success Status**: If you check this box, the task will fail if a non-2xx HTTP status code is returned. This is useful for identifying and handling HTTP errors during the task's execution.
+
+**Output**: The action returns the content returned by the server in response to the HTTP request. This could be a success message, a failure message, a data object, or any other content that the server sends as a response.
+
+</details>
+
+## Core actions: Utilities
+
+<details>
+
+<summary>Debug action</summary>
+
+This action outputs a text string or rendered template to the workflow execution log. It's useful for inspecting values mid-workflow without affecting flow. Drop this in between tasks when troubleshooting to log the value of a CTX variable, e.g. `{{ CTX.user_email }}`. Remove or bypass it once you're done debugging.
+
+You might want to use the Debug action in the following scenarios:
+
+* When developing workflows, to see how data is flowing between tasks and actions.
+* If you're troubleshooting an issue, to inspect the data that's being passed around.
+* When you want to log specific information for auditing or reporting purposes.
+
+**Parameters**
+
+* **Text:** This is a general-purpose text field that will be logged and returned by the `Debug` action.
+* **Template:** This field takes a reference to a template in your environment that will be rendered and used as part of the action's input. The system will replace any variables in the template with its actual value at the time of template rendering.
+
+**Output**
+
+* There is no output for this action.
+* Output appears in the execution log only.
+
+**Example usage**
+
+You have a template named "Greeting Message" with content `# Hey there {{ CTX.name }}`.
+
+Use this template in the `Debug` action with the following parameters:
+
+```yaml
+text: Testing Debug Action
+template: Greeting Message
+```
+
+Assuming `CTX.name` is set to `Rewsty`, the rendered template would be `# Hey there Rewsty`.
+
+The Debug action will log these parameters and also return them as its output. The results of the action on the workflow results page would look like this:
+
+**Output:**
+
+```json
+{
+  "template": "# Hey there Rewsty",
+  "text": "Testing Debug Action"
+}
+```
+
+This tells us that `CTX.name` was set to`Rewsty`, and the text provided with this action was `Testing Debug Action`. Using this, you can better understand the state of your workflow at the point this Debug action was executed.
+
+</details>
+
+<details>
+
+<summary>Generate Password V2 action</summary>
+
+An upgrade from the deprecated password generation action. It crafts a cryptographically secure password with user-specified values. (_This is recommended for use over the deprecated Password Action due to its upgraded structure.)_
+
+* **Parameters:** length, minimum counts of numeric and capital letter characters, and optional punctuation characters.
+* **Output:** the generated password is presented under the "password" key in the output.
+
+</details>
+
+<details>
+
+<summary>Mock action</summary>
+
+This action returns a fake, predefined result as if a real action had run. It's used during workflow development to simulate responses from services not yet available. Drag this in place of a real action while building, configure the shape of the expected response, and build your downstream logic against it. Swap it out for the real action when ready:
+
+* When designing new workflows where certain steps are not fully implemented.
+* In testing stages, to simulate conditions without making actual calls to the services.
+* To create controlled conditions in your workflow for troubleshooting issues.
+
+**Parameters**
+
+* **Mock Result:** This parameter should contain the key / value pairs that you want to be returned by this action. You can press the `+` to add as many objects as necessary. Jinja expressions inside this object are returned as-is, not evaluated.
+
+**Output**
+
+*   The mock result object wrapped in a `data` property is returned.
+
+
+
+**Example use**
+
+You are developing a workflow that is expected to interact with a service which is not yet implemented. You know the expected format of the response, and you want to build and test your workflow logic based on that response.
+
+Let's say you know the response will look something like this:
+
+```json
+{
+  "name": "Rewsty",
+  "valid": true,
+  "message": "Successfully completed the task."
+}
+```
+
+You can simulate this response using the `Mock` action as follows:
+
+```yaml
+mock_result:
+  name: {{ CTX.name }}
+  valid: true
+  message: Successfully completed the task.
+```
+
+While using the `Mock` action, the values can be literal Jinja expressions like `{{ CTX.name }}`above. The action will return this exact input structure wrapped inside a `data` object, and the Jinja expressions will not be evaluated but returned as is. The result of the action on the workflow results page would look like:
+
+**Output:**
+
+```json
+{
+  "data": {
+    "name": "{{ CTX.name }}",
+    "valid": true,
+    "message": "Successfully completed the task."
+  }
+}
+```
+
+This can be useful for catching issues early in the development phase such as incorrect Jinja expression usage, understanding how the workflow will handle dynamic data, or verifying that your workflow is properly constructed to handle the expected responses from services. It's a way to ensure that your workflow behaves as expected when it starts receiving actual dynamic data.
 
 </details>
 
@@ -960,5 +950,46 @@ This action generates a new universally unique identifier (UUID).  Use `publish_
 **Output**
 
 * The generated UUID is returned as a string.
+
+</details>
+
+## Core actions: Webhooks
+
+<details>
+
+<summary>Await Webhook Request action</summary>
+
+This action pauses the workflow and waits for an incoming HTTP request to a previously created one-off webhook. Once a request arrives, the workflow resumes with the request data available. Always pair this with the Create Webhook acgtion. Create the webhook first, publish its `webhook_id` to CTX, then feed `{{ CTX.webhook_id }}` into this action downstream. To access the results of a webhook, publish a [data alias](../workflows/data-aliases.md) with a value of `{/{ RESULT }/}.` You cannot merely publish the results as or use task.
+
+**Parameters**
+
+* **Webhook ID**: The ID returned by the Create Webhook action, this tells the workflow which webhook to listen on.
+
+**Output**
+
+* The output includes the HTTP method, query params, headers, JSON or form/multipart data in the body of the request, and the timestamp when the request was received.
+
+
+
+</details>
+
+<details>
+
+<summary>Create Webhook action</summary>
+
+This action creates a temporary, one-off webhook URL that can receive a single HTTP request. It's always used in tandem with the Await Webhook Request action.
+
+**Parameters**
+
+* **Expiration Timeout** — How many seconds the webhook stays active before it stops accepting requests (default: 600 seconds / 10 minutes).
+* **Response Body** _(required)_ — What the webhook sends back to the caller. You can use `{{ REQUEST }}` here to echo back request data.
+* **Allowed Methods** _(required)_ — Which HTTP methods the webhook will accept (default: POST).
+* **Response Status** _(required)_ — The HTTP status code returned to the caller (default: 200).
+* **Response Headers** _(required)_ — HTTP headers included in the response (default: `{}`).
+
+**Output**
+
+* The output of this action is the webhook ID and the full URL of the webhook.
+* Create the webhook, publish `webhook_id` and `url` to CTX, send the URL to whatever external system needs to call back, then use Await Webhook Request to pause and listen.
 
 </details>
