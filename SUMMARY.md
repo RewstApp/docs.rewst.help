@@ -369,7 +369,7 @@
     * [ImmyBot integration](documentation/integrations/integration-guides/immybot-integration-setup.md)
     * [Ingram Micro integration](documentation/integrations/integration-guides/ingram-micro-integration-setup.md)
     * [IT Glue integration](documentation/integrations/integration-guides/it-glue-integration-setup.md)
-    * [ITPortal integration](documentation/integrations/integration-guides/it-portal-integration-setup.md)
+    * [IT Portal integration](documentation/integrations/integration-guides/it-portal-integration-setup.md)
     * [Jira integration](documentation/integrations/integration-guides/jira-integration-setup.md)
     * [JumpCloud integration](documentation/integrations/integration-guides/jumpcloud-integration-setup.md)
     * [Kaseya BMS integration](documentation/integrations/integration-guides/kaseya-bms-integration-setup.md)

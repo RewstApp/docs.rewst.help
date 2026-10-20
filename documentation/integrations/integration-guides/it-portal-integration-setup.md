@@ -1,18 +1,28 @@
-# ITPortal integration
+# IT Portal integration
 
 {% hint style="info" %}
 If you’re new to integrations in Rewst, read through our introductory integration documentation [here](https://docs.rewst.help/documentation/integrations).
 {% endhint %}
 
-## What does the ITPortal integration do?
+## What does the IT Portal integration do?
 
-Our ITPortal integration enables you to seamlessly update documentation.
+Our IT Portal integration allows your Rewst workflows to read from and write to IT Portal automatically, so your documentation stays up to date without manual effort. The key action categories available include:
 
-## Set up the ITPortal integration
+* Accounts - List, create, get, and update portal accounts
+* Companies - Create and manage company records
+* Contacts - List, create, and manage contact records
+* Documents - Create, retrieve, update, and delete documents
+* Facilities - Manage facility records
+* IP Networks - Create and manage IP network documentation
+* Knowledge Base - Create and manage KB articles
+* Interactions - Manage interaction records
+* Generic Request - Make any authenticated API call to ITPortal for anything not covered by a dedicated action
 
-### Set up steps in ITPortal
+## Set up the IT Portal integration
 
-1. Log in to ITPortal with your credentials.
+### Set up steps in IT Portal
+
+1. Log in to IT Portal with your credentials.
 2. Navigate to **Profile (name) > Admin Settings**.
 3. Click **Generate API Key** under the **Security** section.
 4. Select the option to **Generate API Key** under the **Security** section.
@@ -29,17 +39,15 @@ Our ITPortal integration enables you to seamlessly update documentation.
 ### Set up steps in Rewst
 
 1. Navigate to **Marketplace > Integrations** in the left side menu of your Rewst platform.
-2. Search for `ITPortal` in the integrations page.\
+2. Search for `IT Portal` in the integrations page.\
    \
    ![](<../../../.gitbook/assets/Screenshot 2025-05-02 at 11.45.36 AM.png>)
 3. Click on the integration tile to launch the configuration setup page.
 4. Under **Parameters**:
-   1. Enter the key copied from ITPortal into the **API Key** field
-   2. Enter the **Base URL** from your ITPortal environment - e.g. demo.itportal.com
+   1. Enter the key copied from IT Portal into the **API Key** field
+   2. Enter the **Base URL** from your IT Portal environment - e.g. demo.itportal.com
 5. Click **Save Configuration**.
 6. Rewst will do a quick validation of your input. Once completed, you'll see a new section beneath the configuration form for[ organization mapping](https://docs.rewst.help/documentation/integrations#what-is-organization-mapping). Complete your mapping as desired.
-
-<figure><img src="../../../.gitbook/assets/step8.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="success" %}
 Got an idea for a new Integration? Rewst is constantly adding new integrations to our integrations page. Submit your idea or upvote existing ideas here in our [Canny feedback collector](https://rewst.canny.io/integrations).
