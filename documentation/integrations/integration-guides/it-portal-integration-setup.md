@@ -23,18 +23,14 @@ Our IT Portal integration allows your Rewst workflows to read from and write to 
 ### Set up steps in IT Portal
 
 1. Log in to IT Portal with your credentials.
-2. Navigate to **Profile (name) > Admin Settings**.
-3. Click **Generate API Key** under the **Security** section.
-4. Select the option to **Generate API Key** under the **Security** section.
+2. Navigate to **Profile (name) > Admin Settings > API Keys**.
+3. Click **Create API 2. x Key**. Don't click to create a 3.0 key, as this won't work with Rewst's integration.
+4. Toggle the option **Allow to create same name objects** to off.
+5. Enter a description for the API key. We recommend `REWST`.
+6. Click **Create**.
+7.  Copy the new API key and store it somewhere secure. Once you leave this screen you won't be able to view the key again. You'll need this information for further steps in Rewst.
 
-<figure><img src="../../../.gitbook/assets/step4-5.png" alt=""><figcaption></figcaption></figure>
-
-5. Enter a description for the API key. We recommend REWST.
-6. Toggle the option **Allow to create same name objects** to off.
-7. Click **Generate API Key**.
-8.  Copy the new API key and store it somewhere secure. Once you leave this screen you won't be able to view the key again. You'll need this information for further steps in Rewst.
-
-    <figure><img src="../../../.gitbook/assets/Step6.png" alt=""><figcaption></figcaption></figure>
+    <img src="https://docs.rewst.help/~gitbook/image?url=https%3A%2F%2F3039672601-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252Fh0G0em3PH6aDfPoI5XpN%252Fuploads%252Fk2OwZ48iznrZIlPW4yUM%252FScreenshot%25202026-10-21%2520at%252011.27.15%25E2%2580%25AFAM.png%3Falt%3Dmedia%26token%3Db7a136ff-f6a7-4b21-b1ad-a10f9d8ba7b0&#x26;width=768&#x26;dpr=3&#x26;quality=100&#x26;sign=2e6b2dcb27d88f7705f8b56b2a9434c4&#x26;sv=3" alt="" height="653" width="1500">
 
 ### Set up steps in Rewst
 
@@ -44,8 +40,8 @@ Our IT Portal integration allows your Rewst workflows to read from and write to 
    ![](<../../../.gitbook/assets/Screenshot 2025-05-02 at 11.45.36 AM.png>)
 3. Click on the integration tile to launch the configuration setup page.
 4. Under **Parameters**:
-   1. Enter the key copied from IT Portal into the **API Key** field
-   2. Enter the **Base URL** from your IT Portal environment - e.g. demo.itportal.com
+   1. Enter the key copied from IT Portal into the **API Key** field.
+   2. Enter the **Base URL** from your IT Portal environment - e.g. `demo.itportal.com` .
 5. Click **Save Configuration**.
 6. Rewst will do a quick validation of your input. Once completed, you'll see a new section beneath the configuration form for[ organization mapping](https://docs.rewst.help/documentation/integrations#what-is-organization-mapping). Complete your mapping as desired.
 
