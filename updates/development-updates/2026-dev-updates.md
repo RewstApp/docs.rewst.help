@@ -12,6 +12,57 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-23" %}
+## 💻 October 23, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* Granular permissions beta
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **Integrations**
+  * Fixed an issue that prevented the NinjaOne Add Comment to Ticket action from successfully posting comments.
+  * Fixed an issue where custom integrations ignored configured pagination settings, preventing organization mapping from loading options correctly.
+  * Fixed an issue that prevented Microsoft Cloud Bundle authorization after switching between an owned app registration and the Rewst Cloud Connector.
+  * Improved HubSpot integration reliability by addressing webhook concurrency limits that prevented workflow triggers from firing.
+  * Fixed a permissions issue that prevented Microsoft 365 password resets during user offboarding workflows.
+* **Workflows**
+  * Fixed an issue that prevented saving or publishing workflows after reverting to a previous version.
+  * Fixed an issue that prevented workflows from running when testing with a trigger in the Workflow Builder.
+  * Improved Redis memory management to prevent recurring memory spikes and reduce the risk of workflow execution failures.
+  * Improved workflow reliability by limiting delays caused by Jinja rendering timeouts and enhancing error logging.
+  * Fixed an issue where subworkflows could become stuck and fail to execute after a previous execution was cancelled.
+  * Improved workflow reliability by retrying temporary authorization errors that caused subworkflows to fail intermittently.
+* **Crates**
+  * Document M365 Environment
+    * Upsert Flexible Asset: skip contact lookup when no email; fix continuation to not wait on inactive path
+  * Microsoft: User Onboarding
+    * Align Company variable across standard/copy paths; consistently use CTX.company and preserve form-supplied Company
+    * Add Copilot EDU to Pax8 license lookup so purchases match
+    * Rebuild Leader Cloud license purchase on v3 Reseller API with cleanup/timeout; fix List Subscriptions options
+  * Just-In-Time Admin Access
+    * Fix false error on "no existing account" check; mark successful and email only on real failures
+  * Microsoft: User Offboarding
+    * Use provided domain controller for on-prem steps (fallback to default) instead of always using default
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* Bring your own AI key for RoboRewsty
+
+</details>
+{% endupdate %}
+
 {% update date="2026-10-16" %}
 ## 💻 October 16, 2026 - Dev update
 

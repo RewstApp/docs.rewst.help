@@ -11,6 +11,13 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-23" %}
+## ✍️ October 23, 2026 - Recently updated documentation
+
+* Reorganization of our documentation for Core and Rewst actions, to match the new categorization of actions in the Workflow Builder action library
+* [Updated documentation for setting up our IT Portal integration to match UI changes in their app](../documentation/integrations/integration-guides/it-portal-integration-setup.md)
+{% endupdate %}
+
 {% update date="2026-10-16" %}
 ## ✍️ October 16, 2026 - Recently updated documentation
 
