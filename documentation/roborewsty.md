@@ -370,6 +370,57 @@ RoboRewsty has a 60,000 character limit on how much can be pasted into a single 
 
 <figure><img src="../.gitbook/assets/Screenshot 2026-07-29 at 5.10.38 PM.jpg" alt=""><figcaption></figcaption></figure>
 
+## RoboRewsty monthly allowance and Anthropic API key add-on
+
+{% hint style="info" %}
+This feature will go live in Rewst Classic on November 2, 2026. We encourage users who want to set up their own additional allowance via Anthropic to complete Claude setup steps now. Once the feature is released, your usage will automatically switch over to use your Anthropic account via Claude API Key if you have set up the key and you met your monthly allowance amount.
+
+Note that this feature does not work with any other AI provider. To use RoboRewsty once you have used your monthly allowance, you must be a user of Anthropic's Claude.
+{% endhint %}
+
+As of November 2026, every Rewst Classic account includes a monthly RoboRewsty allowance based on its agreement. Rewst Admins can view the allowance for the current month. To do so, navigate to **Settings > RoboRewsty Usage**.&#x20;
+
+Customers who use up their allowance and need more RoboRewsty usage can connect their own Anthropic account via API key, and RoboRewsty will keep working via that AI tool. To do this, you'll need to set up your own Anthropic account in your personal Claude Console. That usage is billed by Anthropic, not Rewst. RoboRewsty spend on your own key is yours to manage, with limits set in the Claude Console via **Settings > Billing**.&#x20;
+
+{% hint style="info" %}
+Remember, Rewst chooses the model that RoboRewsty uses. Customers can't decide this, even if their usage is powered by their own Anthropic license.&#x20;
+{% endhint %}
+
+### Set up the key
+
+#### In Claude Console:
+
+Follow directions from Anthropic [here](https://platform.claude.com/docs/en/get-api-key) to generate and copy your API key.
+
+#### In Rewst:
+
+1. Navigate to **Settings > RoboRewsty Usage**.&#x20;
+2. Paste your API key copied from Claude into the field.
+3. Toggle **Use this key for RoboRewsty** to on.
+4. Click **Save**.&#x20;
+5.  Rewst will check the key with Anthropic after you save. It will show a check status of either:
+
+    * Valid - They key is good and can be used.
+    * Invalid - They key is incorrect and must be replaced with a new, valid key.
+    * Not verified - Anthropic couldn't be reached, and they key stays unused until it's re-entered.
+
+    After saving, the key can't be viewed again; only its last four characters are visible.&#x20;
+6. Toggle **Use this key for RoboRewsty** off to stop the key from being used without removing it completely from Rewst.
+
+<figure><img src="../.gitbook/assets/Screenshot 2026-10-26 at 12.25.55 PM.png" alt=""><figcaption></figcaption></figure>
+
+### Allowance and key specifics
+
+* One shared allowance is granted per Rewst customer account. This amount covers both the MSP's top, parent-level org and all of its child orgs. It will reset on the 1st of each month (UTC) and doesn't roll over. Note that for our the month of our feature rollout, usage calculations beginning Nov 1 will count toward November.
+  * A child org can be connected with its own key.
+  * A child org without a valid, enabled key will use the nearest parent org's key. An Invalid, Not verified or switched-off key will be skipped.&#x20;
+  * The key is chosen from the user's own home org, not the org they're working in. Therefore, an MSP technician working inside a client org will use the MSP's key, not the client's.&#x20;
+  * A child org's own key will only kick in after the shared allowance is used up. It won't give that child org a separate allowance.
+* When 80% of your allowance has been used, Rewst Admins will get a one-time notification message in their RoboRewsty chat.
+* If the allowance is used and an API key is connected, RoboRewsty will switch to using Claude via your key connection, with no interruption.
+* If the allowance is used and no API key is connected, RoboRewsty will pause and be unavailable until the reset date. Messages will be kept as Not sent with a Send again button. Rewst Admins will see a **Connect AI provider** option in the chat.
+* Only Anthropic keys are supported. Rewst picks the model (currently Sonnet 4.6 and Haiku 4.5).
+
 ## Submit your feedback
 
 RoboRewsty pulls from this documentation site to provide answers. The more content we add to our documentation, the more refined RoboRewsty's answers will be. If you're not satisfied with his response to a specific question, let us know so we can improve it! After each response, you'll have the option to give RoboRewsty’s answer a quick thumbs up 👍 or down👎. If you choose thumbs down 👎, a **Tell us why** text box appears to collect more detailed feedback.
