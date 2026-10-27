@@ -74,6 +74,8 @@ iex $commands
     <figure><img src="../../../.gitbook/assets/image (37) (1).png" alt=""><figcaption></figcaption></figure>
 5. Click **Save Configuration**. This saving is necessary to ensure that there is no error in the next step.
 6. Authorize OAuth into NinjaOne, via Microsoft. You should see your customer show up at the bottom. You may need to click **Refresh Options** for customers to populate.
+   1. Rewst connects to NinjaOne with the permissions of the NinjaOne user who completes the authorization.&#x20;
+   2. If your own internal or infrastructure organization is managed in NinjaOne, we recommend creating a dedicated NinjaOne user with access only to the client organizations Rewst should manage, and signing in as that user when you authorize. This keeps automations such as onboarding from being run against your internal organization. Consider also removing that user’s permission to create technicians.
 7. Click **Save Configuration** again.
 8. Rewst will do a quick validation of your input. Once completed, you'll see a new section beneath the configuration form for[ organization mapping](https://docs.rewst.help/documentation/integrations#what-is-organization-mapping). Complete your mapping as desired.
 
