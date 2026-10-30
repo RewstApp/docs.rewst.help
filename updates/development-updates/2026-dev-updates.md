@@ -12,6 +12,55 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-29" %}
+## 💻 October 30, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* **General**
+  * Updated timezone data to ensure scheduled triggers and timezone conversions remained accurate for Canadian regions that adopted permanent daylight saving time.
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **App Builder**
+  * Improved error messaging in App Builder to clearly inform users when they don't have permission to access a published app.
+* **Forms**
+  * Fixed an issue where forms failed to load for MSPs managing large numbers of organizations, preventing users from triggering workflows.
+* **Integrations**
+  * Fixed an issue where switching Microsoft Cloud Bundle app registration types could prevent successful authorization due to outdated cached settings.
+  * Fixed an issue where the IT Glue bulk update action failed to update existing flexible assets when using Raw JSON request bodies.
+* **RoboRewsty**
+  * Added a loading indicator when opening RoboRewsty conversations and improved handling of conversations that no longer exist.
+* **Crates**
+  * [Microsoft: User Onboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-onboarding-crate-v2/)
+    * Fixed group dropdown pre-selecting all groups with the same name; now only selects groups the copied user is in&#x20;
+    * Will now handle group names starting with $ literally instead of as PowerShell variables; users are added correctly&#x20;
+    * Improved CSP subscription matching: prefer closest name, then seat count; avoids choosing "(no Teams)" variants on ties
+  * [Microsoft: User Offboarding](../../documentation/crates/existing-crate-documentation/microsoft-user-offboarding-crate.md)
+    * License removal no longer fails due to add-on dependencies; removes all licenses in one request and stops retry loops&#x20;
+    * Exchange actions step now fails appropriately when no results are returned rather than reporting success&#x20;
+  * [Rotate Local Workstation Passwords](../../documentation/crates/existing-crate-documentation/rotate-local-workstation-passwords-crate.md)
+    * Corrected device-to-IT Glue/Hudu record matching when MAC is text; each device maps only to its own record
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* Bring your own AI key for RoboRewsty
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-10-23" %}
 ## 💻 October 23, 2026 - Dev update
 

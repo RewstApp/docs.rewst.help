@@ -11,6 +11,14 @@ To subscribe to this feed, click **RSS feed** in the top right corner of the pag
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-10-29" %}
+## ✍️ October 30, 2026 - Recently updated documentation
+
+* [Updated documentation on Jinja filters](../documentation/jinja/list-of-jinja-filters.md)
+* [Documentation on our upcoming feature to bring your own Claude tool for use with RoboRewsty](../documentation/roborewsty.md#roborewsty-monthly-allowance-and-anthropic-api-key-add-on)
+* [Updated instructions for how to set up our NinjaOne integration](../documentation/integrations/integration-guides/ninjaone-integration-setup.md)
+{% endupdate %}
+
 {% update date="2026-10-23" %}
 ## ✍️ October 23, 2026 - Recently updated documentation
 
