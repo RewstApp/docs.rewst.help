@@ -373,8 +373,6 @@ RoboRewsty has a 60,000 character limit on how much can be pasted into a single 
 ## RoboRewsty monthly allowance and Anthropic API key add-on
 
 {% hint style="info" %}
-This feature will go live in Rewst Classic on November 2, 2026. We encourage users who want to set up their own additional allowance via Anthropic to complete Claude setup steps now. Once the feature is released, your usage will automatically switch over to use your Anthropic account via Claude API Key if you have set up the key and you met your monthly allowance amount.
-
 Note that this feature does not work with any other AI provider. To use RoboRewsty once you have used your monthly allowance, you must be a user of Anthropic's Claude.
 {% endhint %}
 
