@@ -94,11 +94,13 @@ To complete all the needed script setup steps in N-able N-central, you'll need t
 | app.rewst.eu     | engine.rewst.eu     |
 | app.rewst.asia   | engine.rewst.asia   |
 
-{% file src="../../../.gitbook/assets/run-nable-powershell.ps1" %}
-
 {% hint style="info" %}
 The org variable is only currently required as there is no way to search for a script with the existing API endpoints.
 {% endhint %}
+
+{% file src="../../../.gitbook/assets/run-nable-powershell.ps1 (1).zip" %}
+
+
 
 ## Use custom PowerShell scripts with your RMM integration
 
