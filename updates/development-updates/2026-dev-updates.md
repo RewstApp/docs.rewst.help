@@ -19,7 +19,7 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 
 <summary><strong>New features and items</strong></summary>
 
-* We've updated the setup and settings flow for our Microsoft Cloud Integration bundle to offer greater visibility into permissions. This includes a new feature for Custom Profiles, which can be applied to individual child organizations.
+
 
 </details>
 
