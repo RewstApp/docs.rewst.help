@@ -27,14 +27,8 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 
 <summary><strong>Bug fixes and chores</strong></summary>
 
-* **App Builder**
-  *
-* **Forms**
-  *
-* **Integrations**
-  *
-* **RoboRewsty**
-  *
+
+
 * **Crates**
   * [Agent Smith: Track Agent Inventory in Azure Tables](../../documentation/crates/existing-crate-documentation/agent-smith-track-agent-inventory-in-azure-tables-crate.md)
     * `compile_software_updates` and `compile_service_updates` now skip rows missing Name/ServiceName instead of failing&#x20;
