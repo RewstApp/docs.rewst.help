@@ -12,6 +12,50 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-11-06" %}
+## 💻 November 6, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+* We've updated the setup and settings flow for our Microsoft Cloud Integration bundle to offer greater visibility into permissions. This includes a new feature for Custom Profiles, which can be applied to individual child organizations.
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **App Builder**
+  *
+* **Forms**
+  *
+* **Integrations**
+  *
+* **RoboRewsty**
+  *
+* **Crates**
+  * [Agent Smith: Track Agent Inventory in Azure Tables](../../documentation/crates/existing-crate-documentation/agent-smith-track-agent-inventory-in-azure-tables-crate.md)
+    * `compile_software_updates` and `compile_service_updates` now skip rows missing Name/ServiceName instead of failing&#x20;
+    * Service-shaped rows in installed software are deleted on the device's next check-in&#x20;
+    * Minor: 4-line Jinja change; no renames or other task changes&#x20;
+  * [Rewst's AI PSA Analyzer](../../documentation/crates/existing-crate-documentation/rewsts-ai-psa-analyzer-crate.md)
+    * Updated HaloPSA types to use category IDs instead of category names&#x20;
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+*
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-10-29" %}
 ## 💻 October 30, 2026 - Dev update
 
