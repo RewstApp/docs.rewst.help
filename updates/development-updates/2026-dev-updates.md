@@ -19,7 +19,7 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 
 <summary><strong>New features and items</strong></summary>
 
-
+Check back next week!
 
 </details>
 
@@ -27,8 +27,14 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 
 <summary><strong>Bug fixes and chores</strong></summary>
 
-
-
+* **Integrations**
+  * Updated [Leader Cloud](../../documentation/integrations/integration-guides/leader-cloud-integration.md) actions to use Leader’s v3 API and added an Execute Order action
+* **RoboRewsty**
+  * Fixed an issue where RoboRewsty could not pass a list to an array input on a subworkflow, which caused the child workflow to receive a nested list
+* **Workflows**
+  * Fixed an issue where a scheduled cron trigger could skip a run if a temporary platform error occurred at its scheduled time
+  * Fixed an issue where a cleanup task set to run on failure did not run if a preceding transition condition timed out
+  * Fixed an issue where the Results page could stop updating during a run, so progress only appeared after a refresh
 * **Crates**
   * [Agent Smith: Track Agent Inventory in Azure Tables](../../documentation/crates/existing-crate-documentation/agent-smith-track-agent-inventory-in-azure-tables-crate.md)
     * `compile_software_updates` and `compile_service_updates` now skip rows missing Name/ServiceName instead of failing&#x20;
