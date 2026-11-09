@@ -106,3 +106,91 @@ new runs of that workflow pick up the change.
   it does not provide full tenant isolation. Because it dramatically reduces database\
   reads and writes and the locking and blocking that came with them, it's far more resilient than\
   the old engine and reduces the noisy neighbor class of problems.
+
+## November 2026 workflow execution beta
+
+{% hint style="info" %}
+The updated Results page is currently in beta and only viewable for users who particpate in our Engine Next upgrade beta.&#x20;
+{% endhint %}
+
+The Results page acts as the record of all your automations. Every time a workflow runs in your organization — whether it was triggered automatically, by a form submission, or manually — a record of that run appears here. It's where you go to see what happened, what succeeded, what failed, and why.
+
+{% hint style="success" %}
+If you want to see results for just one specific workflow rather than everything, the best path is to navigate to [**Automations > Workflows**](automations/workflows/#view-specific-workflow-results), find the workflow you need, and click the results icon on that row. This will take you to a filtered view showing only that workflow's history.
+{% endhint %}
+
+Each row in the results list represents one workflow executio&#x6E;**,** a single run of a single workflow. It contains the following information:
+
+* Status - Color-coded message
+  * Succeeded - Everything ran as expected, no issues
+  * Failed - Something went wrong during the run, and it should be investigated
+  * Running - The workflow is still in progress right now
+  * Cancelled - The execution was stopped before it finished
+* Workflow name - Which automation ran
+* Organization - Which org the workflow ran for
+* Engine - Which engine was used to run the workflow, Rewst's legacy engine or newer Temporal engine
+* Successful tasks - The number of actions in the workflow that executed successfully, even if the entire run failed
+* Started - The date and time that the execution began
+* Finished - The date and time that the execution finished
+* Duration - The total amount of time for the execution
+* Time saved - Rewst tracks estimated time saved per execution
+* Click **⋮** to the right of any row to expose options to copy the result link or delete the result.&#x20;
+* Click ![](<../.gitbook/assets/Screenshot 2026-11-03 at 4.42.44 PM.png>) to see other executions of that workflow.&#x20;
+* Click **>** to view the Execution Detail page for that workflow.&#x20;
+
+## **Filter results**
+
+Click on any of the statuses at the top of the list to filter results down to just that type of status. Click **All** to reset previous filtering selections and display the entire available list.
+
+<figure><img src="../.gitbook/assets/Screenshot 2026-11-03 at 4.44.38 PM.png" alt=""><figcaption></figcaption></figure>
+
+Use the filter drop-down selectors at the top of the list to filter results by date range up to 30 days previous and within your time zone, or by failure type. Enter a workflow name into the **Search by workflow name** bar to narrow down your list to specific characters.&#x20;
+
+<figure><img src="../.gitbook/assets/Screenshot 2026-11-03 at 4.40.52 PM.png" alt=""><figcaption></figcaption></figure>
+
+Toggle **Include sub-orgs** and **Include sub-workflows** on or off to filter out child organizations or subworkflows from your total results list.
+
+<figure><img src="../.gitbook/assets/Screenshot 2026-11-03 at 4.40.42 PM.png" alt=""><figcaption></figcaption></figure>
+
+## Execution detail view
+
+Click **>** on any row to open that run's Execution Detail page. You'll see a step-by-step log of every action the workflow took, in order. If something failed, the failed step will be highlighted, and you can click on it to see the error message. This is the information you'd share with Rewst support if you needed help. Copy the URL from your browser while viewing an execution and paste it directly into a support ticket.
+
+* Click **Other Runs** to view all other available execution results for that workflow.
+* Click **Visualize** to launch the execution in the Workflow Builder Canvas and display the run visually.
+* Click **Analyze** to open RoboRewsty and have him analyze and give feedback on your execution results.
+* Click **Re-Run** to manually push an immediate run of the workflow.
+* Click **⋮** to expose clickable options to **Copy results link** and **Copy workflow link**.&#x20;
+*   When the run contains at least one failure, that failure is listed in the failures panel. Click on each failure to expand and view its information. The panel contains a breakdown for child workflow, each linking to its own error.\
+    <br>
+
+    <figure><img src="../.gitbook/assets/image (105).png" alt="" width="375"><figcaption></figcaption></figure>
+* A banner will display across the page when a run repeatedly fails in a way it may not recover from on its own.
+
+#### How to read a failed execution
+
+* At the top of the execution page, note the summary header. It shows which workflow ran, what its status is, when it ran, and how many tasks succeeded. The progress bar beneath the numbers displays the waiting time, for inquiry or delay, versus working execution time for the run.
+
+<figure><img src="../.gitbook/assets/image (104).png" alt="" width="375"><figcaption></figcaption></figure>
+
+*   The Task outcomes and Successful Tasks tiles display the breakdown of what happened to all tasks in the workflow.<br>
+
+    <figure><img src="../.gitbook/assets/Screenshot 2026-11-03 at 5.09.39 PM.png" alt=""><figcaption></figcaption></figure>
+* The most important thing to look at when an execution fails is the Errors section. This is the plain-English explanation of what went wrong. Ask RoboRewsty for help decoding your error message.
+
+<figure><img src="../.gitbook/assets/Screenshot 2026-11-03 at 4.21.25 PM.png" alt=""><figcaption></figcaption></figure>
+
+* Click on any task to open its expanded detailed result.
+  * The Input section holds the data that was sent into the task when it was triggered. The input is useful for troubleshooting because it tells you exactly what data the workflow received, so you can verify it was triggered correctly even if the workflow itself failed.
+  * The Result section shows what the action produced as a result.&#x20;
+
+{% hint style="success" %}
+When you land on a failed execution, always read it in this order: \
+1\. Errors first \
+2\. Input \
+3\. The task list to determine which step failed.
+{% endhint %}
+
+## Delete results
+
+You can delete individual execution records from this page. Note that deletion is permanent. The record will be gone from your view, though Rewst's backend keeps it in database backups for a short retention window. Deleting a result doesn't affect your time saved stats, which are tracked separately.
