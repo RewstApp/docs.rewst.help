@@ -61,14 +61,15 @@ Limit: The account creation date cannot be more than 30 days in the future. A re
 
 ### **How it works**
 
-1. Set `user_start_date_action` to `pause_workflow` in Configuration > Organizational Variables.
-2. On the onboarding form, under Customize Advanced Options > Advanced - Delayed Creation, check **Enable Delay User Creation**.
-3. Set the **Account Creation Date**, **Account Creation Time**, and **Timezone**.
-4. On submission the workflow computes the correct UTC instant from those three fields, pauses until that time, then resumes and creates the user. If no timezone is selected, UTC is assumed.
+1. Navigate to Configuration > Organizational Variables in the left side menu of your Rewst platform.
+2. Set the org variable  `user_start_date_action` to `pause_workflow` .
+3. On the onboarding form unpacked with the Crate, locate the section **Customize Advanced Options.** Check **Enable Delay User Creation** under Advanced - Delayed Creation.
+4. Set the **Account Creation Date**, **Account Creation Time**, and **Timezone**.
+5. On submission, the workflow computes the correct UTC instant from those three fields, pauses until that time, then resumes and creates the user. If no timezone is selected, UTC is assumed.
 
 ### **Enable the feature**
 
-Delayed creation is controlled by the organizational variable `user_start_date_action`:
+Delayed creation is controlled by the organizational variable `user_start_date_action` . There are two possible values for the org variable:
 
 | Value                     | Behavior                                                        |
 | ------------------------- | --------------------------------------------------------------- |
@@ -101,11 +102,11 @@ The Crate includes flexible password handling options based on security policies
 
 | **Setting**                                | **Description**                                                  | **Default value** |
 | ------------------------------------------ | ---------------------------------------------------------------- | ----------------- |
-| **Require Password Change on First Login** | Forces the user to reset their password at first login.          | ✅ Enabled         |
-| **Restrict User from Changing Password**   | Prevents users from modifying their own passwords.               | ❌ Disabled        |
-| **Set Password to Never Expire**           | Ensures the user’s password does not require renewal.            | ❌ Disabled        |
-| **Auto-Store Password in Documentation**   | Saves the password securely in external documentation platforms. | ✅ Enabled         |
-| **Send Password via SMS or Email**         | Sends credentials to the manager via email or SMS.               | ✅ Enabled         |
+| **Require Password Change on First Login** | Forces the user to reset their password at first login.          | Enabled           |
+| **Restrict User from Changing Password**   | Prevents users from modifying their own passwords.               | Disabled          |
+| **Set Password to Never Expire**           | Ensures the user’s password does not require renewal.            | Disabled          |
+| **Auto-Store Password in Documentation**   | Saves the password securely in external documentation platforms. | Enabled           |
+| **Send Password via SMS or Email**         | Sends credentials to the manager via email or SMS.               | Enabled           |
 
 </details>
 
@@ -182,6 +183,8 @@ Expand each of the steps below to see the related part of the process flow.
     >
     > \*\*`Reject License Purchase:** **Link**`
 * The workflow pauses execution until one of these actions is taken.
+* Note that links expire in 24 hours.
+* The ticket will be moved to the Waiting for Input status while it waits for a decision.
 
 </details>
 
@@ -222,14 +225,6 @@ The technician has two options:
 
 </details>
 
-## **Workflow breakdown**
-
-| Add PSA Note                         | Adds a note to the PSA ticket requesting manual license purchase confirmation. | Technician receives instructions to confirm or reject the purchase.                       |
-| ------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Technician Confirms License Purchase | Clicks **Confirm License Purchase** link.                                      | The workflow assigns the license and proceeds with onboarding.                            |
-| Technician Rejects License Purchase  | Clicks **Reject License Purchase** link.                                       | The workflow proceeds **without assigning a license**, requiring manual assignment later. |
-| Technician Takes No Action           | No response within **24 hours**.                                               | The workflow adds a timeout note and proceeds without assigning a license.                |
-
 ## **Organizational variables affecting this workflow**
 
 | `ms_licensing_distributor`                | Defines the distributor for license purchases (if auto-purchasing is enabled).                                         |
@@ -239,12 +234,6 @@ The technician has two options:
 | `default_ticket_status`                   | Defines the PSA ticket status when waiting for technician input.                                                       |
 | `ticket_status_waiting_input`             | The status set in PSA when awaiting technician action.                                                                 |
 | `ad_list_enabled_users_only`              | Controls filtering of disabled users; defaults to true with safe boolean conversion, with false reverting to all users |
-
-## **Final notes**
-
-* The manual license process ensures that a technician has full control over licensing decisions when auto-purchasing is unavailable.
-* Clear ticketing updates and automation logs ensure visibility into whether a license was purchased, rejected, or timed out.
-* If manual licensing becomes a frequent issue, consider updating organizational variables to enable auto-purchasing where possible.
 
 ## **User name format and offboarding defaults**
 
@@ -261,14 +250,6 @@ Set the username format using the following variable:
 
 | `username_format` | Defines the standard username structure. | `firstinitiallastname` |
 | ----------------- | ---------------------------------------- | ---------------------- |
-
-### **Offboarding defaults**
-
-The same workflow principles apply to user offboarding, ensuring proper deactivation and account cleanup.
-
-| `offboarding_deactivate_user` | Disables the user account during offboarding. | ✅ Enabled |
-| ----------------------------- | --------------------------------------------- | --------- |
-| `offboarding_remove_groups`   | Removes the user from security groups.        | ✅ Enabled |
 
 {% hint style="warning" %}
 Offboarding settings should be reviewed periodically to ensure compliance with company policies.
