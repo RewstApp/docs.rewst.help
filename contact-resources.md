@@ -1,6 +1,8 @@
-# Contact resources (test)
+# Contact resources
 
 ### Cluck University
+
+**PREVIEW TEST: this line is only in the test pull request and will not be merged.**
 
 For those going through Cluck University, you can join our weekly [Office Hours](https://learn.rewst.io/cluck-university-office-hours) to get help with questions from training or implementing what you're learning. Note that the Rewst Support team does not handle assistance for Cluck University.
 
