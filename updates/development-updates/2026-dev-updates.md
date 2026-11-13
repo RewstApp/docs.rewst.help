@@ -12,6 +12,42 @@ As of 2026, our Dev updates now include our Crate Marketplace updates in the sam
 {% endhint %}
 
 {% updates format="numeric" %}
+{% update date="2026-11-13" %}
+## 💻 November 13, 2026 - Dev update
+
+<details>
+
+<summary><strong>New features and items</strong></summary>
+
+Integrations
+
+* Updated the Lexful integration to match Lexful's current API key setup screens and added restore actions
+
+</details>
+
+<details>
+
+<summary><strong>Bug fixes and chores</strong></summary>
+
+* **Forms**
+  * Fixed an issue where option filter overrides on synced forms were lost after a page refresh, so you can now keep a filter without unsyncing the form and giving up Crate updates
+* **Workflows**
+  * Fixed an issue where cloning a workflow with Synchronize changes enabled could fail with a "Not Authorized" error if a synced trigger was still activated for an organization that had since been deleted
+  * Fixed an issue where, in workflows with a large context, a transition that listed a webhook await or inquiry first could hold back its other tasks until the await was answered or timed out
+
+</details>
+
+<details>
+
+<summary><strong>Coming soon</strong></summary>
+
+* Updates to our Workflow Results page
+
+</details>
+
+
+{% endupdate %}
+
 {% update date="2026-11-06" %}
 ## 💻 November 6, 2026 - Dev update
 
